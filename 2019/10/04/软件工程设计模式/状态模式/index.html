@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="状态模式422页  事物的状态 基本常识:策略模式和状态模式 策略模式是围绕可以互换的算法来创建成功业务。 状态模式是通过改变对象内部的状态来帮助对象控制自己的行为。    1. 引入:jaw粉碎机   观察上面这个需要实现的目标，它更像是一个状态图，也就是包含了状态和状态之间切换的动作。  1.1. 获得真正的代码 首先我们需要从状态图中找到所有的状态。 之后我们需要创建一个实例变量来持有目前的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="状态模式422页  事物的状态 基本常识:策略模式和状态模式 策略模式是围绕可以互换的算法来创建成功业务。 状态模式是通过改变对象内部的状态来帮助对象控制自己的行为。    1. 引入:jaw粉碎机   观察上面这个需要实现的目标，它更像是一个状态图，也就是包含了状态和状态之间切换的动作。  1.1. 获得真正的代码 首先我们需要从状态图中找到所有的状态。 之后我们需要创建一个实例变量来持有目前的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-4.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-5.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-7.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-6.png">
+<meta property="og:updated_time" content="2019-09-30T06:40:38.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="状态模式422页  事物的状态 基本常识:策略模式和状态模式 策略模式是围绕可以互换的算法来创建成功业务。 状态模式是通过改变对象内部的状态来帮助对象控制自己的行为。    1. 引入:jaw粉碎机   观察上面这个需要实现的目标，它更像是一个状态图，也就是包含了状态和状态之间切换的动作。  1.1. 获得真正的代码 首先我们需要从状态图中找到所有的状态。 之后我们需要创建一个实例变量来持有目前的">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/img/zt-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-软件工程设计模式/状态模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/状态模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.955Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>状态模式</strong><br>422页</p>
+<ol>
+<li>事物的状态</li>
+<li>基本常识:策略模式和状态模式<ul>
+<li>策略模式是围绕可以互换的算法来创建成功业务。</li>
+<li>状态模式是通过改变对象内部的状态来帮助对象控制自己的行为。</li>
+</ul>
+</li>
+</ol>
+<h1 id="1-引入-jaw粉碎机"><a href="#1-引入-jaw粉碎机" class="headerlink" title="1. 引入:jaw粉碎机"></a>1. 引入:jaw粉碎机</h1><img src="img\zt-1.png">
+
+<ol>
+<li>观察上面这个需要实现的目标，它更像是一个状态图，也就是包含了状态和状态之间切换的动作。</li>
+</ol>
+<h2 id="1-1-获得真正的代码"><a href="#1-1-获得真正的代码" class="headerlink" title="1.1. 获得真正的代码"></a>1.1. 获得真正的代码</h2><ol>
+<li>首先我们需要从状态图中找到所有的状态。</li>
+<li>之后我们需要创建一个实例变量来持有目前的状态，然后定义每个状态的值。</li>
+</ol>
+<img src="img\zt-2.png">
+
+<ol start="3">
+<li>之后我们将所有系统中可以发生的动作整合起来。</li>
+<li>之后我们创建了一个类，其作用就想是一个状态机。对每一个动作，我们都创建额一个对应的方法，这些方法利用条件语句来决定在每个状态内什么行为是恰当的。</li>
+</ol>
+<h2 id="1-2-糖果机的代码"><a href="#1-2-糖果机的代码" class="headerlink" title="1.2. 糖果机的代码"></a>1.2. 糖果机的代码</h2><ol>
+<li>我们还需要添加一个变量count来表示机器中糖果的数量。</li>
+</ol>
+<img src="img\zt-3.png">
+
+<h2 id="1-3-问题来了"><a href="#1-3-问题来了" class="headerlink" title="1.3. 问题来了"></a>1.3. 问题来了</h2><ol>
+<li>如果按照if-else语句，我们在变更请求的时候，使用一种考虑周详的方法写出来的糖果机的代码并不一定意味着这份代码就容易扩展。</li>
+</ol>
+<h2 id="1-4-问题解决-新的设计"><a href="#1-4-问题解决-新的设计" class="headerlink" title="1.4. 问题解决:新的设计"></a>1.4. 问题解决:新的设计</h2><ol>
+<li>我们考虑将变化进行封装，将每个状态的行为都放到各自的类中，那么每个状态主要实现相应部分的修改即可。</li>
+<li>新的设计内容:<ol>
+<li>首先，我们定义一个State接口。在这个接口内，糖果机的每个动作都对应一个方法</li>
+<li>然后为机器中的每个状态实现状态类。这些类将负责在对应的状态下进行机器的行为。</li>
+<li>最后，我们要摆脱旧的条件代码，取而代之的方法是，将动作委托到状态类。</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-4-1-定义状态接口和类"><a href="#1-4-1-定义状态接口和类" class="headerlink" title="1.4.1. 定义状态接口和类"></a>1.4.1. 定义状态接口和类</h3><img src="img\zt-4.png">
+
+<ol>
+<li>接口映射到糖果机上可能发生的动作。</li>
+</ol>
+<h3 id="1-4-2-实现我们的状态类"><a href="#1-4-2-实现我们的状态类" class="headerlink" title="1.4.2. 实现我们的状态类"></a>1.4.2. 实现我们的状态类</h3><ol>
+<li>我们需要将每一个状态类实现具体的状态。</li>
+<li>改进:不用整形来表示状态，转换成使用枚举变量来完成。</li>
+<li>完整的糖果机类如下:</li>
+</ol>
+<img src="img\zt-5.png">
+
+<h3 id="1-4-3-目前已经完成的事情"><a href="#1-4-3-目前已经完成的事情" class="headerlink" title="1.4.3. 目前已经完成的事情"></a>1.4.3. 目前已经完成的事情</h3><ol>
+<li>将每个状态的行为局部化到它自己的类中。</li>
+<li>将容易产生问题的if语句删除，以方便日后的维护。</li>
+<li>让每一个状态“对修改关闭”，让糖果机“对扩展开放”，因为可以加入新的状态类。</li>
+<li>创建一个新的代码基和类结构。这更加能够映射万能糖果公司的图，并且更容易阅读和理解。</li>
+</ol>
+<h3 id="1-4-4-完成十中一的游戏"><a href="#1-4-4-完成十中一的游戏" class="headerlink" title="1.4.4. 完成十中一的游戏"></a>1.4.4. 完成十中一的游戏</h3><img src="img\zt-7.png">
+
+<ol>
+<li>我们使用random函数来保证有生成10%的概率(随机数)</li>
+<li>为什么需要用WinnerState而不是仅仅在SoldState里面发放两颗糖果？<ul>
+<li>因为这样子会将两个状态封装到一个状态内，</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-状态模式"><a href="#2-状态模式" class="headerlink" title="2. 状态模式"></a>2. 状态模式</h1><h2 id="2-1-定义状态模式"><a href="#2-1-定义状态模式" class="headerlink" title="2.1. 定义状态模式"></a>2.1. 定义状态模式</h2><ol>
+<li>状态模式:允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</li>
+</ol>
+<h2 id="2-2-状态模式的类图"><a href="#2-2-状态模式的类图" class="headerlink" title="2.2. 状态模式的类图"></a>2.2. 状态模式的类图</h2><img src="img\zt-6.png">
+
+<ol>
+<li>和策略模式的类图十分的相似，<ul>
+<li>策略模式:客户通常主动指定Context所要组合的策略对象是哪一个。</li>
+<li>状态模式:我们把一群行为封装到状态对象中，context的行为可随时委托给那些状态对象中的一个。</li>
+</ul>
+</li>
+<li>我们更多的把策略模式想成除了继承以外的一种弹性替代方案。</li>
+</ol>
+<h2 id="2-3-关于状态模式的一些问题"><a href="#2-3-关于状态模式的一些问题" class="headerlink" title="2.3. 关于状态模式的一些问题"></a>2.3. 关于状态模式的一些问题</h2><ol>
+<li>在状态模式中，决定下一个状态是什么的应该是什么？<ul>
+<li>Context未必决定下一个状态是什么，还可以决定下一个状态的流向。</li>
+<li>将状态转换放置到状态类中，相当于让各个状态类之间产生了依赖。</li>
+</ul>
+</li>
+<li>客户会直接和状态交互吗？<ul>
+<li>不会。</li>
+</ul>
+</li>
+<li>如果我的程序中的Context有很多的实例，这些实例之间可以共享状态对象吗？<ul>
+<li>可以的，但是前提是状态对象不能持有自己的内部状态</li>
+<li>而你仅仅需要的是把每个状态都指定到静态的实例变量中。</li>
+</ul>
+</li>
+<li>为何使用了设计模式之后类的数量增加了？<ul>
+<li>是封装变化的代价。</li>
+<li>是值得的，真正重要的是你暴露给客户的类的数量。</li>
+</ul>
+</li>
+<li>为什么我们使用的是接口而不是抽象类？<ul>
+<li>因为我们没有共同的功能可以放进抽象类中。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/" data-id="ck1c5r1rn0001lowliwi31jsk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/软件工程设计模式/观察者模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/软件工程设计模式/装饰者模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/适配器模式与外观模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/设计模式入门/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/观察者模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/状态模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/装饰者模式/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

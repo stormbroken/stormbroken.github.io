@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="代理模式  控制对象访问，控制和管理访问。     1. 引入:继续糖果机问题 1.1. 问题解决 1.1.1. 远程代理 1.1.2. 远程方法 1.1.3. 远程JVM对象和本地JVM对象的交互过程   1.2. 问题出现:如何访问另一个堆里的对象 1.3. RMI概述 1.3.1. RMI依赖的包 1.3.2. RMI称呼 1.3.3. 制作远程服务 1.3.3.1. 第一步：制作远程接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="代理模式  控制对象访问，控制和管理访问。     1. 引入:继续糖果机问题 1.1. 问题解决 1.1.1. 远程代理 1.1.2. 远程方法 1.1.3. 远程JVM对象和本地JVM对象的交互过程   1.2. 问题出现:如何访问另一个堆里的对象 1.3. RMI概述 1.3.1. RMI依赖的包 1.3.2. RMI称呼 1.3.3. 制作远程服务 1.3.3.1. 第一步：制作远程接口">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-4.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-5.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-6.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-7.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-8.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-9.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-10.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-11.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-12.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-13.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-14.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-15.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-16.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-17.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-18.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-19.png">
+<meta property="og:updated_time" content="2019-10-04T03:51:03.357Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="代理模式  控制对象访问，控制和管理访问。     1. 引入:继续糖果机问题 1.1. 问题解决 1.1.1. 远程代理 1.1.2. 远程方法 1.1.3. 远程JVM对象和本地JVM对象的交互过程   1.2. 问题出现:如何访问另一个堆里的对象 1.3. RMI概述 1.3.1. RMI依赖的包 1.3.2. RMI称呼 1.3.3. 制作远程服务 1.3.3.1. 第一步：制作远程接口">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/img/dl-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-软件工程设计模式/代理模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/代理模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.923Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>代理模式</strong></p>
+<ol>
+<li>控制对象访问，控制和管理访问。</li>
+</ol>
+<!-- TOC -->
+
+<ul>
+<li><a href="#1-引入继续糖果机问题">1. 引入:继续糖果机问题</a><ul>
+<li><a href="#11-问题解决">1.1. 问题解决</a><ul>
+<li><a href="#111-远程代理">1.1.1. 远程代理</a></li>
+<li><a href="#112-远程方法">1.1.2. 远程方法</a></li>
+<li><a href="#113-远程jvm对象和本地jvm对象的交互过程">1.1.3. 远程JVM对象和本地JVM对象的交互过程</a></li>
+</ul>
+</li>
+<li><a href="#12-问题出现如何访问另一个堆里的对象">1.2. 问题出现:如何访问另一个堆里的对象</a></li>
+<li><a href="#13-rmi概述">1.3. RMI概述</a><ul>
+<li><a href="#131-rmi依赖的包">1.3.1. RMI依赖的包</a></li>
+<li><a href="#132-rmi称呼">1.3.2. RMI称呼</a></li>
+<li><a href="#133-制作远程服务">1.3.3. 制作远程服务</a><ul>
+<li><a href="#1331-第一步制作远程接口">1.3.3.1. 第一步：制作远程接口</a></li>
+<li><a href="#1332-第二步制作远程的实现">1.3.3.2. 第二步：制作远程的实现</a></li>
+<li><a href="#1333-第三步利用rmic产生的stub和skeleton">1.3.3.3. 第三步：利用rmic产生的stub和skeleton</a></li>
+<li><a href="#1334-第四步启动rmi-registry">1.3.3.4. 第四步：启动RMI registry</a></li>
+<li><a href="#1335-第五步开始远程服务">1.3.3.5. 第五步：开始远程服务</a></li>
+<li><a href="#1336-服务器端的完整实现">1.3.3.6. 服务器端的完整实现</a></li>
+</ul>
+</li>
+<li><a href="#134-用户如何取得stub对象">1.3.4. 用户如何取得stub对象</a></li>
+<li><a href="#135-rmi的运行方式">1.3.5. RMI的运行方式</a></li>
+<li><a href="#136-完整的客户代码">1.3.6. 完整的客户代码</a></li>
+<li><a href="#137-关于rmi的一些注意">1.3.7. 关于RMI的一些注意</a></li>
+</ul>
+</li>
+<li><a href="#14-使用rmi来解决糖果机问题">1.4. 使用RMI来解决糖果机问题</a><ul>
+<li><a href="#141-序列化state类">1.4.1. 序列化State类</a></li>
+<li><a href="#142-实现糖果机代码">1.4.2. 实现糖果机代码</a></li>
+<li><a href="#143-将相应部分进行注册">1.4.3. 将相应部分进行注册</a></li>
+<li><a href="#144-实现糖果控制机客户端">1.4.4. 实现糖果控制机(客户端)</a></li>
+<li><a href="#145-一些花絮">1.4.5. 一些花絮</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-代理模式">2. 代理模式</a><ul>
+<li><a href="#21-定义代理模式">2.1. 定义代理模式</a></li>
+<li><a href="#22-代理模式的类图">2.2. 代理模式的类图</a></li>
+<li><a href="#23-代理模式应用虚拟代理">2.3. 代理模式应用:虚拟代理</a><ul>
+<li><a href="#231-虚拟代理的例子显示cd封面">2.3.1. 虚拟代理的例子:显示CD封面</a></li>
+<li><a href="#232-虚拟代理的类图">2.3.2. 虚拟代理的类图</a></li>
+<li><a href="#233-imageproxy工作方式">2.3.3. ImageProxy工作方式</a></li>
+<li><a href="#234-imageproxy的实现">2.3.4. ImageProxy的实现</a></li>
+<li><a href="#235-我们实现的是什么">2.3.5. 我们实现的是什么？</a></li>
+<li><a href="#236-一些问题">2.3.6. 一些问题</a></li>
+</ul>
+</li>
+<li><a href="#24-保护代理">2.4. 保护代理</a><ul>
+<li><a href="#241-动态代理的类图">2.4.1. 动态代理的类图</a></li>
+<li><a href="#242-例子存储一个人的个人信息">2.4.2. 例子：存储一个人的个人信息</a></li>
+<li><a href="#第一步创建invocationhandler">第一步:创建InvocationHandler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="1-引入-继续糖果机问题"><a href="#1-引入-继续糖果机问题" class="headerlink" title="1. 引入:继续糖果机问题"></a>1. 引入:继续糖果机问题</h1><ol>
+<li>问题:为之前的糖果生成编号</li>
+</ol>
+<h2 id="1-1-问题解决"><a href="#1-1-问题解决" class="headerlink" title="1.1. 问题解决"></a>1.1. 问题解决</h2><ol>
+<li>首先添加位置的局部变量</li>
+<li>糖果监视器，持有糖果机，在初始化的时候传入一个糖果机。</li>
+<li>在开始编码之前，我们需要先收集需求。</li>
+<li>那么代理是什么?代理就是我们某个真实的对象，在这个例子里，代理就是利用网络和一个远程的真正糖果机沟通。<ul>
+<li>远程对象是一种对象，活在不同的JVM堆中。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-1-远程代理"><a href="#1-1-1-远程代理" class="headerlink" title="1.1.1. 远程代理"></a>1.1.1. 远程代理</h3><img src="img\dl-1.png">
+
+<ol>
+<li>你的客户对象做的就像是在做远程方法调用，但其实只是调用本地堆中的“代理”对象上的方法，再由代理处理所有网络通信的低层细节。</li>
+</ol>
+<h3 id="1-1-2-远程方法"><a href="#1-1-2-远程方法" class="headerlink" title="1.1.2. 远程方法"></a>1.1.2. 远程方法</h3><ol>
+<li>我们需要使用辅助对象来帮助我们进行真正的沟通。</li>
+<li>在服务器端，服务辅助对象从客户辅助对象中接受要求(透过Socket连接)，将调用的信息解包，然后调用真正服务对象上的相应实方法。</li>
+<li>服务辅助对象从服务中得到相应的返回值，将它打包，然后返回到客户辅助对象(通过网络Socket的输出流)，客户辅助对象对信息解包，最后将返回值交给客户对象。</li>
+</ol>
+<img src="img\dl-2.png">
+
+<h3 id="1-1-3-远程JVM对象和本地JVM对象的交互过程"><a href="#1-1-3-远程JVM对象和本地JVM对象的交互过程" class="headerlink" title="1.1.3. 远程JVM对象和本地JVM对象的交互过程"></a>1.1.3. 远程JVM对象和本地JVM对象的交互过程</h3><img src="img\dl-3.png">
+<img src="img\dl-4.png">
+
+<h2 id="1-2-问题出现-如何访问另一个堆里的对象"><a href="#1-2-问题出现-如何访问另一个堆里的对象" class="headerlink" title="1.2. 问题出现:如何访问另一个堆里的对象"></a>1.2. 问题出现:如何访问另一个堆里的对象</h2><ol>
+<li>我们可以使用RMI来找到远程JVM内的对象，并允许我们调用它们的方法。</li>
+</ol>
+<h2 id="1-3-RMI概述"><a href="#1-3-RMI概述" class="headerlink" title="1.3. RMI概述"></a>1.3. RMI概述</h2><ol>
+<li>RMI提供了客户辅助对象和服务辅助对象，为客户辅助对象创建和服务对象相同的方法。</li>
+<li>RMI保证客户可以直接访问远程JVM中的方法，而不用管更多的技术细节。</li>
+<li>RMI提供了所有运行时的基础设施，其内容包括查找服务等。</li>
+<li>在这样的情况下,我们需要充分认识到网络和I/O是有风险的，容易失败的。</li>
+</ol>
+<h3 id="1-3-1-RMI依赖的包"><a href="#1-3-1-RMI依赖的包" class="headerlink" title="1.3.1. RMI依赖的包"></a>1.3.1. RMI依赖的包</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.rmi.*;</span><br><span class="line"><span class="keyword">import</span> java.rmi.server.*;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-2-RMI称呼"><a href="#1-3-2-RMI称呼" class="headerlink" title="1.3.2. RMI称呼"></a>1.3.2. RMI称呼</h3><img src="img\dl-5.png">
+
+<ol>
+<li>客户辅助对象:stub</li>
+<li>服务辅助对象:skeleton</li>
+</ol>
+<h3 id="1-3-3-制作远程服务"><a href="#1-3-3-制作远程服务" class="headerlink" title="1.3.3. 制作远程服务"></a>1.3.3. 制作远程服务</h3><p>制作远程服务的五个步骤如下</p>
+<h4 id="1-3-3-1-第一步：制作远程接口"><a href="#1-3-3-1-第一步：制作远程接口" class="headerlink" title="1.3.3.1. 第一步：制作远程接口"></a>1.3.3.1. 第一步：制作远程接口</h4><img src="img\dl-6.png">
+
+<ol>
+<li>定义了可以让用户远程调用的方法，客户将用它作为服务的类类型，stub和实际的服务都是实现此接口。</li>
+<li>扩展java.rmi.Remote:<ol>
+<li>remote接口是一个“记号”接口，不具备方法。这里的扩展是指一个接口继承另一个接口。</li>
+</ol>
+</li>
+<li>声明所有的方法都会抛出RemoteException<ol>
+<li>用户调用远程接口服务，需要注意在stub低层我们使用了网络和I/O,所以一切网络可能发生的事情都会发生。</li>
+<li>客户必须意识到风险，通过处理或声明远程异常来解决。也就是方法应当声明成<code>public string sayHello() throws RemoteException</code></li>
+</ol>
+</li>
+<li>确定变量和返回值是属于原语(primitive)类型或者可序列化(Serializable)类型。<ul>
+<li>远程方法的变量必须被打包并通过网络运送，这要靠序列化来完成。</li>
+<li>所以会有以下两种情况:一是你使用原语类型、字符串和许多API中内定的类型。二是如果是自己的类，需要确定你实现了Serizable.</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-2-第二步：制作远程的实现"><a href="#1-3-3-2-第二步：制作远程的实现" class="headerlink" title="1.3.3.2. 第二步：制作远程的实现"></a>1.3.3.2. 第二步：制作远程的实现</h4><img src="img\dl-7.png">
+
+<ol>
+<li>这是做实际工作的类，为远程接szsszs口中定义的远程方法提供了真正的实现。</li>
+<li>实现远程接口:也就是客户将要调用的方法的接口。<code>implements MyRemote()</code></li>
+<li>扩展UnicastRemoteObject<ul>
+<li>为了要成为远程服务对象，你的对象需要某些“远程的”功能，最基本的就是扩展java.rmi.server.UnicastRemoteObject,让超类来帮助你工作。</li>
+</ul>
+</li>
+<li>设计一个不带变量的构造器，并声明RemoteException<ul>
+<li>新超类UnicastRemoteObject带来问题:抛出RemoteException。</li>
+<li>解决方案:就是你的远程实现声明一个构造器，这样就有一个声明RemoteException的地方，这样类被实例化的时候，如果超类的构造器抛出异常，其子类构造器必然会抛出异常。</li>
+</ul>
+</li>
+<li>使用RMI Registry注册此服务<ul>
+<li>你已经准备好远程服务了那么你需要让它可以被远程客户调用。</li>
+<li>需要做的:将这个服务实例化，然后放进RMI registry中。注册服务用的是java.rmi.Naming类的静态rebind()类。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    MyRemote service = <span class="keyword">new</span> MyRemote();</span><br><span class="line">    Naming.rebind(<span class="string">"RemoteHello"</span>,service);</span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception ex)&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-3-第三步：利用rmic产生的stub和skeleton"><a href="#1-3-3-3-第三步：利用rmic产生的stub和skeleton" class="headerlink" title="1.3.3.3. 第三步：利用rmic产生的stub和skeleton"></a>1.3.3.3. 第三步：利用rmic产生的stub和skeleton</h4><img src="img\dl-8.png">
+
+<ol>
+<li>运行rmic的时候帮助你生成相应的辅助对象。</li>
+<li>在远程实现类上执行rmic(注意不是远程接口)<ul>
+<li>rmic是JDK内的一个工具，用来为一个服务类产生stub和skleton，相应命名习惯是在远程实现的名字后面加上_Stub或_Skel，rmic有一些选项可以调整。</li>
+<li>需要注意package等的包路径问题，并且保证rmic的文件目录和目标class是同级目录。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-4-第四步：启动RMI-registry"><a href="#1-3-3-4-第四步：启动RMI-registry" class="headerlink" title="1.3.3.4. 第四步：启动RMI registry"></a>1.3.3.4. 第四步：启动RMI registry</h4><img src="img\dl-9.png">
+
+<ol>
+<li>用户可以用来查询代理的位置</li>
+<li>开启一个终端启动rmiregistry<ul>
+<li>同样要保证启动目录必须可以访问你的类。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-5-第五步：开始远程服务"><a href="#1-3-3-5-第五步：开始远程服务" class="headerlink" title="1.3.3.5. 第五步：开始远程服务"></a>1.3.3.5. 第五步：开始远程服务</h4><img src="img\dl-10.png">
+
+<ol>
+<li>必须让服务对象开始运行，你的服务实现类会去实例化一个服务的实例，并将这个服务注册到RMI registry中去，这个服务就可以被调用了。</li>
+<li>可能从main里面启动，也可能是从一个独立的启动类中启动</li>
+</ol>
+<h4 id="1-3-3-6-服务器端的完整实现"><a href="#1-3-3-6-服务器端的完整实现" class="headerlink" title="1.3.3.6. 服务器端的完整实现"></a>1.3.3.6. 服务器端的完整实现</h4><img src="img\dl-11.png">
+
+<h3 id="1-3-4-用户如何取得stub对象"><a href="#1-3-4-用户如何取得stub对象" class="headerlink" title="1.3.4. 用户如何取得stub对象"></a>1.3.4. 用户如何取得stub对象</h3><ol>
+<li>用户必须取得stub对象(我们的代理)以调用其中的方法。所以我们需要RMI registry的帮忙(lookup)<ul>
+<li><code>MyRemote service = (MyRemote) Naming.lookup(&quot;rmi://127.0.0.1/RemoteHello&quot;)</code></li>
+<li>这是包内的一个静态方法，它从参数中得知位置和服务名称，然后在该位置的rmiregistry中寻找该名称的服务。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-3-5-RMI的运行方式"><a href="#1-3-5-RMI的运行方式" class="headerlink" title="1.3.5. RMI的运行方式"></a>1.3.5. RMI的运行方式</h3><ol>
+<li>客户到RMI registry中寻找:<code>Naming.lookup(&quot;rmi://127.0.0.1/RemoteHello&quot;)</code></li>
+<li>RMI registry返回Stub对象<ul>
+<li>然后RMI自动对返回值进行反序列化，选址是在客户端必须有stub类，否则无法进行反序列化。</li>
+</ul>
+</li>
+<li>客户调用stub的方法，就像stub是真正的对象以一样。</li>
+</ol>
+<h3 id="1-3-6-完整的客户代码"><a href="#1-3-6-完整的客户代码" class="headerlink" title="1.3.6. 完整的客户代码"></a>1.3.6. 完整的客户代码</h3><img src="img\dl-12.png">
+
+<ol>
+<li>在对于远端JVM池中的方法的调用，在看起来和本地没有什么区别，但是需要注意RemoteException。</li>
+<li>客户如何取得stub类:(一共有两种方法)<ol>
+<li>使用lookup找到被挂载的现成的stub类。即可</li>
+<li>通过“动态类下载”，通过上述操作，序列化的对象可以被标记上一个URL，告诉客户的RMI系统去寻找对象的类文件。而如果在反序列化对象的过程中，如果RMI没有在本地发现类，就会利用HTTP的GET从该URL取得类文件。</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-3-7-关于RMI的一些注意"><a href="#1-3-7-关于RMI的一些注意" class="headerlink" title="1.3.7. 关于RMI的一些注意"></a>1.3.7. 关于RMI的一些注意</h3><ol>
+<li>忘记在启动远程服务之前先启动rmiregistry(要用Naming。rebind()注册服务，并且保证其运行状态。)</li>
+<li>忘记让变量和返回值的类型成为可序列化的类型(这种错误无法在编译器发现，只会在运行时发现)。</li>
+<li>忘记给客户提供stub类。</li>
+<li>在远程接口中要支持的方法都要抛出RemoteException异常。</li>
+</ol>
+<h2 id="1-4-使用RMI来解决糖果机问题"><a href="#1-4-使用RMI来解决糖果机问题" class="headerlink" title="1.4. 使用RMI来解决糖果机问题"></a>1.4. 使用RMI来解决糖果机问题</h2><h3 id="1-4-1-序列化State类"><a href="#1-4-1-序列化State类" class="headerlink" title="1.4.1. 序列化State类"></a>1.4.1. 序列化State类</h3><img src="img\dl-13.png">
+
+<ol>
+<li>避免整个状态机被序列化随State对象一起传送，我们使用transient关键字。</li>
+</ol>
+<h3 id="1-4-2-实现糖果机代码"><a href="#1-4-2-实现糖果机代码" class="headerlink" title="1.4.2. 实现糖果机代码"></a>1.4.2. 实现糖果机代码</h3><img src="img\dl-14.png">
+
+<h3 id="1-4-3-将相应部分进行注册"><a href="#1-4-3-将相应部分进行注册" class="headerlink" title="1.4.3. 将相应部分进行注册"></a>1.4.3. 将相应部分进行注册</h3><img src="img\dl-15.png">
+
+<h3 id="1-4-4-实现糖果控制机-客户端"><a href="#1-4-4-实现糖果控制机-客户端" class="headerlink" title="1.4.4. 实现糖果控制机(客户端)"></a>1.4.4. 实现糖果控制机(客户端)</h3><img src="img\dl-16.png">
+
+<h3 id="1-4-5-一些花絮"><a href="#1-4-5-一些花絮" class="headerlink" title="1.4.5. 一些花絮"></a>1.4.5. 一些花絮</h3><ol>
+<li>首先执行监视器，取得远程糖果机的代理，然后通过每个代理的方法来获得相应的状态。</li>
+<li>之后就是各部分之间的相互交互问题。</li>
+</ol>
+<h1 id="2-代理模式"><a href="#2-代理模式" class="headerlink" title="2. 代理模式"></a>2. 代理模式</h1><ol>
+<li>远程代理是一般代理模式的一种实现。</li>
+</ol>
+<h2 id="2-1-定义代理模式"><a href="#2-1-定义代理模式" class="headerlink" title="2.1. 定义代理模式"></a>2.1. 定义代理模式</h2><ol>
+<li>代理模式为另一个对象提供一个替身或占位符以控制对这个对象的访问。</li>
+<li>使用代理模式创建代表对象，让代表对象控制某对象的访问，被代理的对象可以是远程的对象、创建开销大的对象或者需要安全控制的对象。</li>
+</ol>
+<h2 id="2-2-代理模式的类图"><a href="#2-2-代理模式的类图" class="headerlink" title="2.2. 代理模式的类图"></a>2.2. 代理模式的类图</h2><img src="img\dl-17.png">
+
+<ol>
+<li>RealSubject是真正做事的对象，它是被proxy代理和控制访问的对象。</li>
+<li>在特殊情况下，Proxy还会负责RealSubject对象的创建与销毁。</li>
+</ol>
+<h2 id="2-3-代理模式应用-虚拟代理"><a href="#2-3-代理模式应用-虚拟代理" class="headerlink" title="2.3. 代理模式应用:虚拟代理"></a>2.3. 代理模式应用:虚拟代理</h2><ol>
+<li>虚拟代理作为创建开销大的对象的代表，虚拟代理经常是我们真正需要一个对象的时候我们才创建它。当对象在创建前和创建中时，由虚拟代理来扮演对象的替身。对象创建后，代理将会将请求委托给真正的对象:缓冲时间+缓冲动画之类的。</li>
+</ol>
+<img src="img\dl-18.png">
+
+<h3 id="2-3-1-虚拟代理的例子-显示CD封面"><a href="#2-3-1-虚拟代理的例子-显示CD封面" class="headerlink" title="2.3.1. 虚拟代理的例子:显示CD封面"></a>2.3.1. 虚拟代理的例子:显示CD封面</h3><ol>
+<li>如果显示的图片需要使用Swing中穿件Icon接口从网络上加载图像。</li>
+<li>那么问题来了:限于连接带宽和网络负载，下载需要时间，所以我们需要在等待下载的时候显示一些东西。</li>
+<li>这里的代理是用于隐藏创建开销大的对象，而不是隐藏在网络其他地方的对象。</li>
+</ol>
+<h3 id="2-3-2-虚拟代理的类图"><a href="#2-3-2-虚拟代理的类图" class="headerlink" title="2.3.2. 虚拟代理的类图"></a>2.3.2. 虚拟代理的类图</h3><img src="img\dl-19.png">
+
+<h3 id="2-3-3-ImageProxy工作方式"><a href="#2-3-3-ImageProxy工作方式" class="headerlink" title="2.3.3. ImageProxy工作方式"></a>2.3.3. ImageProxy工作方式</h3><ol>
+<li>ImageProxy首先创建一个ImageIcon，然后开始从网络URL上加载图像</li>
+<li>加载过程中ImageProxy显示“CD封面加载中，请稍候”</li>
+<li>当图像加载完毕，ImageProxy把所有方法调用委托给真正的ImageIcon，这些方法包括paintIcon()、getWidth()和getHeight()</li>
+<li>如果用户请求新的图像，我们就创建新的代理，重复这样的过程。</li>
+</ol>
+<h3 id="2-3-4-ImageProxy的实现"><a href="#2-3-4-ImageProxy的实现" class="headerlink" title="2.3.4. ImageProxy的实现"></a>2.3.4. ImageProxy的实现</h3><image src="img\dl-20.png">
+
+<ol>
+<li>为了保证主线程稳定，我们需要在加载图像的时候开启第二个线程来避免挂起整个用户界面。</li>
+<li>我们可以尝试使用框架加载来完成相应的任务。</li>
+</ol>
+<h3 id="2-3-5-我们实现的是什么？"><a href="#2-3-5-我们实现的是什么？" class="headerlink" title="2.3.5. 我们实现的是什么？"></a>2.3.5. 我们实现的是什么？</h3><ol>
+<li>我们创建了一个用来显示的ImageProxy，paintIcon()方法会被调用，而ImageProxy会产生线程取得图像，并创建ImageIcon。</li>
+<li>在之后的某个时间点，图像被返回，ImageIcon被完整实例化。</li>
+<li>在ImageIcon被创建后，下次调用paintIcon()，代理就委托ImageIcon进行。</li>
+</ol>
+<h3 id="2-3-6-一些问题"><a href="#2-3-6-一些问题" class="headerlink" title="2.3.6. 一些问题"></a>2.3.6. 一些问题</h3><ol>
+<li>代理模式真正做到了保证ImageIcon和绘制操作解耦，从而保证了效率。</li>
+<li>如何保证客户使用代理而不是真正的对象？<ul>
+<li>常用的技巧是提供一个工厂，实例化并返回主题，因为这是在工厂方法内发生的，我们可以使用代理包装主题再返回。</li>
+</ul>
+</li>
+<li>我们不能把加载过的图像放置到缓存中吗？<ul>
+<li>这个是缓存代理。</li>
+</ul>
+</li>
+<li>代理模式和适配器模式的区别:<ol>
+<li>区别:适配器会改变对象适配的接口，而代理则实现相同的接口。</li>
+<li>一种额外的情况就是:保护代理，保护代理可以根据客户的角色来决定是否允许客户访问特定的方法。</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-4-保护代理"><a href="#2-4-保护代理" class="headerlink" title="2.4. 保护代理"></a>2.4. 保护代理</h2><ol>
+<li>使用Java API的代理，创建一个保护代理。</li>
+<li>在java.lang.reflect包中有自己的代理支持，利用这个包你可以在运行时动态地创建一个代理类。<ul>
+<li>实现一个或多个接口，并将方法的调用转发到你所指定的类。</li>
+<li>这也就是动态代理。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-4-1-动态代理的类图"><a href="#2-4-1-动态代理的类图" class="headerlink" title="2.4.1. 动态代理的类图"></a>2.4.1. 动态代理的类图</h3><image src="img\dl-21.png">
+
+<h3 id="2-4-2-例子：存储一个人的个人信息"><a href="#2-4-2-例子：存储一个人的个人信息" class="headerlink" title="2.4.2. 例子：存储一个人的个人信息"></a>2.4.2. 例子：存储一个人的个人信息</h3><ol>
+<li>我们需要保护保证个人信息不受到篡改和窃取。</li>
+<li>实现:保护代理，我们允许保护代理可以调用某些方法。</li>
+<li>所以我们需要创建一个代理:一个访问你自己的PersonBean对象，另一个访问另一个顾客的PersonBean对象。</li>
+<li>为PersonBean创建动态代理的步骤:<ol>
+<li><strong>创建两个InvocationHandler</strong>:这个是实现代理的行为。java负责创建真实的代理类和对象。我们只需要提供在方法调用发生时知道做什么的handler</li>
+<li><strong>写代码创建动态代理</strong></li>
+<li><strong>利用适当的代理包装任何PersonBean对象</strong>:当我们使用PersonBean对象时，如果不是顾客自己(拥有者)，就是另一个顾客在检查服务的拥有者(非拥有者)</li>
+</ol>
+</li>
+</ol>
+<h3 id="第一步-创建InvocationHandler"><a href="#第一步-创建InvocationHandler" class="headerlink" title="第一步:创建InvocationHandler"></a>第一步:创建InvocationHandler</h3><ol>
+<li>我们需要两个InvocationHandler(调用处理器)，一个给拥有者，另一个给非拥有者。</li>
+<li>InvocationHandler接口</li>
+</ol>
+<image src="img\dl-22.png">
+
+<p>516页</p>
+</image></image></image>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/" data-id="ck1c5r1s50008lowlvuot01j6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/软件工程设计模式/命令模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/软件工程设计模式/Headfirst 设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/适配器模式与外观模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/设计模式入门/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/观察者模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/状态模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/装饰者模式/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

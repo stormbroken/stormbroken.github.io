@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="观察者模式  观察者模式:是在JDK中使用最多的模式之一，十分有用，我们也会一并介绍一对多关系，以及松耦合 出版者(主题)+订阅者(观察者) = 观察者模式 主题对象管理某些数据 观察者已经订阅了这个主题，所以主题内的数据改变，就会通知观察者。      1. 观察者模式的定义 2. 实例一：气象观测站 3. 松耦合 4. 松耦合-设计原则 5. 使用java内置的观察者模式 5.1. java内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/10/04/软件工程设计模式/观察者模式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="观察者模式  观察者模式:是在JDK中使用最多的模式之一，十分有用，我们也会一并介绍一对多关系，以及松耦合 出版者(主题)+订阅者(观察者) = 观察者模式 主题对象管理某些数据 观察者已经订阅了这个主题，所以主题内的数据改变，就会通知观察者。      1. 观察者模式的定义 2. 实例一：气象观测站 3. 松耦合 4. 松耦合-设计原则 5. 使用java内置的观察者模式 5.1. java内">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-03T05:52:03.677Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="观察者模式  观察者模式:是在JDK中使用最多的模式之一，十分有用，我们也会一并介绍一对多关系，以及松耦合 出版者(主题)+订阅者(观察者) = 观察者模式 主题对象管理某些数据 观察者已经订阅了这个主题，所以主题内的数据改变，就会通知观察者。      1. 观察者模式的定义 2. 实例一：气象观测站 3. 松耦合 4. 松耦合-设计原则 5. 使用java内置的观察者模式 5.1. java内">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-软件工程设计模式/观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/观察者模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.955Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>观察者模式</strong></p>
+<ol>
+<li>观察者模式:是在JDK中使用最多的模式之一，十分有用，我们也会一并介绍一对多关系，以及松耦合</li>
+<li>出版者(主题)+订阅者(观察者) = 观察者模式<ol>
+<li>主题对象管理某些数据</li>
+<li>观察者已经订阅了这个主题，所以主题内的数据改变，就会通知观察者。<!-- TOC -->
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><a href="#1-观察者模式的定义">1. 观察者模式的定义</a></li>
+<li><a href="#2-实例一气象观测站">2. 实例一：气象观测站</a></li>
+<li><a href="#3-松耦合">3. 松耦合</a></li>
+<li><a href="#4-松耦合-设计原则">4. 松耦合-设计原则</a></li>
+<li><a href="#5-使用java内置的观察者模式">5. 使用java内置的观察者模式</a><ul>
+<li><a href="#51-java内置的观察者模式的运行方式">5.1. java内置的观察者模式的运行方式</a></li>
+<li><a href="#52-关于changed方法">5.2. 关于changed方法</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-观察者模式的定义"><a href="#1-观察者模式的定义" class="headerlink" title="1. 观察者模式的定义"></a>1. 观察者模式的定义</h1><ol>
+<li>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有的依赖着都会受到通知并自动更新。</li>
+<li>观察者模式定义了一系列对象之间的一对多关系。</li>
+<li>一个对象改变状态，其他依赖者都会受到通知</li>
+<li>部分实例:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line">    update();<span class="comment">//观察者的接口，只有主体变化的时候才被调用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> <span class="keyword">extends</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line">    <span class="comment">//主题接口，独享使用此接口注册为观察者，或者吧自己出那个观察者中删除。</span></span><br><span class="line">    registerObserver();</span><br><span class="line">    removeObserver();</span><br><span class="line">    notifyObserver();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteOberver</span> <span class="keyword">implements</span> <span class="title">Observer</span> <span class="keyword">extends</span> <span class="title">ConcreteSubject</span></span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    update();</span><br><span class="line">    <span class="comment">//其他观察者的具体方法。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">    registerObserver()&#123;...&#125;;</span><br><span class="line">    removeObserver()&#123;...&#125;;</span><br><span class="line">    notifyObserver()&#123;...&#125;;</span><br><span class="line"></span><br><span class="line">    getState();</span><br><span class="line">    setState();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="2-实例一：气象观测站"><a href="#2-实例一：气象观测站" class="headerlink" title="2. 实例一：气象观测站"></a>2. 实例一：气象观测站</h1><ol>
+<li>需要气象站+WeatherData对象+显示装置</li>
+<li>整个项目的大致情况：建立一个应用，利用WeatherData对象取得数据，并更新三个布告板：目前状况、气象统计和天气预报</li>
+<li>此系统必须可扩展，让其他开发人员建立订制的布告板，目前需要建立：目前状况、气象统计、天气预报</li>
+</ol>
+<h1 id="3-松耦合"><a href="#3-松耦合" class="headerlink" title="3. 松耦合"></a>3. 松耦合</h1><ol>
+<li>当两个对象之间松耦合，它们依然可以交互，但是不太清楚彼此的细节。</li>
+<li>针对观察者的一切，主题只要知道观察者实现了某个接口即可，主题只依赖一个实现Observer接口的对象列表。</li>
+</ol>
+<h1 id="4-松耦合-设计原则"><a href="#4-松耦合-设计原则" class="headerlink" title="4. 松耦合-设计原则"></a>4. 松耦合-设计原则</h1><ol>
+<li>内容:为了交互对象之间的松耦合设计而努力</li>
+<li>松耦合的设计之所以能让我们建立有弹性的OO系统，能够应对变化，是因为对象之间的相互依赖降到了最低。</li>
+</ol>
+<h1 id="5-使用java内置的观察者模式"><a href="#5-使用java内置的观察者模式" class="headerlink" title="5. 使用java内置的观察者模式"></a>5. 使用java内置的观察者模式</h1><ol>
+<li>到目前为止，java的PAI中已经内置了Observer接口与Observable类，甚至可以直接使用push和pull的方式来传送数据。</li>
+<li>内置的观察者模式是有问题的，只有Observable类，不符合面向接口编程。</li>
+</ol>
+<h2 id="5-1-java内置的观察者模式的运行方式"><a href="#5-1-java内置的观察者模式的运行方式" class="headerlink" title="5.1. java内置的观察者模式的运行方式"></a>5.1. java内置的观察者模式的运行方式</h2><ol>
+<li>将对象变化为观察者:调用任何Observable的addObserver()方法，不想当观察者只需要deleteOberver()。</li>
+<li>观察者送出通知:利用扩展java.util.Observable接口产生相关观察者类<ol>
+<li>调用setChanged()方法,标记状态已经改变的事实</li>
+<li>然后调用两种notifyObserver()的一种:notifyObserver()||notifyObserver(Object arg)</li>
+</ol>
+</li>
+<li>更新方法:update(Oberservable o, Object arg)<ol>
+<li>第二个数据对象为2.2传入的对象，否则为空</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-2-关于changed方法"><a href="#5-2-关于changed方法" class="headerlink" title="5.2. 关于changed方法"></a>5.2. 关于changed方法</h2><ol>
+<li>setChanged():设置改变<ul>
+<li>可以主要变化就通知，也可以改变到一定程度再通知</li>
+</ul>
+</li>
+<li>clearChanged():消除change位上的true</li>
+<li>hasChanged():告诉我现在changed标志的符号</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/观察者模式/" data-id="ck1c5r1rr0003lowl3mj8z397" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/04/软件工程设计模式/设计模式入门/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/04/软件工程设计模式/状态模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/适配器模式与外观模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/设计模式入门/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/观察者模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/状态模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/装饰者模式/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

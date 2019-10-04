@@ -62,6 +62,1426 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-软件工程设计模式/适配器模式与外观模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/适配器模式与外观模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.970Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>适配器模式与外观模式</strong><br>271页</p>
+<!-- TOC -->
+
+<ul>
+<li><a href="#1-适配者模式的引入">1. 适配者模式的引入</a><ul>
+<li><a href="#11-什么是适配器">1.1. 什么是适配器</a></li>
+<li><a href="#12-适配器的例子">1.2. 适配器的例子</a></li>
+<li><a href="#13-我们如何使用适配器">1.3. 我们如何使用适配器</a></li>
+<li><a href="#14-一些关于适配器的问题">1.4. 一些关于适配器的问题</a></li>
+</ul>
+</li>
+<li><a href="#2-适配器模式">2. 适配器模式</a><ul>
+<li><a href="#21-定义">2.1. 定义</a></li>
+<li><a href="#22-分类">2.2. 分类</a><ul>
+<li><a href="#221-对象适配器">2.2.1. 对象适配器</a></li>
+<li><a href="#222-类的适配器">2.2.2. 类的适配器</a></li>
+</ul>
+</li>
+<li><a href="#23-真实世界的适配器">2.3. 真实世界的适配器</a><ul>
+<li><a href="#231-旧世界的适配器">2.3.1. 旧世界的适配器</a></li>
+<li><a href="#232-新世界的适配器">2.3.2. 新世界的适配器</a></li>
+<li><a href="#233-问题产生及解决">2.3.3. 问题产生及解决</a></li>
+<li><a href="#234-设计适配器">2.3.4. 设计适配器</a></li>
+</ul>
+</li>
+<li><a href="#24-装饰者模式和适配者模式的差异">2.4. 装饰者模式和适配者模式的差异</a></li>
+</ul>
+</li>
+<li><a href="#3-外观模式的引入">3. 外观模式的引入</a><ul>
+<li><a href="#31-例子家庭影院">3.1. 例子:家庭影院</a><ul>
+<li><a href="#311-问题解决">3.1.1. 问题解决</a></li>
+</ul>
+</li>
+<li><a href="#32-简要了解外观模式">3.2. 简要了解外观模式</a></li>
+<li><a href="#33-影院问题的解决">3.3. 影院问题的解决</a></li>
+</ul>
+</li>
+<li><a href="#4-外观模式">4. 外观模式</a></li>
+<li><a href="#5-oo原则最少知识原则墨忒耳法则">5. OO原则:“最少知识”原则(墨忒耳法则)</a><ul>
+<li><a href="#51-原则内容">5.1. 原则内容</a></li>
+<li><a href="#52-如何做到这一点呢">5.2. 如何做到这一点呢？</a></li>
+<li><a href="#53-最少知识原则弊端">5.3. 最少知识原则弊端</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="1-适配者模式的引入"><a href="#1-适配者模式的引入" class="headerlink" title="1. 适配者模式的引入"></a>1. 适配者模式的引入</h1><ol>
+<li>现在是以不同的目的，包装某些对象:让他们的接口看起来不像自己而像别的东西。</li>
+<li>为什么要这么做呢？因为这样就可以在类的设计中，将类的接口转换成想要的接口，以便实现不同的接口。</li>
+</ol>
+<h2 id="1-1-什么是适配器"><a href="#1-1-什么是适配器" class="headerlink" title="1.1. 什么是适配器"></a>1.1. 什么是适配器</h2><ol>
+<li>适配器改变了插座的接口，让其更加符合相应的需求。</li>
+<li>如果你不想要改变现有的代码，那么你在两个不兼容的系统之间，需要的是适配器。</li>
+</ol>
+<img src="img\spq-1.png">
+
+<h2 id="1-2-适配器的例子"><a href="#1-2-适配器的例子" class="headerlink" title="1.2. 适配器的例子"></a>1.2. 适配器的例子</h2><ol>
+<li>假设你缺少鸭子对象，并且想要用一些火鸡对象来冒充，那么你需要写一个适配器:</li>
+</ol>
+<img src="img\spq-2.png">
+
+<h2 id="1-3-我们如何使用适配器"><a href="#1-3-我们如何使用适配器" class="headerlink" title="1.3. 我们如何使用适配器"></a>1.3. 我们如何使用适配器</h2><ol>
+<li>客户使用适配器的过程如下:<ol>
+<li>客户通过目标接口调用适配器的方法对适配器发出请求。</li>
+<li>适配器使用被适配者接口把请求转换成适配者的一个或多个调用接口。(translatedRequest)</li>
+<li>客户接受到调用的结果，但并未察觉这一切是适配器在起换作用。</li>
+</ol>
+</li>
+<li>那么我们可以看出来在上述过程中，客户和适配者是解耦的，彼此互相不知道。</li>
+</ol>
+<h2 id="1-4-一些关于适配器的问题"><a href="#1-4-一些关于适配器的问题" class="headerlink" title="1.4. 一些关于适配器的问题"></a>1.4. 一些关于适配器的问题</h2><ol>
+<li>适配器的大小<ul>
+<li>从总体上来讲适配器的大小从整体上来讲和目标接口的大小成正比。</li>
+</ul>
+</li>
+<li>一个适配器只能够封装一个类吗？<ul>
+<li>虽然大多数的适配器模式都只能包装一个被适配者。但是在一些情况下，我们需要让一个适配器的包装类来适配多个被适配者。</li>
+</ul>
+</li>
+<li>如果我的系统中新旧并存，在接口进行更新后的适配器不能进行修改？<ul>
+<li>我们可以创建一个双向的适配器，同时支持两边的接口，这样可以同时被用作新的接口和旧的接口。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-适配器模式"><a href="#2-适配器模式" class="headerlink" title="2. 适配器模式"></a>2. 适配器模式</h1><h2 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1. 定义"></a>2.1. 定义</h2><ol>
+<li>适配器模式将一个类的接口，转换成客户期望的另一个接口，适配器让原来接口不兼容的类可以合作无间。</li>
+</ol>
+<h2 id="2-2-分类"><a href="#2-2-分类" class="headerlink" title="2.2. 分类"></a>2.2. 分类</h2><h3 id="2-2-1-对象适配器"><a href="#2-2-1-对象适配器" class="headerlink" title="2.2.1. 对象适配器"></a>2.2.1. 对象适配器</h3><ol>
+<li>类图</li>
+</ol>
+<img src="img\spq-3.png">
+
+<ol start="2">
+<li>特点:<ol>
+<li>使用组合，可以适配某个类，包括其子类。</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-2-2-类的适配器"><a href="#2-2-2-类的适配器" class="headerlink" title="2.2.2. 类的适配器"></a>2.2.2. 类的适配器</h3><ol>
+<li>类图</li>
+</ol>
+<img src="img\spq-4.png">
+
+<ol start="2">
+<li>问题:在java中不支持多重继承，所以不支持这样子的适配器。</li>
+<li>特点:<ol>
+<li>因为是继承，所以其在必要的时候可以覆盖被适配者的行为。</li>
+<li>效率高，无需被适配者和一个适配器。</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-3-真实世界的适配器"><a href="#2-3-真实世界的适配器" class="headerlink" title="2.3. 真实世界的适配器"></a>2.3. 真实世界的适配器</h2><h3 id="2-3-1-旧世界的适配器"><a href="#2-3-1-旧世界的适配器" class="headerlink" title="2.3.1. 旧世界的适配器"></a>2.3.1. 旧世界的适配器</h3><ol>
+<li>集合(collection)类型中的elements()的方法，该方法返回一个Enumeration(举)。这个集合可以逐一走过集合中的每个元素，而无需知道它们在集合内是如何被管理的。</li>
+</ol>
+<img src="img\spq-5.png">
+
+<h3 id="2-3-2-新世界的适配器"><a href="#2-3-2-新世界的适配器" class="headerlink" title="2.3.2. 新世界的适配器"></a>2.3.2. 新世界的适配器</h3><ol>
+<li>在Sun推出新的集合类的时候，开始使用了Iterator(迭代器)接口.</li>
+</ol>
+<img src="img\spq-6.png">
+
+<h3 id="2-3-3-问题产生及解决"><a href="#2-3-3-问题产生及解决" class="headerlink" title="2.3.3. 问题产生及解决"></a>2.3.3. 问题产生及解决</h3><ol>
+<li>那么问题来了，我们面对遗留代码，这些代码暴露出枚举器的接口，但我又希望在新的代码中只是用迭代器。</li>
+<li>所以我们一般是使用适配器模式来解决这个问题。</li>
+</ol>
+<h3 id="2-3-4-设计适配器"><a href="#2-3-4-设计适配器" class="headerlink" title="2.3.4. 设计适配器"></a>2.3.4. 设计适配器</h3><img src="img\spq-7.png">
+
+<ol>
+<li>那么问题来了:没有remove()这个方法的对应怎么办呢？</li>
+<li>首先类图如下</li>
+</ol>
+<img src="img\spq-8.png">
+
+<ol start="3">
+<li>解决这个问题:我们最终选择抛出一个运行时异常，抛出UnsupportedOperationException。<ul>
+<li><code>throw new UnsupportedOperationException();</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="2-4-装饰者模式和适配者模式的差异"><a href="#2-4-装饰者模式和适配者模式的差异" class="headerlink" title="2.4. 装饰者模式和适配者模式的差异"></a>2.4. 装饰者模式和适配者模式的差异</h2><ol>
+<li>装饰者模式:<ul>
+<li>我们可以让相应新的责任和义务加入我们。</li>
+</ul>
+</li>
+<li>适配者模式:<ul>
+<li>我们允许客户使用新的库和子集合，无需改变代码。</li>
+</ul>
+</li>
+</ol>
+<h1 id="3-外观模式的引入"><a href="#3-外观模式的引入" class="headerlink" title="3. 外观模式的引入"></a>3. 外观模式的引入</h1><ol>
+<li>外观模式主要是为了简化接口，让接口更加简单。</li>
+</ol>
+<h2 id="3-1-例子-家庭影院"><a href="#3-1-例子-家庭影院" class="headerlink" title="3.1. 例子:家庭影院"></a>3.1. 例子:家庭影院</h2><ol>
+<li>当你装好了家庭影院之后，在观赏电影之前还要做很多的前置工作。</li>
+<li>在你看完电影后，你还要逐一关闭。</li>
+<li>以上都是问题。</li>
+</ol>
+<h3 id="3-1-1-问题解决"><a href="#3-1-1-问题解决" class="headerlink" title="3.1.1. 问题解决"></a>3.1.1. 问题解决</h3><ol>
+<li>你要将一个复杂的子系统变得更加容易使用，也就是简化复杂系统。</li>
+</ol>
+<img src="img\wg-1.png">
+
+<img src="img\wg-2.png">
+
+<ol start="2">
+<li>那么外观模式究竟解决了什么?外观模式提供了更加直接的操作给你，只是将子系统阻隔了起来。</li>
+</ol>
+<h2 id="3-2-简要了解外观模式"><a href="#3-2-简要了解外观模式" class="headerlink" title="3.2. 简要了解外观模式"></a>3.2. 简要了解外观模式</h2><ol>
+<li>外观没有“封装”子系统，只是提供了简化的接口。你可以直接调用里面的。</li>
+<li>外观模式可以附加相应的功能，调整整个的性能。</li>
+<li>对于每个子系统，可以有多个外观模式。</li>
+<li>外观模式可以将客户从组建的子系统中解耦。<br> +如果你升级了你的外观，客户代码是针对外观来做的，那么你不需要修改客户代码，直接修改外观代码即可。</li>
+</ol>
+<h2 id="3-3-影院问题的解决"><a href="#3-3-影院问题的解决" class="headerlink" title="3.3. 影院问题的解决"></a>3.3. 影院问题的解决</h2><ol>
+<li>常见一个外观，持有所有子系统，然后有相应的需要的方法可以极大精简客户端的代码数量。</li>
+</ol>
+<h1 id="4-外观模式"><a href="#4-外观模式" class="headerlink" title="4. 外观模式"></a>4. 外观模式</h1><ol>
+<li>模式定义:外观模式提供了一个统一的接口，用来访问子系统中一群接口。外观定义了一个高层接口，让子系统更容易使用。</li>
+</ol>
+<h1 id="5-OO原则-“最少知识”原则-墨忒耳法则"><a href="#5-OO原则-“最少知识”原则-墨忒耳法则" class="headerlink" title="5. OO原则:“最少知识”原则(墨忒耳法则)"></a>5. OO原则:“最少知识”原则(墨忒耳法则)</h1><h2 id="5-1-原则内容"><a href="#5-1-原则内容" class="headerlink" title="5.1. 原则内容"></a>5.1. 原则内容</h2><ol>
+<li>只和你的，密友谈话。</li>
+<li>也就是说你正在设计一个系统，不管是任何对象，你都要注意它所交互的类有哪些，并且注意他们是怎么交互的。</li>
+<li>总而言之，减少类与类之间的耦合性。</li>
+</ol>
+<h2 id="5-2-如何做到这一点呢？"><a href="#5-2-如何做到这一点呢？" class="headerlink" title="5.2. 如何做到这一点呢？"></a>5.2. 如何做到这一点呢？</h2><ol>
+<li>我们在该对象的方法中，应该调用属于以下范围的方法:<ol>
+<li>该对象本身</li>
+<li>被当做方法参数传递进来的对象</li>
+<li>此方法所创建或实例化的任何对象</li>
+<li>对象的任何组件</li>
+</ol>
+</li>
+<li>一个简单的例子:</li>
+</ol>
+<img src="img\wg-3.png">
+
+<h2 id="5-3-最少知识原则弊端"><a href="#5-3-最少知识原则弊端" class="headerlink" title="5.3. 最少知识原则弊端"></a>5.3. 最少知识原则弊端</h2><ol>
+<li>虽然这个原则有力的减少了对象之间的依赖，但是这个原则依旧会导致软件“包装”类的增加。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/适配器模式与外观模式/" data-id="ck1c5r1rv0006lowlqwwdh79l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/设计模式入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/设计模式入门/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.970Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>设计模式入门</strong></p>
+<ol>
+<li>软件设计的不便的真理：CHANGE<ul>
+<li>无论软件设计的多么好，一段时间后都必须要成长和改变</li>
+</ul>
+</li>
+<li>继承的方式会带来特有化的问题</li>
+<li>接口的方式会带来代码重用的方式</li>
+<li>原则和模式的应用可以被应用在软件开发的声明周期的任何时刻。<!-- TOC -->
+</li>
+</ol>
+<ul>
+<li><a href="#1-第一个设计原则">1. 第一个设计原则</a></li>
+<li><a href="#2-第二个设计原则">2. 第二个设计原则</a></li>
+<li><a href="#3-针对接口编程">3. 针对接口编程</a><ul>
+<li><a href="#31-解决鸭子问题">3.1. 解决鸭子问题</a></li>
+</ul>
+</li>
+<li><a href="#4-封装行为的大局观">4. 封装行为的大局观</a></li>
+<li><a href="#5-设计原则">5. 设计原则</a></li>
+<li><a href="#6-第一个模式策略模式">6. 第一个模式：策略模式</a></li>
+<li><a href="#7-设计模式共享模式">7. 设计模式&amp;&amp;共享模式</a></li>
+<li><a href="#8-设计模式库和框架">8. 设计模式、库和框架</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-第一个设计原则"><a href="#1-第一个设计原则" class="headerlink" title="1. 第一个设计原则"></a>1. 第一个设计原则</h1><ol>
+<li>内容:找出应用中可能需要变化之处，把他们独立出来，不要和那些不需要变化的代码混在一起。<ol>
+<li>将变化的部分取出来，并且进行封装，使之不会受到其他部分的影响。</li>
+</ol>
+</li>
+<li>也就意味着我们把变化的行为抽象出来成为一个类即可</li>
+</ol>
+<h1 id="2-第二个设计原则"><a href="#2-第二个设计原则" class="headerlink" title="2. 第二个设计原则"></a>2. 第二个设计原则</h1><ol>
+<li>内容:针对接口编程，而不是针对实现编程。</li>
+<li>我们利用接口代表每个行为,我们创建新的行为类来完成对于相应的行为的实现，而并不是在一个具体的类中完成实现。</li>
+</ol>
+<h1 id="3-针对接口编程"><a href="#3-针对接口编程" class="headerlink" title="3. 针对接口编程"></a>3. 针对接口编程</h1><ol>
+<li><p>真正内涵是针对超类型编程</p>
+</li>
+<li><p>关键在于多态，利用多态，程序可以针对超类型编程，执行时会根据实际状况执行到真正的行为。</p>
+</li>
+<li><p>更明确的说：变量的声明类型应该是超类型，通常是一个抽象类或者一个接口，所以只要是具体实现此超类型的类所产生的变量都可以指向给这个变量。</p>
+</li>
+<li><p>声明类时不用理会以后执行时真正的变量类型。</p>
+</li>
+<li><p>实例  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//针对实现编程</span></span><br><span class="line">Dog d = <span class="keyword">new</span> Dog();</span><br><span class="line">d.bark();</span><br><span class="line">-&gt;</span><br><span class="line"><span class="comment">//针对接口/超类型编程</span></span><br><span class="line">Animal animal = <span class="keyword">new</span> Dog();</span><br><span class="line">animal.makeSound();</span><br><span class="line">-&gt;</span><br><span class="line"><span class="comment">//子类的实例化部分可以不用硬编码，在运行时再确定也是一个好主意</span></span><br><span class="line">a = getAnimal();</span><br><span class="line">a.makeSound();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自己的看法：制造接口，制造接口的相关的实体类，然后使用实体类即可</p>
+<ul>
+<li>实例：<ol>
+<li>FlyBehavior(interface)<ol>
+<li>FlyWithWings:实体类</li>
+<li>FlyNoWay：实体类</li>
+</ol>
+</li>
+<li>QuackBehavior(interface)<ol>
+<li>Quack</li>
+<li>Squeak</li>
+<li>MuteQuack</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>这样的设置保证了相关的行为可以被其他的对象重用</li>
+<li>这样子极大地增加了行为的可修改和增加性</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-1-解决鸭子问题"><a href="#3-1-解决鸭子问题" class="headerlink" title="3.1. 解决鸭子问题"></a>3.1. 解决鸭子问题</h2><ol>
+<li>在Duck类中加入两个实例变量<ol>
+<li>两个接口类型的变量</li>
+<li>同时包含有两个具体实现这个两个行为的方法，在具体的鸭子类中。<ol>
+<li>通过之前的接口来实现</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在Duck的子类中，我们在构造方法中完成相应的具体的实例化</li>
+<li>具有动态行为的鸭子：<ol>
+<li>在鸭子子类中通过“设定方法”来设定鸭子的行为，而不是在鸭子的构造器内实例化。</li>
+<li>在Duck类中加入两个新方法</li>
+<li>建立一个鸭子模型：模型鸭：一开始是不会飞的</li>
+<li>建立一个新的FlyBehavior类型：其中包含有相应的飞行的行为</li>
+</ol>
+</li>
+</ol>
+<h1 id="4-封装行为的大局观"><a href="#4-封装行为的大局观" class="headerlink" title="4. 封装行为的大局观"></a>4. 封装行为的大局观</h1><ol>
+<li>类与类之间的关系：IS-A（是一个）、HAS-A（有一个）、IMPLEMENTS（实现）这三种关系。</li>
+<li>HAS-A比IS-A要好，原因是这个东西是组合而来的。</li>
+</ol>
+<h1 id="5-设计原则"><a href="#5-设计原则" class="headerlink" title="5. 设计原则"></a>5. 设计原则</h1><p>多用组合，少用继承  </p>
+<ol>
+<li>使用组合建立系统有着很大的弹性，不仅仅可以将算法封装成类，还可以“在运行时动态的改变行为”，只要保证行为对象符合正确的接口标准。</li>
+<li>因为对于一个软件开发来说，完成后会投入更大量的时间进行维护和变化，所以我们需要提高程序的可维护性和可扩展性。</li>
+</ol>
+<h1 id="6-第一个模式：策略模式"><a href="#6-第一个模式：策略模式" class="headerlink" title="6. 第一个模式：策略模式"></a>6. 第一个模式：策略模式</h1><ol>
+<li>策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于算法的客户。</li>
+</ol>
+<h1 id="7-设计模式-amp-amp-共享模式"><a href="#7-设计模式-amp-amp-共享模式" class="headerlink" title="7. 设计模式&amp;&amp;共享模式"></a>7. 设计模式&amp;&amp;共享模式</h1><ol>
+<li><strong>为什么我们选择它？</strong>设计模式让你和其他开发人员之间有共享的词汇，一旦懂得这些词汇，和其他开发人员之间沟通就很容易，也会促使那些不懂的程序员想开始学习设计模式。设计模式也可以把你的思想架构的层次提高到模式层面，而不是仅停留在琐碎的对象上。</li>
+<li>共享模式词汇的威力：<ol>
+<li>共享的模式词汇“威力强大”</li>
+<li>模式能够让你用更少的词汇做更加充分的交流</li>
+<li>将说话的方式保持在模式层次，可让你待在“设计圈子”更久一点</li>
+<li>共享词汇可帮你的开发团队快速充电</li>
+<li>共享词汇能够帮助初级开发人员迅速成长。<h1 id="8-设计模式、库和框架"><a href="#8-设计模式、库和框架" class="headerlink" title="8. 设计模式、库和框架"></a>8. 设计模式、库和框架</h1></li>
+</ol>
+</li>
+<li>设计模式的级别高于库的级别</li>
+<li>库和框架提供了我们某些特定的实现，让我们的代码乐意轻易地引用</li>
+<li>设计模式更加倾向于表现为OO的隐含经验</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/设计模式入门/" data-id="ck1c5r1ru0005lowlov3rbkqw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/观察者模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.955Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>观察者模式</strong></p>
+<ol>
+<li>观察者模式:是在JDK中使用最多的模式之一，十分有用，我们也会一并介绍一对多关系，以及松耦合</li>
+<li>出版者(主题)+订阅者(观察者) = 观察者模式<ol>
+<li>主题对象管理某些数据</li>
+<li>观察者已经订阅了这个主题，所以主题内的数据改变，就会通知观察者。<!-- TOC -->
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><a href="#1-观察者模式的定义">1. 观察者模式的定义</a></li>
+<li><a href="#2-实例一气象观测站">2. 实例一：气象观测站</a></li>
+<li><a href="#3-松耦合">3. 松耦合</a></li>
+<li><a href="#4-松耦合-设计原则">4. 松耦合-设计原则</a></li>
+<li><a href="#5-使用java内置的观察者模式">5. 使用java内置的观察者模式</a><ul>
+<li><a href="#51-java内置的观察者模式的运行方式">5.1. java内置的观察者模式的运行方式</a></li>
+<li><a href="#52-关于changed方法">5.2. 关于changed方法</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-观察者模式的定义"><a href="#1-观察者模式的定义" class="headerlink" title="1. 观察者模式的定义"></a>1. 观察者模式的定义</h1><ol>
+<li>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有的依赖着都会受到通知并自动更新。</li>
+<li>观察者模式定义了一系列对象之间的一对多关系。</li>
+<li>一个对象改变状态，其他依赖者都会受到通知</li>
+<li>部分实例:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line">    update();<span class="comment">//观察者的接口，只有主体变化的时候才被调用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> <span class="keyword">extends</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line">    <span class="comment">//主题接口，独享使用此接口注册为观察者，或者吧自己出那个观察者中删除。</span></span><br><span class="line">    registerObserver();</span><br><span class="line">    removeObserver();</span><br><span class="line">    notifyObserver();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteOberver</span> <span class="keyword">implements</span> <span class="title">Observer</span> <span class="keyword">extends</span> <span class="title">ConcreteSubject</span></span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    update();</span><br><span class="line">    <span class="comment">//其他观察者的具体方法。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">    registerObserver()&#123;...&#125;;</span><br><span class="line">    removeObserver()&#123;...&#125;;</span><br><span class="line">    notifyObserver()&#123;...&#125;;</span><br><span class="line"></span><br><span class="line">    getState();</span><br><span class="line">    setState();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="2-实例一：气象观测站"><a href="#2-实例一：气象观测站" class="headerlink" title="2. 实例一：气象观测站"></a>2. 实例一：气象观测站</h1><ol>
+<li>需要气象站+WeatherData对象+显示装置</li>
+<li>整个项目的大致情况：建立一个应用，利用WeatherData对象取得数据，并更新三个布告板：目前状况、气象统计和天气预报</li>
+<li>此系统必须可扩展，让其他开发人员建立订制的布告板，目前需要建立：目前状况、气象统计、天气预报</li>
+</ol>
+<h1 id="3-松耦合"><a href="#3-松耦合" class="headerlink" title="3. 松耦合"></a>3. 松耦合</h1><ol>
+<li>当两个对象之间松耦合，它们依然可以交互，但是不太清楚彼此的细节。</li>
+<li>针对观察者的一切，主题只要知道观察者实现了某个接口即可，主题只依赖一个实现Observer接口的对象列表。</li>
+</ol>
+<h1 id="4-松耦合-设计原则"><a href="#4-松耦合-设计原则" class="headerlink" title="4. 松耦合-设计原则"></a>4. 松耦合-设计原则</h1><ol>
+<li>内容:为了交互对象之间的松耦合设计而努力</li>
+<li>松耦合的设计之所以能让我们建立有弹性的OO系统，能够应对变化，是因为对象之间的相互依赖降到了最低。</li>
+</ol>
+<h1 id="5-使用java内置的观察者模式"><a href="#5-使用java内置的观察者模式" class="headerlink" title="5. 使用java内置的观察者模式"></a>5. 使用java内置的观察者模式</h1><ol>
+<li>到目前为止，java的PAI中已经内置了Observer接口与Observable类，甚至可以直接使用push和pull的方式来传送数据。</li>
+<li>内置的观察者模式是有问题的，只有Observable类，不符合面向接口编程。</li>
+</ol>
+<h2 id="5-1-java内置的观察者模式的运行方式"><a href="#5-1-java内置的观察者模式的运行方式" class="headerlink" title="5.1. java内置的观察者模式的运行方式"></a>5.1. java内置的观察者模式的运行方式</h2><ol>
+<li>将对象变化为观察者:调用任何Observable的addObserver()方法，不想当观察者只需要deleteOberver()。</li>
+<li>观察者送出通知:利用扩展java.util.Observable接口产生相关观察者类<ol>
+<li>调用setChanged()方法,标记状态已经改变的事实</li>
+<li>然后调用两种notifyObserver()的一种:notifyObserver()||notifyObserver(Object arg)</li>
+</ol>
+</li>
+<li>更新方法:update(Oberservable o, Object arg)<ol>
+<li>第二个数据对象为2.2传入的对象，否则为空</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-2-关于changed方法"><a href="#5-2-关于changed方法" class="headerlink" title="5.2. 关于changed方法"></a>5.2. 关于changed方法</h2><ol>
+<li>setChanged():设置改变<ul>
+<li>可以主要变化就通知，也可以改变到一定程度再通知</li>
+</ul>
+</li>
+<li>clearChanged():消除change位上的true</li>
+<li>hasChanged():告诉我现在changed标志的符号</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/观察者模式/" data-id="ck1c5r1rr0003lowl3mj8z397" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/状态模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/状态模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.955Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>状态模式</strong><br>422页</p>
+<ol>
+<li>事物的状态</li>
+<li>基本常识:策略模式和状态模式<ul>
+<li>策略模式是围绕可以互换的算法来创建成功业务。</li>
+<li>状态模式是通过改变对象内部的状态来帮助对象控制自己的行为。</li>
+</ul>
+</li>
+</ol>
+<h1 id="1-引入-jaw粉碎机"><a href="#1-引入-jaw粉碎机" class="headerlink" title="1. 引入:jaw粉碎机"></a>1. 引入:jaw粉碎机</h1><img src="img\zt-1.png">
+
+<ol>
+<li>观察上面这个需要实现的目标，它更像是一个状态图，也就是包含了状态和状态之间切换的动作。</li>
+</ol>
+<h2 id="1-1-获得真正的代码"><a href="#1-1-获得真正的代码" class="headerlink" title="1.1. 获得真正的代码"></a>1.1. 获得真正的代码</h2><ol>
+<li>首先我们需要从状态图中找到所有的状态。</li>
+<li>之后我们需要创建一个实例变量来持有目前的状态，然后定义每个状态的值。</li>
+</ol>
+<img src="img\zt-2.png">
+
+<ol start="3">
+<li>之后我们将所有系统中可以发生的动作整合起来。</li>
+<li>之后我们创建了一个类，其作用就想是一个状态机。对每一个动作，我们都创建额一个对应的方法，这些方法利用条件语句来决定在每个状态内什么行为是恰当的。</li>
+</ol>
+<h2 id="1-2-糖果机的代码"><a href="#1-2-糖果机的代码" class="headerlink" title="1.2. 糖果机的代码"></a>1.2. 糖果机的代码</h2><ol>
+<li>我们还需要添加一个变量count来表示机器中糖果的数量。</li>
+</ol>
+<img src="img\zt-3.png">
+
+<h2 id="1-3-问题来了"><a href="#1-3-问题来了" class="headerlink" title="1.3. 问题来了"></a>1.3. 问题来了</h2><ol>
+<li>如果按照if-else语句，我们在变更请求的时候，使用一种考虑周详的方法写出来的糖果机的代码并不一定意味着这份代码就容易扩展。</li>
+</ol>
+<h2 id="1-4-问题解决-新的设计"><a href="#1-4-问题解决-新的设计" class="headerlink" title="1.4. 问题解决:新的设计"></a>1.4. 问题解决:新的设计</h2><ol>
+<li>我们考虑将变化进行封装，将每个状态的行为都放到各自的类中，那么每个状态主要实现相应部分的修改即可。</li>
+<li>新的设计内容:<ol>
+<li>首先，我们定义一个State接口。在这个接口内，糖果机的每个动作都对应一个方法</li>
+<li>然后为机器中的每个状态实现状态类。这些类将负责在对应的状态下进行机器的行为。</li>
+<li>最后，我们要摆脱旧的条件代码，取而代之的方法是，将动作委托到状态类。</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-4-1-定义状态接口和类"><a href="#1-4-1-定义状态接口和类" class="headerlink" title="1.4.1. 定义状态接口和类"></a>1.4.1. 定义状态接口和类</h3><img src="img\zt-4.png">
+
+<ol>
+<li>接口映射到糖果机上可能发生的动作。</li>
+</ol>
+<h3 id="1-4-2-实现我们的状态类"><a href="#1-4-2-实现我们的状态类" class="headerlink" title="1.4.2. 实现我们的状态类"></a>1.4.2. 实现我们的状态类</h3><ol>
+<li>我们需要将每一个状态类实现具体的状态。</li>
+<li>改进:不用整形来表示状态，转换成使用枚举变量来完成。</li>
+<li>完整的糖果机类如下:</li>
+</ol>
+<img src="img\zt-5.png">
+
+<h3 id="1-4-3-目前已经完成的事情"><a href="#1-4-3-目前已经完成的事情" class="headerlink" title="1.4.3. 目前已经完成的事情"></a>1.4.3. 目前已经完成的事情</h3><ol>
+<li>将每个状态的行为局部化到它自己的类中。</li>
+<li>将容易产生问题的if语句删除，以方便日后的维护。</li>
+<li>让每一个状态“对修改关闭”，让糖果机“对扩展开放”，因为可以加入新的状态类。</li>
+<li>创建一个新的代码基和类结构。这更加能够映射万能糖果公司的图，并且更容易阅读和理解。</li>
+</ol>
+<h3 id="1-4-4-完成十中一的游戏"><a href="#1-4-4-完成十中一的游戏" class="headerlink" title="1.4.4. 完成十中一的游戏"></a>1.4.4. 完成十中一的游戏</h3><img src="img\zt-7.png">
+
+<ol>
+<li>我们使用random函数来保证有生成10%的概率(随机数)</li>
+<li>为什么需要用WinnerState而不是仅仅在SoldState里面发放两颗糖果？<ul>
+<li>因为这样子会将两个状态封装到一个状态内，</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-状态模式"><a href="#2-状态模式" class="headerlink" title="2. 状态模式"></a>2. 状态模式</h1><h2 id="2-1-定义状态模式"><a href="#2-1-定义状态模式" class="headerlink" title="2.1. 定义状态模式"></a>2.1. 定义状态模式</h2><ol>
+<li>状态模式:允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</li>
+</ol>
+<h2 id="2-2-状态模式的类图"><a href="#2-2-状态模式的类图" class="headerlink" title="2.2. 状态模式的类图"></a>2.2. 状态模式的类图</h2><img src="img\zt-6.png">
+
+<ol>
+<li>和策略模式的类图十分的相似，<ul>
+<li>策略模式:客户通常主动指定Context所要组合的策略对象是哪一个。</li>
+<li>状态模式:我们把一群行为封装到状态对象中，context的行为可随时委托给那些状态对象中的一个。</li>
+</ul>
+</li>
+<li>我们更多的把策略模式想成除了继承以外的一种弹性替代方案。</li>
+</ol>
+<h2 id="2-3-关于状态模式的一些问题"><a href="#2-3-关于状态模式的一些问题" class="headerlink" title="2.3. 关于状态模式的一些问题"></a>2.3. 关于状态模式的一些问题</h2><ol>
+<li>在状态模式中，决定下一个状态是什么的应该是什么？<ul>
+<li>Context未必决定下一个状态是什么，还可以决定下一个状态的流向。</li>
+<li>将状态转换放置到状态类中，相当于让各个状态类之间产生了依赖。</li>
+</ul>
+</li>
+<li>客户会直接和状态交互吗？<ul>
+<li>不会。</li>
+</ul>
+</li>
+<li>如果我的程序中的Context有很多的实例，这些实例之间可以共享状态对象吗？<ul>
+<li>可以的，但是前提是状态对象不能持有自己的内部状态</li>
+<li>而你仅仅需要的是把每个状态都指定到静态的实例变量中。</li>
+</ul>
+</li>
+<li>为何使用了设计模式之后类的数量增加了？<ul>
+<li>是封装变化的代价。</li>
+<li>是值得的，真正重要的是你暴露给客户的类的数量。</li>
+</ul>
+</li>
+<li>为什么我们使用的是接口而不是抽象类？<ul>
+<li>因为我们没有共同的功能可以放进抽象类中。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/状态模式/" data-id="ck1c5r1rn0001lowliwi31jsk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/装饰者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/装饰者模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.955Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>装饰者模式</strong></p>
+<ol>
+<li>通过使用对象组合的方法，做到在运行时装饰类。</li>
+<li>通过组合来完成在运行时动态的组合形成对应部分。<!-- TOC -->
+</li>
+</ol>
+<ul>
+<li><a href="#1-开发-关闭原则">1. 开发-关闭原则</a></li>
+<li><a href="#2-认识装饰者模式">2. 认识装饰者模式</a><ul>
+<li><a href="#21-装饰者模式定义">2.1. 装饰者模式定义</a></li>
+<li><a href="#22-真实世界的装饰者java-io">2.2. 真实世界的装饰者——java I/O</a></li>
+<li><a href="#23-装饰者模式的优劣">2.3. 装饰者模式的优劣</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-开发-关闭原则"><a href="#1-开发-关闭原则" class="headerlink" title="1. 开发-关闭原则"></a>1. 开发-关闭原则</h1><ol>
+<li>内容:类应该对扩展开放，对修改关闭</li>
+<li>目标是:允许类容易扩展</li>
+<li>遵守开放-关闭原则，通常会引入新的抽象层次、增加代码的复杂度。</li>
+<li>每个地方都采用开放-关闭原则是一种浪费，没有必要</li>
+</ol>
+<h1 id="2-认识装饰者模式"><a href="#2-认识装饰者模式" class="headerlink" title="2. 认识装饰者模式"></a>2. 认识装饰者模式</h1><ol>
+<li><p>就是用对象来装饰对象</p>
+</li>
+<li><p>整体结构:</p>
+<ol>
+<li>本质对象在最内部</li>
+<li>然后用更加具体的对象来包裹它，添加</li>
+<li>计算时从外向内调用cost方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> abstarct <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span></span>&#123;</span><br><span class="line">    String description = <span class="string">"UnKown"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">DarkRoast</span><span class="params">()</span> extends Beverage</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">DarkRoast</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">Mocha</span><span class="params">()</span> extends Beverage</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> DarkRoast darkroast;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>已知的模式的特点:</p>
+<ol>
+<li>装饰者和被装饰对象有相同的超类型</li>
+<li>你可以用一个或多个装饰者包装一个对象</li>
+<li>既然装饰者和被装饰对象有相同的超类型，你可以在需要原始对象的地方用装饰过的对象代替他。</li>
+<li>装饰者可以在所委托被装饰者的行为之前与/或之后，加上自己的行为，以达到特定的目的。</li>
+<li>对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地使用你喜欢的装饰者来装饰对象。</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-1-装饰者模式定义"><a href="#2-1-装饰者模式定义" class="headerlink" title="2.1. 装饰者模式定义"></a>2.1. 装饰者模式定义</h2><ol>
+<li>定义:动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。</li>
+<li>更多的是通过继承完成类型匹配而不是行为继承。</li>
+<li>真正的装饰者模式的使用应当是针对抽象组件进行编程，防止造成类型转变</li>
+<li>装饰者该做的事情，就是增加行为到被包装对象上，当需要窥视装饰者链中的每一个装饰者就已经超出了他们本身的能力范围了。</li>
+</ol>
+<h2 id="2-2-真实世界的装饰者——java-I-O"><a href="#2-2-真实世界的装饰者——java-I-O" class="headerlink" title="2.2. 真实世界的装饰者——java I/O"></a>2.2. 真实世界的装饰者——java I/O</h2><ol>
+<li>java.io包中的类很多，其中很多类的对象组合都使用了装饰者模式。</li>
+<li>例子:<ol>
+<li>fileInputStream是被装饰的组件</li>
+<li>BufferedInputStream是一个具体的装饰者，其添加了缓冲输入的方式来提高改进性能，并且添加了readLine()的方法来增强接口。</li>
+<li>LineNumberInputStream也是一个具体的装饰者，它添加上了计算行数的能力</li>
+<li>LineNumberInputStream =&gt; 包含 BufferedInputStream =&gt; 包含 FileInputStream.</li>
+</ol>
+</li>
+<li>InputStream作为基类，被很多对象修饰后逐渐装饰成了相应的类，但是容易造成相应API比较庞大。</li>
+<li>编写自己的java I/O的装饰者:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LowerCaseInputStream</span> <span class="keyword">extends</span> <span class="title">FilterInputStream</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LowerCaseInputStream</span><span class="params">(InputStream in)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(in);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> throw IOEception</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> c = <span class="keyword">super</span>.read();</span><br><span class="line">        <span class="keyword">return</span> (c == -<span class="number">1</span>?c:Character.toLowerCase((<span class="keyword">char</span>)c));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b,<span class="keyword">int</span> offset,<span class="keyword">int</span> len)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="keyword">super</span>.read(b,offset,len);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = offset;i&lt;offset + result;i++)&#123;</span><br><span class="line">            b[i] = (<span class="keyword">byte</span>)Character.toLowerCase((<span class="keyword">char</span>)b[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="2-3-装饰者模式的优劣"><a href="#2-3-装饰者模式的优劣" class="headerlink" title="2.3. 装饰者模式的优劣"></a>2.3. 装饰者模式的优劣</h2><ol>
+<li>优点:保证整个软件系统的弹性</li>
+<li>缺点:导致设置中会被加入大量的小类，因而造成理解困难。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/装饰者模式/" data-id="ck1c5r1rq0002lowl4jw78cjd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/封装算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/封装算法/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.939Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>封装算法</strong></p>
+<ol>
+<li>我们需要进一步地深入学习封装算法。</li>
+</ol>
+<h1 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h1><h2 id="1-1-例子-泡一杯茶和泡一杯咖啡"><a href="#1-1-例子-泡一杯茶和泡一杯咖啡" class="headerlink" title="1.1. 例子:泡一杯茶和泡一杯咖啡"></a>1.1. 例子:泡一杯茶和泡一杯咖啡</h2><ol>
+<li>将每一个步骤分离开，就会取得比较好的效果。</li>
+<li>类图设计</li>
+</ol>
+<img src="img\fz-1.png">
+
+<ol start="3">
+<li>在类的实际过程中我们可以将部分公有的方法抽象到超类。</li>
+<li>接下来，我们来思考一下:我们是否也可以将相应的更加具体的方法抽象出来。</li>
+</ol>
+<h3 id="1-1-1-抽象prepareRecipe"><a href="#1-1-1-抽象prepareRecipe" class="headerlink" title="1.1.1. 抽象prepareRecipe()"></a>1.1.1. 抽象prepareRecipe()</h3><ol>
+<li>首先将两个方法进行抽象。<ul>
+<li>将相关的方法进行格式化，首先格式化名称。</li>
+</ul>
+</li>
+<li>将部分接口下放到具体实现的部分。</li>
+</ol>
+<img src="img\fz-2.png">
+
+<h3 id="1-1-2-回顾-我们在过去干了什么"><a href="#1-1-2-回顾-我们在过去干了什么" class="headerlink" title="1.1.2. 回顾:我们在过去干了什么"></a>1.1.2. 回顾:我们在过去干了什么</h3><ol>
+<li>我们首先将茶和咖啡进行抽象泛化得到咖啡因饮料</li>
+<li>接下来我们在相应的子类中讲不同的部分进行实例化。</li>
+</ol>
+<img src="img\fz-3.png">
+
+<h1 id="2-模板方法模式"><a href="#2-模板方法模式" class="headerlink" title="2. 模板方法模式"></a>2. 模板方法模式</h1><img src="img\fz-4.png">
+
+<ol>
+<li>模板方法定义了一个算法的步骤，并允许子类为一个或多个步骤提供实现。</li>
+<li>那么我们把刚刚的prepareRecipe()的处理情况来简单的看一下。</li>
+</ol>
+<h2 id="2-1-定义模板方法模式"><a href="#2-1-定义模板方法模式" class="headerlink" title="2.1. 定义模板方法模式"></a>2.1. 定义模板方法模式</h2><ol>
+<li><strong>模板方法</strong>模式在一个方法中定义一个算法的骨架，而接下来将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。</li>
+<li>这个模式更多的是用来创建一个算法的模板。</li>
+</ol>
+<img src="img\fz-5.png">
+
+<h2 id="2-2-一个神奇的东西-hook-挂钩"><a href="#2-2-一个神奇的东西-hook-挂钩" class="headerlink" title="2.2. 一个神奇的东西:hook(挂钩)"></a>2.2. 一个神奇的东西:hook(挂钩)</h2><ol>
+<li>在一个模板类中，我们可以有一个具体的但是什么事情都不做的挂钩方法:<code>void hook(){}</code></li>
+<li>那么模板中的hook方法有什么作用呢？<ul>
+<li>钩子是一种被声明在抽象类中的方法，但是只有空的或者默认的实现。钩子的存在可以让子类有能力对算法的不同点进行挂钩。是否挂钩由子类决定。</li>
+<li>通常来说是缺省的实现。</li>
+<li>可以一般是<code>return true;</code></li>
+</ul>
+</li>
+</ol>
+<img src="img\fz-6.png">
+
+<h2 id="2-3-使用钩子"><a href="#2-3-使用钩子" class="headerlink" title="2.3. 使用钩子"></a>2.3. 使用钩子</h2><h3 id="2-3-1-例子"><a href="#2-3-1-例子" class="headerlink" title="2.3.1. 例子"></a>2.3.1. 例子</h3><ol>
+<li>如果我们想要完成对于一个饮料是否调价调料，我们可以通过钩子来控制相应的算法指令</li>
+<li>我们覆盖了<code>public boolean customerWantsCondiments()</code>这个钩子来实现相应的方法。</li>
+</ol>
+<h3 id="2-3-2-什么时候使用钩子"><a href="#2-3-2-什么时候使用钩子" class="headerlink" title="2.3.2. 什么时候使用钩子"></a>2.3.2. 什么时候使用钩子</h3><ol>
+<li>当我们的子类必须提供算法中某个方法或步骤的实现的时，我们选择使用抽象方法。<ul>
+<li>特别是这个算法的部分是可选的时候。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-3-3-钩子的用处"><a href="#2-3-3-钩子的用处" class="headerlink" title="2.3.3. 钩子的用处"></a>2.3.3. 钩子的用处</h3><ol>
+<li>第一种作用:钩子可以让子类实现算法中可选的部分，或者在钩子对于子类的实现并不重要的时候，子类可以对钩子置之不理。</li>
+<li>钩子的另一个用法是让子类有能力对模板方法中某些即将发生的(或者刚刚发生的)步骤做出反应。</li>
+</ol>
+<h3 id="2-3-4-钩子的优越性"><a href="#2-3-4-钩子的优越性" class="headerlink" title="2.3.4. 钩子的优越性"></a>2.3.4. 钩子的优越性</h3><ol>
+<li>在写模板方法的时候，我们要平衡抽象方法和钩子方法的比例，通过折中的方法来保证子类负担不太大，并且充分具有弹性。</li>
+<li>不要将算法切分的过细。</li>
+</ol>
+<h1 id="3-设计模式-好莱坞原则"><a href="#3-设计模式-好莱坞原则" class="headerlink" title="3. 设计模式:好莱坞原则"></a>3. 设计模式:好莱坞原则</h1><ol>
+<li>模式内容:别调用我们，我们会调用你。</li>
+<li>原则的用处:<ol>
+<li>可以给我们一种防止“依赖腐败”的方法。</li>
+<li>在高层和底层组件之间相互依赖的时候，我们允许低层组件将自己挂钩到系统上，但是高层组件会决定什么时候和怎样使用这些低层组件。</li>
+</ol>
+</li>
+</ol>
+<h2 id="3-1-好莱坞原则与依赖倒置原则之间的区别"><a href="#3-1-好莱坞原则与依赖倒置原则之间的区别" class="headerlink" title="3.1. 好莱坞原则与依赖倒置原则之间的区别"></a>3.1. 好莱坞原则与依赖倒置原则之间的区别</h2><ol>
+<li>依赖倒置原则要求我们尽量避免使用具体类，而多使用抽象</li>
+<li>好莱坞原则是用在创建框架或组件上的一种技巧，让底层组件能够被钩进计算中，而保证高层组件依赖低层组件。</li>
+<li>低层组件一定不可以调用高层组件中的方法吗？<ul>
+<li>并不是的，低层组件在结束时，常常会调用从超类继承来的方法，我们要做的是，避免让高层和低层组件之间又明显的<strong>环状依赖</strong>。</li>
+</ul>
+</li>
+</ol>
+<h1 id="4-java-API中的模板方法"><a href="#4-java-API中的模板方法" class="headerlink" title="4. java API中的模板方法"></a>4. java API中的模板方法</h1><ol>
+<li>我们只需要调用相应的API中的模块式方法即可。</li>
+</ol>
+<img src="img\fz-7.png">
+
+<h2 id="4-1-排序非数字的部分"><a href="#4-1-排序非数字的部分" class="headerlink" title="4.1. 排序非数字的部分:"></a>4.1. 排序非数字的部分:</h2><ol>
+<li>我们需要将compareTo()这个方法进行实现，否则不能进行排序<ul>
+<li>实现鸭子的排序,我们要在Duck这个类中实现<code>public int compareTo(Object object)</code></li>
+</ul>
+</li>
+</ol>
+<img src="img\fz-8.png">
+
+<h2 id="4-2-其他的API的方法"><a href="#4-2-其他的API的方法" class="headerlink" title="4.2. 其他的API的方法:"></a>4.2. 其他的API的方法:</h2><pre><code>1. read(byte b[],int off,int len)的模板方法是read()
+2. swing的窗口程序:其中的paint()方法。在默认状态中，paint()是不做事情的，但是我们可以这样子插入我们自己的代码</code></pre><img src="img\fz-9.png">
+
+<h2 id="4-3-Applet"><a href="#4-3-Applet" class="headerlink" title="4.3. Applet"></a>4.3. Applet</h2><ol>
+<li>applet是一个能够在网页上执行的小程序，其中Applet类中提供了很多的钩子。</li>
+</ol>
+<img src="img\fz-10.png">
+
+<h1 id="5-模板方法和策略模式的不同"><a href="#5-模板方法和策略模式的不同" class="headerlink" title="5. 模板方法和策略模式的不同"></a>5. 模板方法和策略模式的不同</h1><ol>
+<li>模板方法是定义一个算法的大纲，而由其子类定义其中某些步骤的内容。</li>
+<li>策略则是主要通过对象组合的方式让客户可以选择算法实现。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/封装算法/" data-id="ck1c5r1rs0004lowly0cumfgm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/命令模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/命令模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.923Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>命令模式</strong></p>
+<!-- TOC -->
+
+<ul>
+<li><a href="#1-引入">1. 引入</a><ul>
+<li><a href="#11-例子家电自动化公司">1.1. 例子:家电自动化公司</a></li>
+<li><a href="#12-例子对象村餐厅">1.2. 例子:对象村餐厅</a></li>
+</ul>
+</li>
+<li><a href="#2-命令模式">2. 命令模式</a><ul>
+<li><a href="#21-以餐厅为例解析命令模式">2.1. 以餐厅为例解析命令模式</a></li>
+</ul>
+</li>
+<li><a href="#3-定义命令模式">3. 定义命令模式</a><ul>
+<li><a href="#31-问题">3.1. 问题</a></li>
+<li><a href="#32-实现简单的遥控器">3.2. 实现简单的遥控器</a><ul>
+<li><a href="#321-放置空指针的对象来避免null引发的一些问题">3.2.1. 放置空指针的对象来避免null引发的一些问题</a></li>
+</ul>
+</li>
+<li><a href="#33-撤销问题的解决">3.3. 撤销问题的解决</a></li>
+<li><a href="#34-撤销问题的深入使用状态来实现撤销">3.4. 撤销问题的深入:使用状态来实现撤销</a><ul>
+<li><a href="#341-吊扇问题">3.4.1. 吊扇问题</a></li>
+</ul>
+</li>
+<li><a href="#35-宏命令">3.5. 宏命令</a><ul>
+<li><a href="#351-如何使用宏命令呢">3.5.1. 如何使用宏命令呢?</a></li>
+<li><a href="#352-问题">3.5.2. 问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-命令模式的相关疑惑">4. 命令模式的相关疑惑</a></li>
+<li><a href="#5-命令模式的更多用途">5. 命令模式的更多用途</a><ul>
+<li><a href="#51-队列请求">5.1. 队列请求</a></li>
+<li><a href="#52-日志请求">5.2. 日志请求</a><ul>
+<li><a href="#521-问题解决">5.2.1. 问题解决</a></li>
+<li><a href="#522-新的问题调用大型数据结构的问题">5.2.2. 新的问题:调用大型数据结构的问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="1-引入"><a href="#1-引入" class="headerlink" title="1. 引入"></a>1. 引入</h1><ol>
+<li>在这章，我们把封装带到一个全新的境界:将方法调用封装起来。</li>
+<li>这样子的结果就是调用此运算的对象不需要关心事情是如何进行的，只要知道如何使用包装成形的方法来完成它即可。</li>
+<li>总体来讲，命令模式可将”动作的请求者”从“动作的执行者”对象中解耦。</li>
+<li>那么使用命令对象是一个好的选择，将每个按钮存储成一个命令对象，只要有个命令对象能和正确的对象沟通，把事情做好就行。</li>
+</ol>
+<h2 id="1-1-例子-家电自动化公司"><a href="#1-1-例子-家电自动化公司" class="headerlink" title="1.1. 例子:家电自动化公司"></a>1.1. 例子:家电自动化公司</h2><ol>
+<li>以遥控器为例，遥控器只需要发出正确的请求，而不必知道相应的技术细节。</li>
+<li>使用命令对象。</li>
+</ol>
+<h2 id="1-2-例子-对象村餐厅"><a href="#1-2-例子-对象村餐厅" class="headerlink" title="1.2. 例子:对象村餐厅"></a>1.2. 例子:对象村餐厅</h2><ol>
+<li>一张订单:封装准备餐点的请求。<ul>
+<li>订单对象可以被传递。</li>
+</ul>
+</li>
+<li>女接待:接受订单，然后调用订单的orderUp()方法。<ul>
+<li>女接待知道所有的订单支持的orderUp()方法。</li>
+</ul>
+</li>
+<li>快餐厨师:需要具备准备餐点的知识。</li>
+</ol>
+<h1 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2. 命令模式"></a>2. 命令模式</h1><ol>
+<li>引入:将“发出请求的对象”和“接受与执行这些请求的对象”分隔开。</li>
+</ol>
+<h2 id="2-1-以餐厅为例解析命令模式"><a href="#2-1-以餐厅为例解析命令模式" class="headerlink" title="2.1. 以餐厅为例解析命令模式"></a>2.1. 以餐厅为例解析命令模式</h2><ol>
+<li>加载调用者:<ol>
+<li>客户创建一个命令对象。</li>
+<li>客户利用setCommand()将命令对象储存在调用者中。</li>
+<li>之后客户要求调用者执行命令。一旦命令被加载后其可以被使用并丢弃，或者保留下来并使用多次。</li>
+</ol>
+</li>
+<li>实现命令接口:<ul>
+<li>所有的命令对象实现相同的包含一个方法的接口。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="3-定义命令模式"><a href="#3-定义命令模式" class="headerlink" title="3. 定义命令模式"></a>3. 定义命令模式</h1><ol>
+<li>定义:命令模式将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也支持可撤销的操作。</li>
+<li>仔细来看这个定义，我们知道一个命令对象通过在特定接收者上绑定一组活动来封装这个请求，要达到这一点，命令对象将动作和接受者包进对象中。接受者就会进行了哪些动作，只知道如果调用了execute()方法，请求的目的就能达到。</li>
+<li>使用命令模式来实现“队列、日志和支持撤销操作”。</li>
+<li>可以持有Meta Command Pattern、Meta Command Pattern创建相应命令的宏，一遍一次执行多个命令。</li>
+</ol>
+<img src="img\ml-1.png">
+
+<h2 id="3-1-问题"><a href="#3-1-问题" class="headerlink" title="3.1. 问题"></a>3.1. 问题</h2><ol>
+<li>如何确保简单的遥控器只需要调用execute()方法即可执行正确的操作呢？</li>
+<li>因为每一个命令对象中的execute()都已经指定了一个receiver，所以不会错误的请求。</li>
+</ol>
+<h2 id="3-2-实现简单的遥控器"><a href="#3-2-实现简单的遥控器" class="headerlink" title="3.2. 实现简单的遥控器"></a>3.2. 实现简单的遥控器</h2><ol>
+<li>使用数组来记录每一个命令。</li>
+<li>同时在创建的时候，要创建一个NoCommand()来防止错误。</li>
+<li>使用StringBuff来减少内存池的占用</li>
+<li>细节问题:如何避免每次都需要确认相应命令对象是否为空<ol>
+<li>我们只需要为每一个命令对象写一个空方法即可。</li>
+<li>同时我们还在一开始将每个插槽都预先指定成NoCommand对象，保证每个插槽都有命令对象。</li>
+</ol>
+</li>
+</ol>
+<h3 id="3-2-1-放置空指针的对象来避免null引发的一些问题"><a href="#3-2-1-放置空指针的对象来避免null引发的一些问题" class="headerlink" title="3.2.1. 放置空指针的对象来避免null引发的一些问题"></a>3.2.1. 放置空指针的对象来避免null引发的一些问题</h3><ol>
+<li>NoCommand对象就是一个空对象(null object)的例子，意味着这时候，什么都不做就可。</li>
+</ol>
+<img src="img\ml-2.png">
+
+<h2 id="3-3-撤销问题的解决"><a href="#3-3-撤销问题的解决" class="headerlink" title="3.3. 撤销问题的解决"></a>3.3. 撤销问题的解决</h2><ol>
+<li>在命令接口中写入undo()方法。</li>
+<li>但是新的问题出现了，这样子的操作我们只能撤销相应的一些指令，但是我们怎么用一个按钮来追踪最后被调用的命令呢？<ul>
+<li>我们使用一个undoCommand的命令对象来记录上一个操作的命令究竟是什么</li>
+<li>当撤销指令被执行时，我们只需要调用相应的undo方法即可。</li>
+</ul>
+</li>
+<li>同时我们在取得一个命令的同时，在优先执行它后记录下这个命令。</li>
+</ol>
+<h2 id="3-4-撤销问题的深入-使用状态来实现撤销"><a href="#3-4-撤销问题的深入-使用状态来实现撤销" class="headerlink" title="3.4. 撤销问题的深入:使用状态来实现撤销"></a>3.4. 撤销问题的深入:使用状态来实现撤销</h2><ol>
+<li>新的问题是出现了:如果一个命令对象出现了多个状态后那么如何来做这个撤销操作呢？</li>
+</ol>
+<h3 id="3-4-1-吊扇问题"><a href="#3-4-1-吊扇问题" class="headerlink" title="3.4.1. 吊扇问题"></a>3.4.1. 吊扇问题</h3><ol>
+<li>如果吊扇用整形变量来保存其状态。</li>
+<li>使用一个整形变量preSpeed来保存之前的状态，使用undo()中确定具体的回撤状态即可。</li>
+</ol>
+<h2 id="3-5-宏命令"><a href="#3-5-宏命令" class="headerlink" title="3.5. 宏命令"></a>3.5. 宏命令</h2><ol>
+<li>每一个遥控器都应当具备“Party模式”</li>
+<li>有遥控器的时候，如果只能分别完成各个部分的工作，但是不能直接完成组合的活动，那么遥控器有什么作用呢?<ul>
+<li>使用宏命令</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-5-1-如何使用宏命令呢"><a href="#3-5-1-如何使用宏命令呢" class="headerlink" title="3.5.1. 如何使用宏命令呢?"></a>3.5.1. 如何使用宏命令呢?</h3><ol>
+<li>将一组指令存储下来，之后分别循环执行这个命令即可。</li>
+<li>第一步:想创建想要进入宏的命令集合。</li>
+</ol>
+<img src="img\ml-3.png">
+
+<ol start="3">
+<li>第二步:接下来创建两个数组，其中一个用来记录开启命令，另一个用来记录关闭命令，并在数组内放入对应的命令。</li>
+</ol>
+<img src="img\ml-4.png">
+
+<ol start="4">
+<li>第三步:然后将宏命令指定给我们所希望的按钮。<ul>
+<li><code>remoteControl.setCommand(0,partyOnMacro,partyOffMarco)</code></li>
+</ul>
+</li>
+<li>第四步:最后只需要按下按钮，测试是否正常工作。</li>
+</ol>
+<h3 id="3-5-2-问题"><a href="#3-5-2-问题" class="headerlink" title="3.5.2. 问题"></a>3.5.2. 问题</h3><ol>
+<li>目前的宏命令没有包含撤销功能，如果一个宏的命令被执行完，然后按下撤销按钮，那么宏内所进行的每一道命令都必须被撤销。</li>
+<li>问题解决:使用循环，针对每一个命令使用undo命令来逐一进行撤销。</li>
+</ol>
+<h1 id="4-命令模式的相关疑惑"><a href="#4-命令模式的相关疑惑" class="headerlink" title="4. 命令模式的相关疑惑"></a>4. 命令模式的相关疑惑</h1><ol>
+<li>为什么不将一些操作在命令对象中实现，而是仅仅在execute()方法中实现呢？<ul>
+<li>这样子也是可以的，我们设计出来的是聪明的命令对象，而如此的解耦程度比不上傻瓜的对象。</li>
+</ul>
+</li>
+<li>我们如何实现多层次的撤销操作？<ul>
+<li>使用栈数据类型。</li>
+</ul>
+</li>
+</ol>
+<h1 id="5-命令模式的更多用途"><a href="#5-命令模式的更多用途" class="headerlink" title="5. 命令模式的更多用途"></a>5. 命令模式的更多用途</h1><h2 id="5-1-队列请求"><a href="#5-1-队列请求" class="headerlink" title="5.1. 队列请求"></a>5.1. 队列请求</h2><ol>
+<li>命令可以将运算块打包(一个接受者和一组动作)。</li>
+<li>命令对象在被创建后甚至可以在不同的线程中被调用，我们可以利用这个特性来衍生一些应用，例如:日程安排、线程池、工作队列等。</li>
+<li>Web服务器应用这样的队列方式来保证工作队列类和进行计算的对象之间是完全解耦的。</li>
+</ol>
+<h2 id="5-2-日志请求"><a href="#5-2-日志请求" class="headerlink" title="5.2. 日志请求"></a>5.2. 日志请求</h2><ol>
+<li>某些应用需要我们将所有的动作都记录在日志中，并能在系统死机之后，重新调用这些动作来恢复到之前的状态。</li>
+</ol>
+<h3 id="5-2-1-问题解决"><a href="#5-2-1-问题解决" class="headerlink" title="5.2.1. 问题解决"></a>5.2.1. 问题解决</h3><ol>
+<li>新增store()、load()方法，使用命令模式支持这一点。</li>
+<li>那么为什么不用Java的序列化呢？<ul>
+<li>一般我们认为序列化最好还是用在对象的持久化上。</li>
+</ul>
+</li>
+<li>问题最终解决:系统死机-&gt;对历史记录中的命令的对象进行重新加载，并成批地依次调用这些对象的持久化上。</li>
+</ol>
+<h3 id="5-2-2-新的问题-调用大型数据结构的问题"><a href="#5-2-2-新的问题-调用大型数据结构的问题" class="headerlink" title="5.2.2. 新的问题:调用大型数据结构的问题"></a>5.2.2. 新的问题:调用大型数据结构的问题</h3><ol>
+<li>我们通常是通过使用记录日志，我们可以将<strong>上次检查点</strong>之后的所有操作快速地存储下来。</li>
+<li>对于更高级的应用，这些技巧会被扩展应用到事物处理中，也就是说，一整群操作必须全部进行完成，或者没有进行任何的操作。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/命令模式/" data-id="ck1c5r1s50007lowlx72uybi6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/代理模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/代理模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.923Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>代理模式</strong></p>
+<ol>
+<li>控制对象访问，控制和管理访问。</li>
+</ol>
+<!-- TOC -->
+
+<ul>
+<li><a href="#1-引入继续糖果机问题">1. 引入:继续糖果机问题</a><ul>
+<li><a href="#11-问题解决">1.1. 问题解决</a><ul>
+<li><a href="#111-远程代理">1.1.1. 远程代理</a></li>
+<li><a href="#112-远程方法">1.1.2. 远程方法</a></li>
+<li><a href="#113-远程jvm对象和本地jvm对象的交互过程">1.1.3. 远程JVM对象和本地JVM对象的交互过程</a></li>
+</ul>
+</li>
+<li><a href="#12-问题出现如何访问另一个堆里的对象">1.2. 问题出现:如何访问另一个堆里的对象</a></li>
+<li><a href="#13-rmi概述">1.3. RMI概述</a><ul>
+<li><a href="#131-rmi依赖的包">1.3.1. RMI依赖的包</a></li>
+<li><a href="#132-rmi称呼">1.3.2. RMI称呼</a></li>
+<li><a href="#133-制作远程服务">1.3.3. 制作远程服务</a><ul>
+<li><a href="#1331-第一步制作远程接口">1.3.3.1. 第一步：制作远程接口</a></li>
+<li><a href="#1332-第二步制作远程的实现">1.3.3.2. 第二步：制作远程的实现</a></li>
+<li><a href="#1333-第三步利用rmic产生的stub和skeleton">1.3.3.3. 第三步：利用rmic产生的stub和skeleton</a></li>
+<li><a href="#1334-第四步启动rmi-registry">1.3.3.4. 第四步：启动RMI registry</a></li>
+<li><a href="#1335-第五步开始远程服务">1.3.3.5. 第五步：开始远程服务</a></li>
+<li><a href="#1336-服务器端的完整实现">1.3.3.6. 服务器端的完整实现</a></li>
+</ul>
+</li>
+<li><a href="#134-用户如何取得stub对象">1.3.4. 用户如何取得stub对象</a></li>
+<li><a href="#135-rmi的运行方式">1.3.5. RMI的运行方式</a></li>
+<li><a href="#136-完整的客户代码">1.3.6. 完整的客户代码</a></li>
+<li><a href="#137-关于rmi的一些注意">1.3.7. 关于RMI的一些注意</a></li>
+</ul>
+</li>
+<li><a href="#14-使用rmi来解决糖果机问题">1.4. 使用RMI来解决糖果机问题</a><ul>
+<li><a href="#141-序列化state类">1.4.1. 序列化State类</a></li>
+<li><a href="#142-实现糖果机代码">1.4.2. 实现糖果机代码</a></li>
+<li><a href="#143-将相应部分进行注册">1.4.3. 将相应部分进行注册</a></li>
+<li><a href="#144-实现糖果控制机客户端">1.4.4. 实现糖果控制机(客户端)</a></li>
+<li><a href="#145-一些花絮">1.4.5. 一些花絮</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-代理模式">2. 代理模式</a><ul>
+<li><a href="#21-定义代理模式">2.1. 定义代理模式</a></li>
+<li><a href="#22-代理模式的类图">2.2. 代理模式的类图</a></li>
+<li><a href="#23-代理模式应用虚拟代理">2.3. 代理模式应用:虚拟代理</a><ul>
+<li><a href="#231-虚拟代理的例子显示cd封面">2.3.1. 虚拟代理的例子:显示CD封面</a></li>
+<li><a href="#232-虚拟代理的类图">2.3.2. 虚拟代理的类图</a></li>
+<li><a href="#233-imageproxy工作方式">2.3.3. ImageProxy工作方式</a></li>
+<li><a href="#234-imageproxy的实现">2.3.4. ImageProxy的实现</a></li>
+<li><a href="#235-我们实现的是什么">2.3.5. 我们实现的是什么？</a></li>
+<li><a href="#236-一些问题">2.3.6. 一些问题</a></li>
+</ul>
+</li>
+<li><a href="#24-保护代理">2.4. 保护代理</a><ul>
+<li><a href="#241-动态代理的类图">2.4.1. 动态代理的类图</a></li>
+<li><a href="#242-例子存储一个人的个人信息">2.4.2. 例子：存储一个人的个人信息</a></li>
+<li><a href="#第一步创建invocationhandler">第一步:创建InvocationHandler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="1-引入-继续糖果机问题"><a href="#1-引入-继续糖果机问题" class="headerlink" title="1. 引入:继续糖果机问题"></a>1. 引入:继续糖果机问题</h1><ol>
+<li>问题:为之前的糖果生成编号</li>
+</ol>
+<h2 id="1-1-问题解决"><a href="#1-1-问题解决" class="headerlink" title="1.1. 问题解决"></a>1.1. 问题解决</h2><ol>
+<li>首先添加位置的局部变量</li>
+<li>糖果监视器，持有糖果机，在初始化的时候传入一个糖果机。</li>
+<li>在开始编码之前，我们需要先收集需求。</li>
+<li>那么代理是什么?代理就是我们某个真实的对象，在这个例子里，代理就是利用网络和一个远程的真正糖果机沟通。<ul>
+<li>远程对象是一种对象，活在不同的JVM堆中。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-1-远程代理"><a href="#1-1-1-远程代理" class="headerlink" title="1.1.1. 远程代理"></a>1.1.1. 远程代理</h3><img src="img\dl-1.png">
+
+<ol>
+<li>你的客户对象做的就像是在做远程方法调用，但其实只是调用本地堆中的“代理”对象上的方法，再由代理处理所有网络通信的低层细节。</li>
+</ol>
+<h3 id="1-1-2-远程方法"><a href="#1-1-2-远程方法" class="headerlink" title="1.1.2. 远程方法"></a>1.1.2. 远程方法</h3><ol>
+<li>我们需要使用辅助对象来帮助我们进行真正的沟通。</li>
+<li>在服务器端，服务辅助对象从客户辅助对象中接受要求(透过Socket连接)，将调用的信息解包，然后调用真正服务对象上的相应实方法。</li>
+<li>服务辅助对象从服务中得到相应的返回值，将它打包，然后返回到客户辅助对象(通过网络Socket的输出流)，客户辅助对象对信息解包，最后将返回值交给客户对象。</li>
+</ol>
+<img src="img\dl-2.png">
+
+<h3 id="1-1-3-远程JVM对象和本地JVM对象的交互过程"><a href="#1-1-3-远程JVM对象和本地JVM对象的交互过程" class="headerlink" title="1.1.3. 远程JVM对象和本地JVM对象的交互过程"></a>1.1.3. 远程JVM对象和本地JVM对象的交互过程</h3><img src="img\dl-3.png">
+<img src="img\dl-4.png">
+
+<h2 id="1-2-问题出现-如何访问另一个堆里的对象"><a href="#1-2-问题出现-如何访问另一个堆里的对象" class="headerlink" title="1.2. 问题出现:如何访问另一个堆里的对象"></a>1.2. 问题出现:如何访问另一个堆里的对象</h2><ol>
+<li>我们可以使用RMI来找到远程JVM内的对象，并允许我们调用它们的方法。</li>
+</ol>
+<h2 id="1-3-RMI概述"><a href="#1-3-RMI概述" class="headerlink" title="1.3. RMI概述"></a>1.3. RMI概述</h2><ol>
+<li>RMI提供了客户辅助对象和服务辅助对象，为客户辅助对象创建和服务对象相同的方法。</li>
+<li>RMI保证客户可以直接访问远程JVM中的方法，而不用管更多的技术细节。</li>
+<li>RMI提供了所有运行时的基础设施，其内容包括查找服务等。</li>
+<li>在这样的情况下,我们需要充分认识到网络和I/O是有风险的，容易失败的。</li>
+</ol>
+<h3 id="1-3-1-RMI依赖的包"><a href="#1-3-1-RMI依赖的包" class="headerlink" title="1.3.1. RMI依赖的包"></a>1.3.1. RMI依赖的包</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.rmi.*;</span><br><span class="line"><span class="keyword">import</span> java.rmi.server.*;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-2-RMI称呼"><a href="#1-3-2-RMI称呼" class="headerlink" title="1.3.2. RMI称呼"></a>1.3.2. RMI称呼</h3><img src="img\dl-5.png">
+
+<ol>
+<li>客户辅助对象:stub</li>
+<li>服务辅助对象:skeleton</li>
+</ol>
+<h3 id="1-3-3-制作远程服务"><a href="#1-3-3-制作远程服务" class="headerlink" title="1.3.3. 制作远程服务"></a>1.3.3. 制作远程服务</h3><p>制作远程服务的五个步骤如下</p>
+<h4 id="1-3-3-1-第一步：制作远程接口"><a href="#1-3-3-1-第一步：制作远程接口" class="headerlink" title="1.3.3.1. 第一步：制作远程接口"></a>1.3.3.1. 第一步：制作远程接口</h4><img src="img\dl-6.png">
+
+<ol>
+<li>定义了可以让用户远程调用的方法，客户将用它作为服务的类类型，stub和实际的服务都是实现此接口。</li>
+<li>扩展java.rmi.Remote:<ol>
+<li>remote接口是一个“记号”接口，不具备方法。这里的扩展是指一个接口继承另一个接口。</li>
+</ol>
+</li>
+<li>声明所有的方法都会抛出RemoteException<ol>
+<li>用户调用远程接口服务，需要注意在stub低层我们使用了网络和I/O,所以一切网络可能发生的事情都会发生。</li>
+<li>客户必须意识到风险，通过处理或声明远程异常来解决。也就是方法应当声明成<code>public string sayHello() throws RemoteException</code></li>
+</ol>
+</li>
+<li>确定变量和返回值是属于原语(primitive)类型或者可序列化(Serializable)类型。<ul>
+<li>远程方法的变量必须被打包并通过网络运送，这要靠序列化来完成。</li>
+<li>所以会有以下两种情况:一是你使用原语类型、字符串和许多API中内定的类型。二是如果是自己的类，需要确定你实现了Serizable.</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-2-第二步：制作远程的实现"><a href="#1-3-3-2-第二步：制作远程的实现" class="headerlink" title="1.3.3.2. 第二步：制作远程的实现"></a>1.3.3.2. 第二步：制作远程的实现</h4><img src="img\dl-7.png">
+
+<ol>
+<li>这是做实际工作的类，为远程接szsszs口中定义的远程方法提供了真正的实现。</li>
+<li>实现远程接口:也就是客户将要调用的方法的接口。<code>implements MyRemote()</code></li>
+<li>扩展UnicastRemoteObject<ul>
+<li>为了要成为远程服务对象，你的对象需要某些“远程的”功能，最基本的就是扩展java.rmi.server.UnicastRemoteObject,让超类来帮助你工作。</li>
+</ul>
+</li>
+<li>设计一个不带变量的构造器，并声明RemoteException<ul>
+<li>新超类UnicastRemoteObject带来问题:抛出RemoteException。</li>
+<li>解决方案:就是你的远程实现声明一个构造器，这样就有一个声明RemoteException的地方，这样类被实例化的时候，如果超类的构造器抛出异常，其子类构造器必然会抛出异常。</li>
+</ul>
+</li>
+<li>使用RMI Registry注册此服务<ul>
+<li>你已经准备好远程服务了那么你需要让它可以被远程客户调用。</li>
+<li>需要做的:将这个服务实例化，然后放进RMI registry中。注册服务用的是java.rmi.Naming类的静态rebind()类。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    MyRemote service = <span class="keyword">new</span> MyRemote();</span><br><span class="line">    Naming.rebind(<span class="string">"RemoteHello"</span>,service);</span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception ex)&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-3-第三步：利用rmic产生的stub和skeleton"><a href="#1-3-3-3-第三步：利用rmic产生的stub和skeleton" class="headerlink" title="1.3.3.3. 第三步：利用rmic产生的stub和skeleton"></a>1.3.3.3. 第三步：利用rmic产生的stub和skeleton</h4><img src="img\dl-8.png">
+
+<ol>
+<li>运行rmic的时候帮助你生成相应的辅助对象。</li>
+<li>在远程实现类上执行rmic(注意不是远程接口)<ul>
+<li>rmic是JDK内的一个工具，用来为一个服务类产生stub和skleton，相应命名习惯是在远程实现的名字后面加上_Stub或_Skel，rmic有一些选项可以调整。</li>
+<li>需要注意package等的包路径问题，并且保证rmic的文件目录和目标class是同级目录。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-4-第四步：启动RMI-registry"><a href="#1-3-3-4-第四步：启动RMI-registry" class="headerlink" title="1.3.3.4. 第四步：启动RMI registry"></a>1.3.3.4. 第四步：启动RMI registry</h4><img src="img\dl-9.png">
+
+<ol>
+<li>用户可以用来查询代理的位置</li>
+<li>开启一个终端启动rmiregistry<ul>
+<li>同样要保证启动目录必须可以访问你的类。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-3-3-5-第五步：开始远程服务"><a href="#1-3-3-5-第五步：开始远程服务" class="headerlink" title="1.3.3.5. 第五步：开始远程服务"></a>1.3.3.5. 第五步：开始远程服务</h4><img src="img\dl-10.png">
+
+<ol>
+<li>必须让服务对象开始运行，你的服务实现类会去实例化一个服务的实例，并将这个服务注册到RMI registry中去，这个服务就可以被调用了。</li>
+<li>可能从main里面启动，也可能是从一个独立的启动类中启动</li>
+</ol>
+<h4 id="1-3-3-6-服务器端的完整实现"><a href="#1-3-3-6-服务器端的完整实现" class="headerlink" title="1.3.3.6. 服务器端的完整实现"></a>1.3.3.6. 服务器端的完整实现</h4><img src="img\dl-11.png">
+
+<h3 id="1-3-4-用户如何取得stub对象"><a href="#1-3-4-用户如何取得stub对象" class="headerlink" title="1.3.4. 用户如何取得stub对象"></a>1.3.4. 用户如何取得stub对象</h3><ol>
+<li>用户必须取得stub对象(我们的代理)以调用其中的方法。所以我们需要RMI registry的帮忙(lookup)<ul>
+<li><code>MyRemote service = (MyRemote) Naming.lookup(&quot;rmi://127.0.0.1/RemoteHello&quot;)</code></li>
+<li>这是包内的一个静态方法，它从参数中得知位置和服务名称，然后在该位置的rmiregistry中寻找该名称的服务。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-3-5-RMI的运行方式"><a href="#1-3-5-RMI的运行方式" class="headerlink" title="1.3.5. RMI的运行方式"></a>1.3.5. RMI的运行方式</h3><ol>
+<li>客户到RMI registry中寻找:<code>Naming.lookup(&quot;rmi://127.0.0.1/RemoteHello&quot;)</code></li>
+<li>RMI registry返回Stub对象<ul>
+<li>然后RMI自动对返回值进行反序列化，选址是在客户端必须有stub类，否则无法进行反序列化。</li>
+</ul>
+</li>
+<li>客户调用stub的方法，就像stub是真正的对象以一样。</li>
+</ol>
+<h3 id="1-3-6-完整的客户代码"><a href="#1-3-6-完整的客户代码" class="headerlink" title="1.3.6. 完整的客户代码"></a>1.3.6. 完整的客户代码</h3><img src="img\dl-12.png">
+
+<ol>
+<li>在对于远端JVM池中的方法的调用，在看起来和本地没有什么区别，但是需要注意RemoteException。</li>
+<li>客户如何取得stub类:(一共有两种方法)<ol>
+<li>使用lookup找到被挂载的现成的stub类。即可</li>
+<li>通过“动态类下载”，通过上述操作，序列化的对象可以被标记上一个URL，告诉客户的RMI系统去寻找对象的类文件。而如果在反序列化对象的过程中，如果RMI没有在本地发现类，就会利用HTTP的GET从该URL取得类文件。</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-3-7-关于RMI的一些注意"><a href="#1-3-7-关于RMI的一些注意" class="headerlink" title="1.3.7. 关于RMI的一些注意"></a>1.3.7. 关于RMI的一些注意</h3><ol>
+<li>忘记在启动远程服务之前先启动rmiregistry(要用Naming。rebind()注册服务，并且保证其运行状态。)</li>
+<li>忘记让变量和返回值的类型成为可序列化的类型(这种错误无法在编译器发现，只会在运行时发现)。</li>
+<li>忘记给客户提供stub类。</li>
+<li>在远程接口中要支持的方法都要抛出RemoteException异常。</li>
+</ol>
+<h2 id="1-4-使用RMI来解决糖果机问题"><a href="#1-4-使用RMI来解决糖果机问题" class="headerlink" title="1.4. 使用RMI来解决糖果机问题"></a>1.4. 使用RMI来解决糖果机问题</h2><h3 id="1-4-1-序列化State类"><a href="#1-4-1-序列化State类" class="headerlink" title="1.4.1. 序列化State类"></a>1.4.1. 序列化State类</h3><img src="img\dl-13.png">
+
+<ol>
+<li>避免整个状态机被序列化随State对象一起传送，我们使用transient关键字。</li>
+</ol>
+<h3 id="1-4-2-实现糖果机代码"><a href="#1-4-2-实现糖果机代码" class="headerlink" title="1.4.2. 实现糖果机代码"></a>1.4.2. 实现糖果机代码</h3><img src="img\dl-14.png">
+
+<h3 id="1-4-3-将相应部分进行注册"><a href="#1-4-3-将相应部分进行注册" class="headerlink" title="1.4.3. 将相应部分进行注册"></a>1.4.3. 将相应部分进行注册</h3><img src="img\dl-15.png">
+
+<h3 id="1-4-4-实现糖果控制机-客户端"><a href="#1-4-4-实现糖果控制机-客户端" class="headerlink" title="1.4.4. 实现糖果控制机(客户端)"></a>1.4.4. 实现糖果控制机(客户端)</h3><img src="img\dl-16.png">
+
+<h3 id="1-4-5-一些花絮"><a href="#1-4-5-一些花絮" class="headerlink" title="1.4.5. 一些花絮"></a>1.4.5. 一些花絮</h3><ol>
+<li>首先执行监视器，取得远程糖果机的代理，然后通过每个代理的方法来获得相应的状态。</li>
+<li>之后就是各部分之间的相互交互问题。</li>
+</ol>
+<h1 id="2-代理模式"><a href="#2-代理模式" class="headerlink" title="2. 代理模式"></a>2. 代理模式</h1><ol>
+<li>远程代理是一般代理模式的一种实现。</li>
+</ol>
+<h2 id="2-1-定义代理模式"><a href="#2-1-定义代理模式" class="headerlink" title="2.1. 定义代理模式"></a>2.1. 定义代理模式</h2><ol>
+<li>代理模式为另一个对象提供一个替身或占位符以控制对这个对象的访问。</li>
+<li>使用代理模式创建代表对象，让代表对象控制某对象的访问，被代理的对象可以是远程的对象、创建开销大的对象或者需要安全控制的对象。</li>
+</ol>
+<h2 id="2-2-代理模式的类图"><a href="#2-2-代理模式的类图" class="headerlink" title="2.2. 代理模式的类图"></a>2.2. 代理模式的类图</h2><img src="img\dl-17.png">
+
+<ol>
+<li>RealSubject是真正做事的对象，它是被proxy代理和控制访问的对象。</li>
+<li>在特殊情况下，Proxy还会负责RealSubject对象的创建与销毁。</li>
+</ol>
+<h2 id="2-3-代理模式应用-虚拟代理"><a href="#2-3-代理模式应用-虚拟代理" class="headerlink" title="2.3. 代理模式应用:虚拟代理"></a>2.3. 代理模式应用:虚拟代理</h2><ol>
+<li>虚拟代理作为创建开销大的对象的代表，虚拟代理经常是我们真正需要一个对象的时候我们才创建它。当对象在创建前和创建中时，由虚拟代理来扮演对象的替身。对象创建后，代理将会将请求委托给真正的对象:缓冲时间+缓冲动画之类的。</li>
+</ol>
+<img src="img\dl-18.png">
+
+<h3 id="2-3-1-虚拟代理的例子-显示CD封面"><a href="#2-3-1-虚拟代理的例子-显示CD封面" class="headerlink" title="2.3.1. 虚拟代理的例子:显示CD封面"></a>2.3.1. 虚拟代理的例子:显示CD封面</h3><ol>
+<li>如果显示的图片需要使用Swing中穿件Icon接口从网络上加载图像。</li>
+<li>那么问题来了:限于连接带宽和网络负载，下载需要时间，所以我们需要在等待下载的时候显示一些东西。</li>
+<li>这里的代理是用于隐藏创建开销大的对象，而不是隐藏在网络其他地方的对象。</li>
+</ol>
+<h3 id="2-3-2-虚拟代理的类图"><a href="#2-3-2-虚拟代理的类图" class="headerlink" title="2.3.2. 虚拟代理的类图"></a>2.3.2. 虚拟代理的类图</h3><img src="img\dl-19.png">
+
+<h3 id="2-3-3-ImageProxy工作方式"><a href="#2-3-3-ImageProxy工作方式" class="headerlink" title="2.3.3. ImageProxy工作方式"></a>2.3.3. ImageProxy工作方式</h3><ol>
+<li>ImageProxy首先创建一个ImageIcon，然后开始从网络URL上加载图像</li>
+<li>加载过程中ImageProxy显示“CD封面加载中，请稍候”</li>
+<li>当图像加载完毕，ImageProxy把所有方法调用委托给真正的ImageIcon，这些方法包括paintIcon()、getWidth()和getHeight()</li>
+<li>如果用户请求新的图像，我们就创建新的代理，重复这样的过程。</li>
+</ol>
+<h3 id="2-3-4-ImageProxy的实现"><a href="#2-3-4-ImageProxy的实现" class="headerlink" title="2.3.4. ImageProxy的实现"></a>2.3.4. ImageProxy的实现</h3><image src="img\dl-20.png">
+
+<ol>
+<li>为了保证主线程稳定，我们需要在加载图像的时候开启第二个线程来避免挂起整个用户界面。</li>
+<li>我们可以尝试使用框架加载来完成相应的任务。</li>
+</ol>
+<h3 id="2-3-5-我们实现的是什么？"><a href="#2-3-5-我们实现的是什么？" class="headerlink" title="2.3.5. 我们实现的是什么？"></a>2.3.5. 我们实现的是什么？</h3><ol>
+<li>我们创建了一个用来显示的ImageProxy，paintIcon()方法会被调用，而ImageProxy会产生线程取得图像，并创建ImageIcon。</li>
+<li>在之后的某个时间点，图像被返回，ImageIcon被完整实例化。</li>
+<li>在ImageIcon被创建后，下次调用paintIcon()，代理就委托ImageIcon进行。</li>
+</ol>
+<h3 id="2-3-6-一些问题"><a href="#2-3-6-一些问题" class="headerlink" title="2.3.6. 一些问题"></a>2.3.6. 一些问题</h3><ol>
+<li>代理模式真正做到了保证ImageIcon和绘制操作解耦，从而保证了效率。</li>
+<li>如何保证客户使用代理而不是真正的对象？<ul>
+<li>常用的技巧是提供一个工厂，实例化并返回主题，因为这是在工厂方法内发生的，我们可以使用代理包装主题再返回。</li>
+</ul>
+</li>
+<li>我们不能把加载过的图像放置到缓存中吗？<ul>
+<li>这个是缓存代理。</li>
+</ul>
+</li>
+<li>代理模式和适配器模式的区别:<ol>
+<li>区别:适配器会改变对象适配的接口，而代理则实现相同的接口。</li>
+<li>一种额外的情况就是:保护代理，保护代理可以根据客户的角色来决定是否允许客户访问特定的方法。</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-4-保护代理"><a href="#2-4-保护代理" class="headerlink" title="2.4. 保护代理"></a>2.4. 保护代理</h2><ol>
+<li>使用Java API的代理，创建一个保护代理。</li>
+<li>在java.lang.reflect包中有自己的代理支持，利用这个包你可以在运行时动态地创建一个代理类。<ul>
+<li>实现一个或多个接口，并将方法的调用转发到你所指定的类。</li>
+<li>这也就是动态代理。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-4-1-动态代理的类图"><a href="#2-4-1-动态代理的类图" class="headerlink" title="2.4.1. 动态代理的类图"></a>2.4.1. 动态代理的类图</h3><image src="img\dl-21.png">
+
+<h3 id="2-4-2-例子：存储一个人的个人信息"><a href="#2-4-2-例子：存储一个人的个人信息" class="headerlink" title="2.4.2. 例子：存储一个人的个人信息"></a>2.4.2. 例子：存储一个人的个人信息</h3><ol>
+<li>我们需要保护保证个人信息不受到篡改和窃取。</li>
+<li>实现:保护代理，我们允许保护代理可以调用某些方法。</li>
+<li>所以我们需要创建一个代理:一个访问你自己的PersonBean对象，另一个访问另一个顾客的PersonBean对象。</li>
+<li>为PersonBean创建动态代理的步骤:<ol>
+<li><strong>创建两个InvocationHandler</strong>:这个是实现代理的行为。java负责创建真实的代理类和对象。我们只需要提供在方法调用发生时知道做什么的handler</li>
+<li><strong>写代码创建动态代理</strong></li>
+<li><strong>利用适当的代理包装任何PersonBean对象</strong>:当我们使用PersonBean对象时，如果不是顾客自己(拥有者)，就是另一个顾客在检查服务的拥有者(非拥有者)</li>
+</ol>
+</li>
+</ol>
+<h3 id="第一步-创建InvocationHandler"><a href="#第一步-创建InvocationHandler" class="headerlink" title="第一步:创建InvocationHandler"></a>第一步:创建InvocationHandler</h3><ol>
+<li>我们需要两个InvocationHandler(调用处理器)，一个给拥有者，另一个给非拥有者。</li>
+<li>InvocationHandler接口</li>
+</ol>
+<image src="img\dl-22.png">
+
+<p>516页</p>
+</image></image></image>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/代理模式/" data-id="ck1c5r1s50008lowlvuot01j6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软件工程设计模式/Headfirst 设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/04/软件工程设计模式/Headfirst 设计模式/" class="article-date">
+  <time datetime="2019-10-04T13:20:22.908Z" itemprop="datePublished">2019-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#1-headfirst-设计模式">1. HeadFirst 设计模式</a></li>
+<li><a href="#2-设计工具箱">2. 设计工具箱</a><ul>
+<li><a href="#21-oo基础">2.1. OO基础</a></li>
+<li><a href="#22-oo原则">2.2. OO原则</a></li>
+<li><a href="#23-oo模式">2.3. OO模式</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-HeadFirst-设计模式"><a href="#1-HeadFirst-设计模式" class="headerlink" title="1. HeadFirst 设计模式"></a>1. HeadFirst 设计模式</h1><ol>
+<li>2019年6月1日，开始读这本书</li>
+<li>OO(Object Oriented)面向对象</li>
+</ol>
+<h1 id="2-设计工具箱"><a href="#2-设计工具箱" class="headerlink" title="2. 设计工具箱"></a>2. 设计工具箱</h1><ol>
+<li>良好的OO设计，必须具备可复用、可扩充、可维护三个特性。<h2 id="2-1-OO基础"><a href="#2-1-OO基础" class="headerlink" title="2.1. OO基础"></a>2.1. OO基础</h2></li>
+<li>抽象</li>
+<li>封装</li>
+<li>多态</li>
+<li>继承<h2 id="2-2-OO原则"><a href="#2-2-OO原则" class="headerlink" title="2.2. OO原则"></a>2.2. OO原则</h2></li>
+<li>封装变化</li>
+<li>多用组合，少用继承</li>
+<li>针对接口编程，不针对实现编程<h2 id="2-3-OO模式"><a href="#2-3-OO模式" class="headerlink" title="2.3. OO模式"></a>2.3. OO模式</h2></li>
+<li>策略模式</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/04/软件工程设计模式/Headfirst 设计模式/" data-id="ck1c5r1rb0000lowl6hm5ttkn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-everyone" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/04/hello-everyone/" class="article-date">
@@ -99,56 +1519,12 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/04/hello-world/" class="article-date">
-  <time datetime="2019-10-04T12:09:45.180Z" itemprop="datePublished">2019-10-04</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/04/hello-world/" data-id="ck1c5h8kj00002cwljtifi5tc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -179,11 +1555,23 @@
       <ul>
         
           <li>
-            <a href="/2019/10/04/hello-everyone/">hello-everyone!</a>
+            <a href="/2019/10/04/软件工程设计模式/适配器模式与外观模式/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/10/04/hello-world/">Hello World</a>
+            <a href="/2019/10/04/软件工程设计模式/设计模式入门/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/观察者模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/状态模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/软件工程设计模式/装饰者模式/">(no title)</a>
           </li>
         
       </ul>
