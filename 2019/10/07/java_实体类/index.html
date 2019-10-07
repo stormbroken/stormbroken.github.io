@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/128.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stormbrokenの博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="字符串相关类 字符串是不可变类，本质上是按照字符数组存储的123456789String a = &quot;hello&quot;;String b = &quot;hello&quot;;String c = new String(&quot;hi&quot;);String d = new String(&quot;hi&quot;);char[] e = &amp;#123;&apos;h&apos;,&apos;i&apos;&amp;#125;;a==b;//truec==d;//falsea==e;//编译错误a.">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记 之 部分实体类">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/java_实体类/index.html">
+<meta property="og:site_name" content="Stormbrokenの博客">
+<meta property="og:description" content="字符串相关类 字符串是不可变类，本质上是按照字符数组存储的123456789String a = &quot;hello&quot;;String b = &quot;hello&quot;;String c = new String(&quot;hi&quot;);String d = new String(&quot;hi&quot;);char[] e = &amp;#123;&apos;h&apos;,&apos;i&apos;&amp;#125;;a==b;//truec==d;//falsea==e;//编译错误a.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-07T05:58:24.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java学习笔记 之 部分实体类">
+<meta name="twitter:description" content="字符串相关类 字符串是不可变类，本质上是按照字符数组存储的123456789String a = &quot;hello&quot;;String b = &quot;hello&quot;;String c = new String(&quot;hi&quot;);String d = new String(&quot;hi&quot;);char[] e = &amp;#123;&apos;h&apos;,&apos;i&apos;&amp;#125;;a==b;//truec==d;//falsea==e;//编译错误a.">
+  <link rel="canonical" href="http://yoursite.com/2019/10/07/java_实体类/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java学习笔记 之 部分实体类 | Stormbrokenの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stormbrokenの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java_实体类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stormbroken">
+      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stormbrokenの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java学习笔记 之 部分实体类
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:58:24" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+        
+
+      
+        <a id="more"></a>
+<h1 id="字符串相关类"><a href="#字符串相关类" class="headerlink" title="字符串相关类"></a>字符串相关类</h1><ol>
+<li>字符串是不可变类，本质上是按照字符数组存储的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"hello"</span>;</span><br><span class="line">String b = <span class="string">"hello"</span>;</span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">"hi"</span>);</span><br><span class="line">String d = <span class="keyword">new</span> String(<span class="string">"hi"</span>);</span><br><span class="line"><span class="keyword">char</span>[] e = &#123;<span class="string">'h'</span>,<span class="string">'i'</span>&#125;;</span><br><span class="line">a==b;<span class="comment">//true</span></span><br><span class="line">c==d;<span class="comment">//false</span></span><br><span class="line">a==e;<span class="comment">//编译错误</span></span><br><span class="line">a.equals(e);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h2><ol>
+<li>String类对象保存不可修改的Unicode字符序列</li>
+<li>String类的下述方法能创建并返回一个新的String对象</li>
+<li>功能性方法：endsWith、startsWith、indexOf、lastIndexOf、equals、equalsIgnoreCase、compareTo</li>
+<li>其他方法:charAt、length、replace()</li>
+</ol>
+<h3 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h3><ol>
+<li>StringBuffer类：<ol>
+<li>构造方法：<ol>
+<li><code>StringBuffer()</code>:创建一个字符序列为空的StringBuffer对象</li>
+<li><code>StringBuffer(String str)</code>:创建一个把与String对象str相同的字符序列</li>
+</ol>
+</li>
+<li>其他方法：<ol>
+<li>append()方法：想StringBuffer对象添加字符序列</li>
+<li>delete(int start,int end):删除从start开始到end-1为止的一端字符序列，返回对象引用</li>
+<li>deleteCharAt(int index):删除位于序列指定位置上的char</li>
+<li>insert(int offset,String str):可以在指定位置上插入字符序列等</li>
+<li>insert(int offest,double d):插入一个浮点数，提供自动转化</li>
+<li>setCharAt(int index，char ch):在指定位置上插入指定字符</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>区分String和StringBuffer和StringBuilder：<ol>
+<li>String：不可变字符序列</li>
+<li>StringBuffer：可变字符序列，并且线程安全，但是效率低</li>
+<li>StringBuilder：可变字符序列，线程不安全，但是效率高</li>
+</ol>
+</li>
+</ol>
+<h1 id="时间相关的处理类"><a href="#时间相关的处理类" class="headerlink" title="时间相关的处理类"></a>时间相关的处理类</h1><h2 id="Date时间类"><a href="#Date时间类" class="headerlink" title="Date时间类"></a>Date时间类</h2><ol>
+<li>来源：java.util.Date</li>
+<li>表示一个特定的瞬间，精确到毫秒</li>
+</ol>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ol>
+<li><code>Date()</code>:分配一个Date对象，并初始化此对象为当前的日期和时间精确到毫秒</li>
+<li><code>Date(Long date)</code>:分配Date对象并初始化此对象，以表示从标准基准时间，即1970年1月1日00:00:00 GMT以指定毫秒数</li>
+</ol>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>函数名</th>
+<th>函数意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean</td>
+<td>after(Date when)</td>
+<td>测试该日期是否在指定日期以后</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>before(Date when)</td>
+<td>测试该日期是否在指定日期之前</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>equals(Date when)</td>
+<td>比较两个日期的相等性，重写的方法</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>getTime()</td>
+<td>返回自1970年1月1日00:00:00 GMT以来的</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toString()</td>
+<td>把此Date对象转换为各种形式的String</td>
+</tr>
+</tbody></table>
+<h2 id="DateFormat类和SimpleDateFormat类"><a href="#DateFormat类和SimpleDateFormat类" class="headerlink" title="DateFormat类和SimpleDateFormat类"></a>DateFormat类和SimpleDateFormat类</h2><ol>
+<li><p>构造:<code>SimpleDateFormat a = new SimpleDateFormat(&quot;YYYY-MM-dd&quot;)</code></p>
+</li>
+<li><p>按照构造中的格式转化生成相应Date对象：<code>Date date = a.parse(&quot;2019-6-21&quot;)</code></p>
+</li>
+<li><p>具体的格式化字符介绍</p>
+<table>
+<thead>
+<tr>
+<th>标识符</th>
+<th>内涵</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G</td>
+<td>年代标志符</td>
+</tr>
+<tr>
+<td>y</td>
+<td>年</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月</td>
+</tr>
+<tr>
+<td>d</td>
+<td>日</td>
+</tr>
+<tr>
+<td>h</td>
+<td>时，12进制，1-12</td>
+</tr>
+<tr>
+<td>H</td>
+<td>时，24进制，0-23</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒</td>
+</tr>
+<tr>
+<td>S</td>
+<td>毫秒</td>
+</tr>
+<tr>
+<td>E</td>
+<td>星期</td>
+</tr>
+<tr>
+<td>D</td>
+<td>一年中的第几天</td>
+</tr>
+<tr>
+<td>F</td>
+<td>一月中第几个星期几</td>
+</tr>
+<tr>
+<td>w</td>
+<td>一年中第几个星期</td>
+</tr>
+<tr>
+<td>W</td>
+<td>一月中的第几个星期</td>
+</tr>
+<tr>
+<td>a</td>
+<td>上午/下午 标记符</td>
+</tr>
+<tr>
+<td>k</td>
+<td>时，一天中(1-24)</td>
+</tr>
+<tr>
+<td>K</td>
+<td>时，在上午或下午(0-11)</td>
+</tr>
+<tr>
+<td>z</td>
+<td>时区</td>
+</tr>
+<tr>
+<td>2. 使用的语句：<code>SimpleDateFormat a = new SimpleDateFormat(&quot;yyyy&quot;)</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 转化成为字符串：<code>a.format(now)</code></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="Calendar日历类"><a href="#Calendar日历类" class="headerlink" title="Calendar日历类"></a>Calendar日历类</h2><ol>
+<li>他是一个抽象类，定义了一些特定的日历字段之间的转换用的方法</li>
+<li>注意月份的表示中：一月是0</li>
+</ol>
+<h1 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h1><ol>
+<li>来源:java.lang.Math</li>
+<li>相应的方法：<ul>
+<li>abs:绝对值</li>
+<li>acos,asin,atan,cos,sin,tan：各种三角函数</li>
+<li>sqrt：平方根</li>
+<li>pow(double a,double b)：a的b次幂</li>
+<li>log自然对数</li>
+<li>exp e为底指数</li>
+<li>max(double a,double b)</li>
+<li>min(double a,double b)</li>
+<li>random()：返回0.0到1.0的随机数</li>
+<li>long round(double a)：double类型的数据a转化为long类型</li>
+<li>toDegrees(double angrad)：弧度-&gt;角度</li>
+<li>toRadians(double angdeg)：角度-&gt;弧度</li>
+</ul>
+</li>
+</ol>
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><ol>
+<li>来源：java.io.File类</li>
+<li>常见的构造方法：<code>public File(String pathname)</code><ul>
+<li>构造方法参数可以为String、File、URL</li>
+</ul>
+</li>
+<li>方法：<ul>
+<li>public boolean canRead()</li>
+<li>public boolean canWrite()</li>
+<li>public boolean exists()     </li>
+<li>public boolean isDirectory()</li>
+<li>public boolean isFile()     </li>
+<li>public boolean isHidden()</li>
+<li>public long lastModified() </li>
+<li>public long length()</li>
+<li>public String getName()   </li>
+<li>public String getPath()</li>
+<li>public String getAbsolutePath()</li>
+<li>public boolean delete()</li>
+<li>public boolean mkdir():创建新的文件夹</li>
+</ul>
+</li>
+<li>equals()方法在这个类中被重写，只有两个对象的内容和类型一致时返回</li>
+</ol>
+<h1 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h1><ol>
+<li>只能够取特定值中的一个</li>
+<li>使用enum关键字</li>
+<li>所有的枚举类型都隐形地继承自java.lang.Enum。而每个被枚举的变量都被默认为public static final的</li>
+<li>建议使用一组常量的时候，使用枚举类型</li>
+<li>尽量避免使用枚举的高级特性</li>
+</ol>
+<h1 id="Applet类"><a href="#Applet类" class="headerlink" title="Applet类"></a>Applet类</h1><ol>
+<li>是一个采用java编程语言编写的小应用程序</li>
+<li>可以读取客户端部分系统变量</li>
+<li>不可以读取客户端文件</li>
+<li>不可以在客户端主机上创建新文件</li>
+<li>不可以在客户端装载程序库</li>
+<li><code>&lt;applet code=TestApplet.class width=100 height=100&gt;&lt;/applet&gt;</code></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+      
+    </div>
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"># java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/java_面向对象编程/" rel="next" title="java学习笔记 之 OO">
+                  <i class="fa fa-chevron-left"></i> java学习笔记 之 OO
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/07/java_类/" rel="prev" title="java学习笔记 之 类">
+                  java学习笔记 之 类 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串相关类"><span class="nav-number">1.</span> <span class="nav-text">字符串相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String类的常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">String类的常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuffer和StringBuilder"><span class="nav-number">1.1.1.</span> <span class="nav-text">StringBuffer和StringBuilder</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间相关的处理类"><span class="nav-number">2.</span> <span class="nav-text">时间相关的处理类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Date时间类"><span class="nav-number">2.1.</span> <span class="nav-text">Date时间类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DateFormat类和SimpleDateFormat类"><span class="nav-number">2.2.</span> <span class="nav-text">DateFormat类和SimpleDateFormat类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calendar日历类"><span class="nav-number">2.3.</span> <span class="nav-text">Calendar日历类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Math类"><span class="nav-number">3.</span> <span class="nav-text">Math类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File类"><span class="nav-number">4.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举类"><span class="nav-number">5.</span> <span class="nav-text">枚举类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Applet类"><span class="nav-number">6.</span> <span class="nav-text">Applet类</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stormbroken</p>
+  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Stormbroken"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stormbroken</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<a href="https://github.com/stormbroken" class="" target="_blank" title="我的Github" aria-label="我的Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<!-- ??????? -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

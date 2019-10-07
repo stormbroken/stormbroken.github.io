@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/128.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stormbrokenの博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="java学习笔记之GUI 代码默写按点给分，不会太细节  GUI综述 GUI：Graphical user interface WIMP:window,icon,menu,pointer WYSIWYG:What-You-See-Is-What-You-Get  GUI的关键部分以及GUI的创建 组件Component 布局Layout 事件Event  GUI的创建123456JFrame f">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记 之 GUI">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/java_GUI/index.html">
+<meta property="og:site_name" content="Stormbrokenの博客">
+<meta property="og:description" content="java学习笔记之GUI 代码默写按点给分，不会太细节  GUI综述 GUI：Graphical user interface WIMP:window,icon,menu,pointer WYSIWYG:What-You-See-Is-What-You-Get  GUI的关键部分以及GUI的创建 组件Component 布局Layout 事件Event  GUI的创建123456JFrame f">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-07T06:00:08.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java学习笔记 之 GUI">
+<meta name="twitter:description" content="java学习笔记之GUI 代码默写按点给分，不会太细节  GUI综述 GUI：Graphical user interface WIMP:window,icon,menu,pointer WYSIWYG:What-You-See-Is-What-You-Get  GUI的关键部分以及GUI的创建 组件Component 布局Layout 事件Event  GUI的创建123456JFrame f">
+  <link rel="canonical" href="http://yoursite.com/2019/10/07/java_GUI/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java学习笔记 之 GUI | Stormbrokenの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stormbrokenの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java_GUI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stormbroken">
+      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stormbrokenの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java学习笔记 之 GUI
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：14:00:08" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+        
+
+      
+        <a id="more"></a>
+<h1 id="java学习笔记之GUI"><a href="#java学习笔记之GUI" class="headerlink" title="java学习笔记之GUI"></a>java学习笔记之GUI</h1><ol>
+<li>代码默写按点给分，不会太细节</li>
+</ol>
+<h2 id="GUI综述"><a href="#GUI综述" class="headerlink" title="GUI综述"></a>GUI综述</h2><ol>
+<li>GUI：Graphical user interface</li>
+<li>WIMP:window,icon,menu,pointer</li>
+<li>WYSIWYG:What-You-See-Is-What-You-Get</li>
+</ol>
+<h2 id="GUI的关键部分以及GUI的创建"><a href="#GUI的关键部分以及GUI的创建" class="headerlink" title="GUI的关键部分以及GUI的创建"></a>GUI的关键部分以及GUI的创建</h2><ol>
+<li>组件Component</li>
+<li>布局Layout</li>
+<li>事件Event</li>
+</ol>
+<h3 id="GUI的创建"><a href="#GUI的创建" class="headerlink" title="GUI的创建"></a>GUI的创建</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JFrame frame = <span class="keyword">new</span> JFrame();<span class="comment">//创建frame框架</span></span><br><span class="line">JButton button = <span class="keyword">new</span> JButton(str);<span class="comment">//创建一个str的按钮</span></span><br><span class="line">frame.getContentPane().add(button);<span class="comment">//获得当前框架主体，添加button</span></span><br><span class="line">frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<span class="comment">//这一行程序会在window关闭时把程序结束</span></span><br><span class="line">frame.setSize(<span class="number">300</span>,<span class="number">300</span>);<span class="comment">//设置frame大小</span></span><br><span class="line">frame.setVisible(<span class="keyword">true</span>);<span class="comment">//设置frame可见</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="所有组件的根父类"><a href="#所有组件的根父类" class="headerlink" title="所有组件的根父类"></a>所有组件的根父类</h2><ol>
+<li>Component</li>
+</ol>
+<h2 id="GUI发展过程"><a href="#GUI发展过程" class="headerlink" title="GUI发展过程"></a>GUI发展过程</h2><ol>
+<li>AWT</li>
+<li>Swing</li>
+<li>SWT</li>
+<li>JavaFx</li>
+</ol>
+<h2 id="事件和布局"><a href="#事件和布局" class="headerlink" title="事件和布局"></a>事件和布局</h2><ol>
+<li>首先有一个窗口</li>
+<li>组件</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>组件名称</th>
+<th>组件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>JFrame</code></td>
+<td>窗口</td>
+</tr>
+<tr>
+<td><code>Button</code></td>
+<td>按钮</td>
+</tr>
+<tr>
+<td><code>Image</code></td>
+<td>图片</td>
+</tr>
+<tr>
+<td><code>Color</code></td>
+<td>颜色元素</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>具体行为</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>相应行为</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>frame.getContentPane().add(Button)</code></td>
+<td>布局按钮</td>
+</tr>
+<tr>
+<td><code>setVisible(true)</code></td>
+<td>设置为可见</td>
+</tr>
+<tr>
+<td><code>setSize(300,300)</code></td>
+<td>设置控件大小</td>
+</tr>
+<tr>
+<td><code>new ImageIcon(&quot;name.jpg&quot;).getImage()</code></td>
+<td>获取一个图像的布局</td>
+</tr>
+<tr>
+<td><code>fillOval(,,,)</code></td>
+<td>绘制一个椭圆</td>
+</tr>
+<tr>
+<td><code>new Color(,,)</code></td>
+<td>定义一个正常的颜色</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li><p>监听者和被监听者</p>
+<ul>
+<li>实现过程：<ol>
+<li>继承为一个监听器:<code>implements ActionListener</code></li>
+<li>指定一个按钮:<code>.addActionLiastener(this)</code></li>
+<li>定义被按动的行为:<code>actionOerformed()</code><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>用指定的方法制作特定的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MidiEvent <span class="title">makeEvent</span><span class="params">(<span class="keyword">int</span> comd,<span class="keyword">int</span> chan,<span class="keyword">int</span> one,<span class="keyword">int</span> two,<span class="keyword">int</span> tick)</span></span>&#123;</span><br><span class="line">    MidiEvent a = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        ShortMessage a = <span class="keyword">new</span> ShortMessage();</span><br><span class="line">        a.setMessage(comd,chan,one,two);</span><br><span class="line">        event = <span class="keyword">new</span> MidiEvent(a,tick);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用队列来完成保存记录</p>
+</li>
+</ol>
+<h2 id="使用内部类"><a href="#使用内部类" class="headerlink" title="使用内部类"></a>使用内部类</h2><ol>
+<li>外部类方面的相应状态的变更可以修改内部类的属性</li>
+<li>使用内部类来完成动画的制作</li>
+</ol>
+<h2 id="layout部分"><a href="#layout部分" class="headerlink" title="layout部分"></a>layout部分</h2><ol>
+<li>基本布局被分为五部分：north、west、center、east、north.<ol>
+<li>添加布局：<code>frame.getContentPane().add(BorderLayout.CENTER,button)</code></li>
+<li>注意整个布局</li>
+</ol>
+</li>
+<li>layout manager:<ol>
+<li>用于自动化完成控件的布局</li>
+<li>BorderLayout:按照五部分分每个布局</li>
+<li>FlowLayout:从左向右布局，期望非文字的控件</li>
+<li>BoxLayout:类似FlowLayout布局，但是可以强制设置转换类型</li>
+<li>具体使用见PPT</li>
+<li>其他布局管理器：<ol>
+<li>网格布局</li>
+<li>网格组布局</li>
+</ol>
+</li>
+<li>订制布局管理器</li>
+</ol>
+</li>
+<li>各种布局须知：<ol>
+<li>当Frame的大小改变Frame中的按钮的位置会随之改变的布局是：FlowLayout</li>
+<li>将容器划分为固定的网格进行布局的布局管理器是：GridLayout</li>
+<li>每个区域只能用那一个组件的布局管理器：<ol>
+<li>BorderLayout</li>
+<li>GridLayout</li>
+<li>CardLayout</li>
+</ol>
+</li>
+<li>组件大小随容器大小变化：<ol>
+<li>BorderLayout</li>
+<li>GridLayout</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="向图形上添加东西的方法"><a href="#向图形上添加东西的方法" class="headerlink" title="向图形上添加东西的方法"></a>向图形上添加东西的方法</h3><ol>
+<li>在frame上放置widgt</li>
+<li>在widgt上绘制2D图形<ol>
+<li>创建自己的绘图组件：<ul>
+<li>创建JPanel的子类</li>
+<li>重写public void paintComponet(Graphics g){//TO-DO}</li>
+<li><code>Image image = new ImageIcon(name).getImage();</code>：获得一个JPEG显示</li>
+<li><code>g.drawImage(image,3,4,this)</code>：画出这个图，左边距离panel左侧3像素，上侧距离顶部4像素</li>
+</ul>
+</li>
+<li>g参数所引用的对象实际上是个Graphics2D的实例<ol>
+<li>但是想要引用Graphics2D对象，需要使用强制转化<ul>
+<li><code>Graphics2D g2d = new (Graphics2D) g;</code></li>
+</ul>
+</li>
+<li>setPaint():可以设置画笔</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在widgt上绘制JPEG图</li>
+</ol>
+<h3 id="布局管理器"><a href="#布局管理器" class="headerlink" title="布局管理器"></a>布局管理器</h3><ol>
+<li>嵌套布局</li>
+<li>BorderLayout<ol>
+<li>标准的五大布局</li>
+<li>每个区域只能放置一个组件，很难保证控件保持原有的大小</li>
+<li>中间区域只能有剩下部分的像素</li>
+<li>不好进行直接像素设置大小</li>
+</ol>
+</li>
+<li>FlowLayout<ol>
+<li>面板默认的布局管理器</li>
+<li>从左向右布局方式</li>
+</ol>
+</li>
+<li>BoxLayout<ol>
+<li>使用默认大小，按照加入方式进行添加</li>
+<li>从上向下添加</li>
+</ol>
+</li>
+<li>使用布局管理器来在Frame窗体中布置一个按钮，此按钮大小不手Frame框体大小变化影响<h2 id="简单界面组件"><a href="#简单界面组件" class="headerlink" title="简单界面组件"></a>简单界面组件</h2></li>
+</ol>
+<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><ol>
+<li>考Button:参见53页PPT Testfield.label<ol>
+<li>是否继承</li>
+<li>是够被监听</li>
+<li>是否被布局</li>
+<li>是够实现了actionperformed方法</li>
+</ol>
+</li>
+<li>调用repaint方法由系统帮你调用，未必什么时候调用<ol>
+<li>重绘过程是异步的</li>
+<li>如果多次调用repaint()，那么只会调用最后一次</li>
+</ol>
+</li>
+<li>实现被按动效果：如果被按动，那么重新绘制这个东西</li>
+</ol>
+<h3 id="Button的监听"><a href="#Button的监听" class="headerlink" title="Button的监听"></a>Button的监听</h3><ol>
+<li>来源：java.awt.event</li>
+<li>相应的监听事件：具体地请查API<ol>
+<li>ActionListener:actionPerformed(ActionEvent ev)</li>
+<li>ItemListener:itemStateChanged(ItemEvent ev)</li>
+<li>KeyListener:<ul>
+<li>keyPressed(KeyEvent ev)</li>
+<li>keyReleased(KeyEvent ev)</li>
+<li>keyTyped(KeyEvent ev)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>取得ActionEvent：<ol>
+<li>实现ActionListener这个接口<ul>
+<li><code>implements ActionListener</code></li>
+</ul>
+</li>
+<li>向按钮进行注册(告诉它你要监听事件)<ul>
+<li><code>button.addActionListener(this)</code></li>
+</ul>
+</li>
+<li>定义事件的处理方法</li>
+</ol>
+</li>
+<li>多个监听：内部类来实现</li>
+<li>所有的监听接口中定义的方法，访问权限都是public，返回值是void的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent event)</span></span>&#123;</span><br><span class="line">    button.setText(str);<span class="comment">//TO-DO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h3><ol>
+<li><p>文本：JTextField</p>
+<ol>
+<li>允许编辑单行文本的文本组件</li>
+<li>构造函数：<ul>
+<li><code>JTextField field = new JTextField(20);</code></li>
+<li><code>JTextField field = new JTextField(&quot;Your name&quot;)</code></li>
+<li><code>JTextField field = new JTexField(String text, int columns)</code>构造使用要显示的指定文本初始化的新文本字段，宽度足够容纳指定列数。</li>
+</ul>
+</li>
+<li>使用的方法：<ol>
+<li><code>.getText()</code>：获得文本</li>
+<li><code>.setText(str)</code>：设置文本<ul>
+<li>如果是””，那么就是清空</li>
+</ul>
+</li>
+<li><code>.addActionListener(this)</code>：添加监视器</li>
+<li><code>.selectAll()</code>：选择全部文本</li>
+<li><code>.requestFocus()</code>：将GUI焦点拉回文本段落来使得用户完成输入</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>文本域：JTextArea</p>
+<ol>
+<li>构造函数：<code>JTextArea text = new JTextArea(10,20)//行高和字宽</code></li>
+<li>其他方法：<ol>
+<li><code>.setText(str)</code></li>
+<li><code>.append(str)</code></li>
+<li><code>.selectAll()</code></li>
+<li><code>.requestFocus()</code></li>
+<li>设置垂直的滚动条：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JScrollPane scroller = <span class="keyword">new</span> JScrollPane(text);</span><br><span class="line">text.setLineWrap(<span class="keyword">true</span>);<span class="comment">//开启自动换行</span></span><br><span class="line">scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);</span><br><span class="line">scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);<span class="comment">//设置了垂直滚动条</span></span><br><span class="line">panel.add(scroller);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>标签和标签组件:JLable</p>
+</li>
+<li><p>密码域</p>
+</li>
+<li><p>滚动窗格</p>
+</li>
+</ol>
+<h3 id="选择组件"><a href="#选择组件" class="headerlink" title="选择组件"></a>选择组件</h3><ol>
+<li>复选框</li>
+<li>单选按钮</li>
+<li>边框</li>
+<li>组合框</li>
+<li>滑块</li>
+<li>JCheckBox：<ol>
+<li>构造方法<ul>
+<li><code>JCheckBox check = new JCheckBox(str)</code></li>
+</ul>
+</li>
+<li>其他方法：<ul>
+<li>添加监听Item的事件<ul>
+<li><code>check.addItemListener(this)</code></li>
+</ul>
+</li>
+<li>处理事件(判别是否被选中)<ul>
+<li><code>.isSelected()</code></li>
+<li>实现<code>public void itemStateChanged(ItemEvent ev){}</code></li>
+</ul>
+</li>
+<li>用程序要设置选择或者不选择:<ul>
+<li><code>check.setSelected(true);</code></li>
+<li><code>check.setSelected(false);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>JList</p>
+<ol>
+<li><p>构造函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] result = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;<span class="comment">//任意类型的数组即可</span></span><br><span class="line">list = <span class="keyword">new</span> JList(listEntries);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具体使用：</p>
+<ol>
+<li>显示垂直滚动条：同JCheckBox</li>
+<li>设置显示行数：<code>list.setVisibleRowCount(number)</code></li>
+<li>限制单选:<code>.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)</code></li>
+<li>对选择事件做注册：<code>.addListSelectedListener(this)</code></li>
+<li>处理选择事件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueChanged</span><span class="params">(ListSelectedEvent lse)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!lse.getValueIsAdjusting())&#123;</span><br><span class="line">        String selection = (String) list.getSelectedValue();</span><br><span class="line">        System.out.println(selection);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><h1 id="MVC-Design-Pattern"><a href="#MVC-Design-Pattern" class="headerlink" title="MVC Design Pattern"></a>MVC Design Pattern</h1><ol>
+<li>MVC之间的交互</li>
+<li>MVC模式<ol>
+<li>模型：存储内容</li>
+<li>视图：显示内容</li>
+<li>控制器：处理用户输入</li>
+</ol>
+</li>
+<li>controller模式:不同被点击形式等</li>
+</ol>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ol>
+<li>容器和组件是Composite模式</li>
+<li>带滚动条的面板是Decorator模式</li>
+<li>布局管理器是Strategy模式</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+      
+    </div>
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"># java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/java_java编码规范/" rel="next" title="java学习笔记 之 编码规范">
+                  <i class="fa fa-chevron-left"></i> java学习笔记 之 编码规范
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/07/java_BigDecimal/" rel="prev" title="java学习笔记 之 BigDecimal">
+                  java学习笔记 之 BigDecimal <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java学习笔记之GUI"><span class="nav-number">1.</span> <span class="nav-text">java学习笔记之GUI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI综述"><span class="nav-number">1.1.</span> <span class="nav-text">GUI综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI的关键部分以及GUI的创建"><span class="nav-number">1.2.</span> <span class="nav-text">GUI的关键部分以及GUI的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI的创建"><span class="nav-number">1.2.1.</span> <span class="nav-text">GUI的创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有组件的根父类"><span class="nav-number">1.3.</span> <span class="nav-text">所有组件的根父类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI发展过程"><span class="nav-number">1.4.</span> <span class="nav-text">GUI发展过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件和布局"><span class="nav-number">1.5.</span> <span class="nav-text">事件和布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">1.6.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用内部类"><span class="nav-number">1.7.</span> <span class="nav-text">使用内部类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layout部分"><span class="nav-number">1.8.</span> <span class="nav-text">layout部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#向图形上添加东西的方法"><span class="nav-number">1.8.1.</span> <span class="nav-text">向图形上添加东西的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局管理器"><span class="nav-number">1.8.2.</span> <span class="nav-text">布局管理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单界面组件"><span class="nav-number">1.9.</span> <span class="nav-text">简单界面组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Button"><span class="nav-number">1.9.1.</span> <span class="nav-text">Button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Button的监听"><span class="nav-number">1.9.2.</span> <span class="nav-text">Button的监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本输入"><span class="nav-number">1.9.3.</span> <span class="nav-text">文本输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择组件"><span class="nav-number">1.9.4.</span> <span class="nav-text">选择组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单"><span class="nav-number">1.9.5.</span> <span class="nav-text">菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对话框"><span class="nav-number">1.9.6.</span> <span class="nav-text">对话框</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MVC-Design-Pattern"><span class="nav-number">2.</span> <span class="nav-text">MVC Design Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">2.1.</span> <span class="nav-text">设计模式</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stormbroken</p>
+  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Stormbroken"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stormbroken</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<a href="https://github.com/stormbroken" class="" target="_blank" title="我的Github" aria-label="我的Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<!-- ??????? -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

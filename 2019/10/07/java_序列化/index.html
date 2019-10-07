@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/128.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stormbrokenの博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="序列化以及文件输入输出  对象有状态和行为，行为存在于类中，而状态存在于个别的对象中，方便被非java程序读取  存储对象序列化 只有自己写的java程序会用到这些数据 更加的安全 如果让类可以序列化，实现Serializable接口 可以父类不被序列化，但是子类实现序列化 序列化过程中会辨别两个对象是否相同，这种情况下只有一个对象会被保存，剩下的会被指向这个引用  序列化对象写入文件 创建文件">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记 之 序列化">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/java_序列化/index.html">
+<meta property="og:site_name" content="Stormbrokenの博客">
+<meta property="og:description" content="序列化以及文件输入输出  对象有状态和行为，行为存在于类中，而状态存在于个别的对象中，方便被非java程序读取  存储对象序列化 只有自己写的java程序会用到这些数据 更加的安全 如果让类可以序列化，实现Serializable接口 可以父类不被序列化，但是子类实现序列化 序列化过程中会辨别两个对象是否相同，这种情况下只有一个对象会被保存，剩下的会被指向这个引用  序列化对象写入文件 创建文件">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-07T05:59:29.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java学习笔记 之 序列化">
+<meta name="twitter:description" content="序列化以及文件输入输出  对象有状态和行为，行为存在于类中，而状态存在于个别的对象中，方便被非java程序读取  存储对象序列化 只有自己写的java程序会用到这些数据 更加的安全 如果让类可以序列化，实现Serializable接口 可以父类不被序列化，但是子类实现序列化 序列化过程中会辨别两个对象是否相同，这种情况下只有一个对象会被保存，剩下的会被指向这个引用  序列化对象写入文件 创建文件">
+  <link rel="canonical" href="http://yoursite.com/2019/10/07/java_序列化/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java学习笔记 之 序列化 | Stormbrokenの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stormbrokenの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java_序列化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stormbroken">
+      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stormbrokenの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java学习笔记 之 序列化
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:59:29" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+        
+
+      
+        <a id="more"></a>
+<p><strong>序列化以及文件输入输出</strong></p>
+<ol>
+<li>对象有状态和行为，行为存在于类中，而状态存在于个别的对象中，方便被非java程序读取</li>
+</ol>
+<h1 id="存储对象"><a href="#存储对象" class="headerlink" title="存储对象"></a>存储对象</h1><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><ol>
+<li>只有自己写的java程序会用到这些数据</li>
+<li>更加的安全</li>
+<li>如果让类可以序列化，实现Serializable接口</li>
+<li>可以父类不被序列化，但是子类实现序列化</li>
+<li>序列化过程中会辨别两个对象是否相同，这种情况下只有一个对象会被保存，剩下的会被指向这个引用</li>
+</ol>
+<h3 id="序列化对象写入文件"><a href="#序列化对象写入文件" class="headerlink" title="序列化对象写入文件"></a>序列化对象写入文件</h3><ol>
+<li>创建文件输出流<ul>
+<li><code>FileOutputStream fileStream = new FileOutputStream(&quot;MyGame.ser&quot;)</code></li>
+<li>文件不存在会直接创建出来</li>
+</ul>
+</li>
+<li>创建对象输出流<ul>
+<li><code>ObjectOutputStream os = new ObjectOutputStream(fileStream);</code></li>
+</ul>
+</li>
+<li>写入对象:<ul>
+<li><code>os.writeObject(character);</code></li>
+</ul>
+</li>
+<li>关闭流：<ul>
+<li><code>os.close();</code></li>
+</ul>
+</li>
+<li>整个过程就是对象被碾平，然后当做字节写入文件</li>
+</ol>
+<h3 id="会被序列化的东西"><a href="#会被序列化的东西" class="headerlink" title="会被序列化的东西"></a>会被序列化的东西</h3><ol>
+<li>所有的实例变量</li>
+<li>所有被引用的对象</li>
+<li>保证里面的都可以被序列化</li>
+</ol>
+<h3 id="transient关键字"><a href="#transient关键字" class="headerlink" title="transient关键字"></a>transient关键字</h3><ol>
+<li>用于某个实例变量不应该或不能被序列化</li>
+</ol>
+<h2 id="解序列化"><a href="#解序列化" class="headerlink" title="解序列化"></a>解序列化</h2><ol>
+<li>静态变量还原的时候，会维持原来的样子，而不是存储的样子<ul>
+<li>也就是说静态变量是归属于类所有的，不会被序列化，在解序列化的时候维持类声明时的状态<h3 id="解序列化过程"><a href="#解序列化过程" class="headerlink" title="解序列化过程"></a>解序列化过程</h3></li>
+</ul>
+</li>
+<li>创建文件读入流<ul>
+<li><code>FileInputStream filestream = new FileInputStream(&quot;name&quot;);</code></li>
+</ul>
+</li>
+<li>创建对象读入流<ul>
+<li><code>ObjectInputStream os = new ObjectInputStream(fileStream);</code></li>
+</ul>
+</li>
+<li>读入对象<ul>
+<li><code>Object a = os.readObject();</code></li>
+</ul>
+</li>
+<li>转换对象类型<ul>
+<li><code>Game g = (Game) a;</code></li>
+</ul>
+</li>
+<li>关闭对象读入流<ul>
+<li><code>os.close();</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="详解解序列化过程"><a href="#详解解序列化过程" class="headerlink" title="详解解序列化过程"></a>详解解序列化过程</h3><ol>
+<li>从流中读出对象</li>
+<li>java虚拟机通过存储信息判断class类型</li>
+<li>java虚拟机尝试寻找和加载对象的类。如果找不到会抛出异常</li>
+<li>新的对象会被放置到堆上，但是构造函数不会执行</li>
+<li>如果对象在继承书上有一个不可以序列化的祖先类，那么该不可序列化类以及在它之上的类的构造函数会被执行</li>
+<li>对象的实例变量全部恢复，transient的变量会被赋值为null的对象引用或者primitive的主类型默认值</li>
+</ol>
+<h2 id="写纯文本文件"><a href="#写纯文本文件" class="headerlink" title="写纯文本文件"></a>写纯文本文件</h2><ol>
+<li>会被其他程序使用到相应的数据<ul>
+<li>比如写成用Tab字符来分隔的档案，方便数据库识别</li>
+</ul>
+</li>
+<li>使用FileWriter来代替FileOutputStream<ol>
+<li>使用try…catch</li>
+<li>FileWriter writer = new FileWriter(src)</li>
+<li>最后记着关闭.close()</li>
+</ol>
+</li>
+<li>使用BufferedWriter写纯文本<ol>
+<li>强制写入：<code>.flush()</code></li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+      
+    </div>
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"># java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/java_虚拟机和字节码/" rel="next" title="java学习笔记 之 虚拟机">
+                  <i class="fa fa-chevron-left"></i> java学习笔记 之 虚拟机
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/07/java_异常/" rel="prev" title="java学习笔记 之 异常">
+                  java学习笔记 之 异常 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#存储对象"><span class="nav-number">1.</span> <span class="nav-text">存储对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化"><span class="nav-number">1.1.</span> <span class="nav-text">序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化对象写入文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">序列化对象写入文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会被序列化的东西"><span class="nav-number">1.1.2.</span> <span class="nav-text">会被序列化的东西</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transient关键字"><span class="nav-number">1.1.3.</span> <span class="nav-text">transient关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解序列化"><span class="nav-number">1.2.</span> <span class="nav-text">解序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解序列化过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">解序列化过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详解解序列化过程"><span class="nav-number">1.2.2.</span> <span class="nav-text">详解解序列化过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写纯文本文件"><span class="nav-number">1.3.</span> <span class="nav-text">写纯文本文件</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stormbroken</p>
+  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Stormbroken"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stormbroken</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<a href="https://github.com/stormbroken" class="" target="_blank" title="我的Github" aria-label="我的Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<!-- ??????? -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
