@@ -309,7 +309,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：14:00:08" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:57" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -343,348 +343,16 @@
         
 
       
-          <a id="more"></a>
-<h1 id="java学习笔记之GUI"><a href="#java学习笔记之GUI" class="headerlink" title="java学习笔记之GUI"></a>java学习笔记之GUI</h1><ol>
-<li>代码默写按点给分，不会太细节</li>
-</ol>
-<h2 id="GUI综述"><a href="#GUI综述" class="headerlink" title="GUI综述"></a>GUI综述</h2><ol>
-<li>GUI：Graphical user interface</li>
-<li>WIMP:window,icon,menu,pointer</li>
-<li>WYSIWYG:What-You-See-Is-What-You-Get</li>
-</ol>
-<h2 id="GUI的关键部分以及GUI的创建"><a href="#GUI的关键部分以及GUI的创建" class="headerlink" title="GUI的关键部分以及GUI的创建"></a>GUI的关键部分以及GUI的创建</h2><ol>
-<li>组件Component</li>
-<li>布局Layout</li>
-<li>事件Event</li>
-</ol>
-<h3 id="GUI的创建"><a href="#GUI的创建" class="headerlink" title="GUI的创建"></a>GUI的创建</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JFrame frame = <span class="keyword">new</span> JFrame();<span class="comment">//创建frame框架</span></span><br><span class="line">JButton button = <span class="keyword">new</span> JButton(str);<span class="comment">//创建一个str的按钮</span></span><br><span class="line">frame.getContentPane().add(button);<span class="comment">//获得当前框架主体，添加button</span></span><br><span class="line">frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<span class="comment">//这一行程序会在window关闭时把程序结束</span></span><br><span class="line">frame.setSize(<span class="number">300</span>,<span class="number">300</span>);<span class="comment">//设置frame大小</span></span><br><span class="line">frame.setVisible(<span class="keyword">true</span>);<span class="comment">//设置frame可见</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="所有组件的根父类"><a href="#所有组件的根父类" class="headerlink" title="所有组件的根父类"></a>所有组件的根父类</h2><ol>
-<li>Component</li>
-</ol>
-<h2 id="GUI发展过程"><a href="#GUI发展过程" class="headerlink" title="GUI发展过程"></a>GUI发展过程</h2><ol>
-<li>AWT</li>
-<li>Swing</li>
-<li>SWT</li>
-<li>JavaFx</li>
-</ol>
-<h2 id="事件和布局"><a href="#事件和布局" class="headerlink" title="事件和布局"></a>事件和布局</h2><ol>
-<li>首先有一个窗口</li>
-<li>组件</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>组件名称</th>
-<th>组件内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>JFrame</code></td>
-<td>窗口</td>
-</tr>
-<tr>
-<td><code>Button</code></td>
-<td>按钮</td>
-</tr>
-<tr>
-<td><code>Image</code></td>
-<td>图片</td>
-</tr>
-<tr>
-<td><code>Color</code></td>
-<td>颜色元素</td>
-</tr>
-</tbody></table>
-<ol start="3">
-<li>具体行为</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>相应行为</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>frame.getContentPane().add(Button)</code></td>
-<td>布局按钮</td>
-</tr>
-<tr>
-<td><code>setVisible(true)</code></td>
-<td>设置为可见</td>
-</tr>
-<tr>
-<td><code>setSize(300,300)</code></td>
-<td>设置控件大小</td>
-</tr>
-<tr>
-<td><code>new ImageIcon(&quot;name.jpg&quot;).getImage()</code></td>
-<td>获取一个图像的布局</td>
-</tr>
-<tr>
-<td><code>fillOval(,,,)</code></td>
-<td>绘制一个椭圆</td>
-</tr>
-<tr>
-<td><code>new Color(,,)</code></td>
-<td>定义一个正常的颜色</td>
-</tr>
-</tbody></table>
-<ol start="4">
-<li><p>监听者和被监听者</p>
-<ul>
-<li>实现过程：<ol>
-<li>继承为一个监听器:<code>implements ActionListener</code></li>
-<li>指定一个按钮:<code>.addActionLiastener(this)</code></li>
-<li>定义被按动的行为:<code>actionOerformed()</code><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2></li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>用指定的方法制作特定的方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MidiEvent <span class="title">makeEvent</span><span class="params">(<span class="keyword">int</span> comd,<span class="keyword">int</span> chan,<span class="keyword">int</span> one,<span class="keyword">int</span> two,<span class="keyword">int</span> tick)</span></span>&#123;</span><br><span class="line">    MidiEvent a = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        ShortMessage a = <span class="keyword">new</span> ShortMessage();</span><br><span class="line">        a.setMessage(comd,chan,one,two);</span><br><span class="line">        event = <span class="keyword">new</span> MidiEvent(a,tick);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> event;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用队列来完成保存记录</p>
-</li>
-</ol>
-<h2 id="使用内部类"><a href="#使用内部类" class="headerlink" title="使用内部类"></a>使用内部类</h2><ol>
-<li>外部类方面的相应状态的变更可以修改内部类的属性</li>
-<li>使用内部类来完成动画的制作</li>
-</ol>
-<h2 id="layout部分"><a href="#layout部分" class="headerlink" title="layout部分"></a>layout部分</h2><ol>
-<li>基本布局被分为五部分：north、west、center、east、north.<ol>
-<li>添加布局：<code>frame.getContentPane().add(BorderLayout.CENTER,button)</code></li>
-<li>注意整个布局</li>
-</ol>
-</li>
-<li>layout manager:<ol>
-<li>用于自动化完成控件的布局</li>
-<li>BorderLayout:按照五部分分每个布局</li>
-<li>FlowLayout:从左向右布局，期望非文字的控件</li>
-<li>BoxLayout:类似FlowLayout布局，但是可以强制设置转换类型</li>
-<li>具体使用见PPT</li>
-<li>其他布局管理器：<ol>
-<li>网格布局</li>
-<li>网格组布局</li>
-</ol>
-</li>
-<li>订制布局管理器</li>
-</ol>
-</li>
-<li>各种布局须知：<ol>
-<li>当Frame的大小改变Frame中的按钮的位置会随之改变的布局是：FlowLayout</li>
-<li>将容器划分为固定的网格进行布局的布局管理器是：GridLayout</li>
-<li>每个区域只能用那一个组件的布局管理器：<ol>
-<li>BorderLayout</li>
-<li>GridLayout</li>
-<li>CardLayout</li>
-</ol>
-</li>
-<li>组件大小随容器大小变化：<ol>
-<li>BorderLayout</li>
-<li>GridLayout</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="向图形上添加东西的方法"><a href="#向图形上添加东西的方法" class="headerlink" title="向图形上添加东西的方法"></a>向图形上添加东西的方法</h3><ol>
-<li>在frame上放置widgt</li>
-<li>在widgt上绘制2D图形<ol>
-<li>创建自己的绘图组件：<ul>
-<li>创建JPanel的子类</li>
-<li>重写public void paintComponet(Graphics g){//TO-DO}</li>
-<li><code>Image image = new ImageIcon(name).getImage();</code>：获得一个JPEG显示</li>
-<li><code>g.drawImage(image,3,4,this)</code>：画出这个图，左边距离panel左侧3像素，上侧距离顶部4像素</li>
-</ul>
-</li>
-<li>g参数所引用的对象实际上是个Graphics2D的实例<ol>
-<li>但是想要引用Graphics2D对象，需要使用强制转化<ul>
-<li><code>Graphics2D g2d = new (Graphics2D) g;</code></li>
-</ul>
-</li>
-<li>setPaint():可以设置画笔</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>在widgt上绘制JPEG图</li>
-</ol>
-<h3 id="布局管理器"><a href="#布局管理器" class="headerlink" title="布局管理器"></a>布局管理器</h3><ol>
-<li>嵌套布局</li>
-<li>BorderLayout<ol>
-<li>标准的五大布局</li>
-<li>每个区域只能放置一个组件，很难保证控件保持原有的大小</li>
-<li>中间区域只能有剩下部分的像素</li>
-<li>不好进行直接像素设置大小</li>
-</ol>
-</li>
-<li>FlowLayout<ol>
-<li>面板默认的布局管理器</li>
-<li>从左向右布局方式</li>
-</ol>
-</li>
-<li>BoxLayout<ol>
-<li>使用默认大小，按照加入方式进行添加</li>
-<li>从上向下添加</li>
-</ol>
-</li>
-<li>使用布局管理器来在Frame窗体中布置一个按钮，此按钮大小不手Frame框体大小变化影响<h2 id="简单界面组件"><a href="#简单界面组件" class="headerlink" title="简单界面组件"></a>简单界面组件</h2></li>
-</ol>
-<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><ol>
-<li>考Button:参见53页PPT Testfield.label<ol>
-<li>是否继承</li>
-<li>是够被监听</li>
-<li>是否被布局</li>
-<li>是够实现了actionperformed方法</li>
-</ol>
-</li>
-<li>调用repaint方法由系统帮你调用，未必什么时候调用<ol>
-<li>重绘过程是异步的</li>
-<li>如果多次调用repaint()，那么只会调用最后一次</li>
-</ol>
-</li>
-<li>实现被按动效果：如果被按动，那么重新绘制这个东西</li>
-</ol>
-<h3 id="Button的监听"><a href="#Button的监听" class="headerlink" title="Button的监听"></a>Button的监听</h3><ol>
-<li>来源：java.awt.event</li>
-<li>相应的监听事件：具体地请查API<ol>
-<li>ActionListener:actionPerformed(ActionEvent ev)</li>
-<li>ItemListener:itemStateChanged(ItemEvent ev)</li>
-<li>KeyListener:<ul>
-<li>keyPressed(KeyEvent ev)</li>
-<li>keyReleased(KeyEvent ev)</li>
-<li>keyTyped(KeyEvent ev)</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>取得ActionEvent：<ol>
-<li>实现ActionListener这个接口<ul>
-<li><code>implements ActionListener</code></li>
-</ul>
-</li>
-<li>向按钮进行注册(告诉它你要监听事件)<ul>
-<li><code>button.addActionListener(this)</code></li>
-</ul>
-</li>
-<li>定义事件的处理方法</li>
-</ol>
-</li>
-<li>多个监听：内部类来实现</li>
-<li>所有的监听接口中定义的方法，访问权限都是public，返回值是void的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent event)</span></span>&#123;</span><br><span class="line">    button.setText(str);<span class="comment">//TO-DO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h3><ol>
-<li><p>文本：JTextField</p>
-<ol>
-<li>允许编辑单行文本的文本组件</li>
-<li>构造函数：<ul>
-<li><code>JTextField field = new JTextField(20);</code></li>
-<li><code>JTextField field = new JTextField(&quot;Your name&quot;)</code></li>
-<li><code>JTextField field = new JTexField(String text, int columns)</code>构造使用要显示的指定文本初始化的新文本字段，宽度足够容纳指定列数。</li>
-</ul>
-</li>
-<li>使用的方法：<ol>
-<li><code>.getText()</code>：获得文本</li>
-<li><code>.setText(str)</code>：设置文本<ul>
-<li>如果是””，那么就是清空</li>
-</ul>
-</li>
-<li><code>.addActionListener(this)</code>：添加监视器</li>
-<li><code>.selectAll()</code>：选择全部文本</li>
-<li><code>.requestFocus()</code>：将GUI焦点拉回文本段落来使得用户完成输入</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>文本域：JTextArea</p>
-<ol>
-<li>构造函数：<code>JTextArea text = new JTextArea(10,20)//行高和字宽</code></li>
-<li>其他方法：<ol>
-<li><code>.setText(str)</code></li>
-<li><code>.append(str)</code></li>
-<li><code>.selectAll()</code></li>
-<li><code>.requestFocus()</code></li>
-<li>设置垂直的滚动条：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JScrollPane scroller = <span class="keyword">new</span> JScrollPane(text);</span><br><span class="line">text.setLineWrap(<span class="keyword">true</span>);<span class="comment">//开启自动换行</span></span><br><span class="line">scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);</span><br><span class="line">scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);<span class="comment">//设置了垂直滚动条</span></span><br><span class="line">panel.add(scroller);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>标签和标签组件:JLable</p>
-</li>
-<li><p>密码域</p>
-</li>
-<li><p>滚动窗格</p>
-</li>
-</ol>
-<h3 id="选择组件"><a href="#选择组件" class="headerlink" title="选择组件"></a>选择组件</h3><ol>
-<li>复选框</li>
-<li>单选按钮</li>
-<li>边框</li>
-<li>组合框</li>
-<li>滑块</li>
-<li>JCheckBox：<ol>
-<li>构造方法<ul>
-<li><code>JCheckBox check = new JCheckBox(str)</code></li>
-</ul>
-</li>
-<li>其他方法：<ul>
-<li>添加监听Item的事件<ul>
-<li><code>check.addItemListener(this)</code></li>
-</ul>
-</li>
-<li>处理事件(判别是否被选中)<ul>
-<li><code>.isSelected()</code></li>
-<li>实现<code>public void itemStateChanged(ItemEvent ev){}</code></li>
-</ul>
-</li>
-<li>用程序要设置选择或者不选择:<ul>
-<li><code>check.setSelected(true);</code></li>
-<li><code>check.setSelected(false);</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>JList</p>
-<ol>
-<li><p>构造函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] result = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;<span class="comment">//任意类型的数组即可</span></span><br><span class="line">list = <span class="keyword">new</span> JList(listEntries);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>具体使用：</p>
-<ol>
-<li>显示垂直滚动条：同JCheckBox</li>
-<li>设置显示行数：<code>list.setVisibleRowCount(number)</code></li>
-<li>限制单选:<code>.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)</code></li>
-<li>对选择事件做注册：<code>.addListSelectedListener(this)</code></li>
-<li>处理选择事件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueChanged</span><span class="params">(ListSelectedEvent lse)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!lse.getValueIsAdjusting())&#123;</span><br><span class="line">        String selection = (String) list.getSelectedValue();</span><br><span class="line">        System.out.println(selection);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><h1 id="MVC-Design-Pattern"><a href="#MVC-Design-Pattern" class="headerlink" title="MVC Design Pattern"></a>MVC Design Pattern</h1><ol>
-<li>MVC之间的交互</li>
-<li>MVC模式<ol>
-<li>模型：存储内容</li>
-<li>视图：显示内容</li>
-<li>控制器：处理用户输入</li>
-</ol>
-</li>
-<li>controller模式:不同被点击形式等</li>
-</ol>
-<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ol>
-<li>容器和组件是Composite模式</li>
-<li>带滚动条的面板是Decorator模式</li>
-<li>布局管理器是Strategy模式</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_GUI/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -738,7 +406,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：14:00:52" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:58" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -772,131 +440,16 @@
         
 
       
-          <a id="more"></a>
-
-<p><strong>Java学习笔记之java编码规范</strong></p>
-<ol>
-<li>这是关乎开发效率和后期维护的考虑</li>
-<li>2019/06/17 by stormbroken</li>
-</ol>
-<h1 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h1><ol>
-<li>增加可读性，减少项目组中因为换人而带来的损失</li>
-<li>具体的规范<ol>
-<li>Package:由一个小写单词组成</li>
-<li>Class:有大写字母开头，其他字母都小写的单词</li>
-<li>Class的变量、参数：由一个小写字母开头，后面的单词由大写字母开头</li>
-<li>static &amp; final 的变量:都应该大写，并且指出完整含义</li>
-<li>方法的参数：尽量保证和要赋值的字段名字相同</li>
-</ol>
-</li>
-</ol>
-<h1 id="Java文件样式"><a href="#Java文件样式" class="headerlink" title="Java文件样式"></a>Java文件样式</h1><ol>
-<li>所有的java文件都应该遵守如下的样式规则</li>
-</ol>
-<h2 id="版权信息：版权信息必须在java文件的开头"><a href="#版权信息：版权信息必须在java文件的开头" class="headerlink" title="版权信息：版权信息必须在java文件的开头"></a>版权信息：版权信息必须在java文件的开头</h2><ul>
-<li>比如:其他不需要出现在javadoc中的信息也可以包含在这里，参见例一</li>
-</ul>
-<h2 id="Package和Imports："><a href="#Package和Imports：" class="headerlink" title="Package和Imports："></a>Package和Imports：</h2><p>package在import前，import中的标准包名要在本地包名前，并且按照字母顺序排列，其中*保证导入所有的信息</p>
-<h2 id="Class"><a href="#Class" class="headerlink" title="Class:"></a>Class:</h2><ol>
-<li>类的注释，一般是用来解释类的，(参见例二)</li>
-<li>类定义</li>
-<li>类的成员变量:public的成员变量必须生成文档(JavaDoc)，protected、private、package定义的成员变量如果名字含义明确，可以没有注释</li>
-</ol>
-<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><ol>
-<li>存取方法：类变量的存取方法，可以简单地把只用于存取的方法写在一行上</li>
-<li>克隆方法：如果一个类是可以被克隆的，下一步就是clone方法，（例三）</li>
-<li>类方法：<ol>
-<li>toString方法：每一个类都应该有的方法</li>
-<li>其他方法</li>
-</ol>
-</li>
-<li>main方法：应当被写在类的底部</li>
-</ol>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数:"></a>构造函数:</h2><p>构造函数应该按照递增的方式写，参数多的写在后面，(并且访问类型应该在一行中，方法和参数写下一行)</p>
-<h2 id="例子们"><a href="#例子们" class="headerlink" title="例子们"></a>例子们</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**(例一) </span></span><br><span class="line"><span class="comment">* Copyright ? 2000 Shanghai XXX Co. Ltd. </span></span><br><span class="line"><span class="comment">* All right reserved. </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">* A class representing a set of packet and byte counters </span></span><br><span class="line"><span class="comment">* It is observable to allow it to be watched, but only </span></span><br><span class="line"><span class="comment">* reports changes when the current set is complete </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> </span><br><span class="line"><span class="function">Object <span class="title">clone</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123; </span><br><span class="line">        CounterSet obj = (CounterSet)<span class="keyword">super</span>.clone(); </span><br><span class="line">        obj.packets = (<span class="keyword">int</span>[])packets.clone(); </span><br><span class="line">        obj.size = size; </span><br><span class="line">        <span class="keyword">return</span> obj; </span><br><span class="line">    &#125;<span class="keyword">catch</span>(CloneNotSupportedException e) &#123; </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InternalError(<span class="string">"Unexpected CloneNotSUpportedException: "</span> + e.getMessage()); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="代码编写格式"><a href="#代码编写格式" class="headerlink" title="代码编写格式"></a>代码编写格式</h1><h2 id="代码样式"><a href="#代码样式" class="headerlink" title="代码样式"></a>代码样式</h2><ul>
-<li>代码应该使用unix的格式，而不是windows格式<ul>
-<li>回车变为回车+换行</li>
-</ul>
-</li>
-</ul>
-<h2 id="文档化"><a href="#文档化" class="headerlink" title="文档化"></a>文档化</h2><ul>
-<li>必须用javadoc来生成文档<ol>
-<li>是文档的标准，被各种java编译器都认可的方法</li>
-<li>@author标记不被推荐</li>
-</ol>
-</li>
-</ul>
-<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><ul>
-<li>缩进每行两个空格，而不是一个Tab，因为Tab在不同设置不同编译器中是不同的</li>
-</ul>
-<h2 id="页宽"><a href="#页宽" class="headerlink" title="页宽"></a>页宽</h2><ul>
-<li>页宽设置为80字符</li>
-<li>特别长的剧应该一个逗号或者操作符后折行，并且折行后比原来的语句在缩进2个字符</li>
-</ul>
-<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><ul>
-<li>左括号和后一个字符之间不应该出现空格</li>
-<li>右括号和前一个字符之间不应该出现空格</li>
-<li>避免在语句中使用无意义的括号，括号只应该为达到某种目的而出现在源代码中</li>
-</ul>
-<h1 id="程序编写规范"><a href="#程序编写规范" class="headerlink" title="程序编写规范"></a>程序编写规范</h1><h2 id="exit-函数"><a href="#exit-函数" class="headerlink" title="exit()函数"></a>exit()函数</h2><ol>
-<li>exit除了在main中可以被调用外，其他地方不应该调用，因为这样子不给任何代码机会来截获退出</li>
-<li>一个类似后台五福的程序不应该因为某一个库模块决定要退出就退出</li>
-</ol>
-<h2 id="异常声明"><a href="#异常声明" class="headerlink" title="异常声明"></a>异常声明</h2><ol>
-<li>申明的错误应该抛出一个RuntimeException或者派生的异常</li>
-<li>顶层main函数应截获所有的异常，并且打印在屏幕上\记录在日志中</li>
-</ol>
-<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><ol>
-<li>java使用成熟的后台垃圾收集技术来代替引用技术</li>
-<li>这样子做的话，必须要在使用完对象的实例后进行清场工作</li>
-</ol>
-<h2 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h2><ol>
-<li>不要因为性能的原因将一个类定义为final的，除非框架需要<ol>
-<li>如果一个类还没被准备好进行继承，最好在类文档中注明，而不要定义为final的</li>
-<li>有可能在以后会用到相应的继承</li>
-</ol>
-</li>
-</ol>
-<h2 id="访问类的成员变量"><a href="#访问类的成员变量" class="headerlink" title="访问类的成员变量"></a>访问类的成员变量</h2><ol>
-<li>大部分类的成员变量应该定义为protected的来放置继承类使用他们</li>
-</ol>
-<h1 id="编程技巧"><a href="#编程技巧" class="headerlink" title="编程技巧"></a>编程技巧</h1><h2 id="byte数组转换成characters"><a href="#byte数组转换成characters" class="headerlink" title="byte数组转换成characters"></a>byte数组转换成characters</h2><p>使用<code>.getBytes()</code>即可</p>
-<h2 id="Utility类-仅仅提供方法的类"><a href="#Utility类-仅仅提供方法的类" class="headerlink" title="Utility类(仅仅提供方法的类)"></a>Utility类(仅仅提供方法的类)</h2><p>这个类应该被申明为防止被继承或被初始化</p>
-<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><ol>
-<li>定义的部分可以在之间使用==进行比较</li>
-<li>但是和其他的等价部分只能使用equal进行比较</li>
-</ol>
-<h2 id="Swing"><a href="#Swing" class="headerlink" title="Swing"></a>Swing</h2><ol>
-<li>避免使用AWT组件</li>
-<li>尽量避免混合使用AWT和Swing组件</li>
-<li>AWT组件不要用JscrollPane类来实现滚动使用AWT ScrollPane</li>
-<li>避免在InternalFrame组件中使用AWT组件</li>
-</ol>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><ol>
-<li>一个重要的部分</li>
-<li>在软件生命周期的各个部分，吊事能够用配置开、关是最基本的。</li>
-</ol>
-<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><ol>
-<li>时刻记住我们应该注意代码的效率</li>
-<li>当我们没有时间实现一个高效的算法时，我们需要在文档中记录下来，以后有空的时候在实现她。</li>
-</ol>
-<h2 id="使用StringBuffer对象"><a href="#使用StringBuffer对象" class="headerlink" title="使用StringBuffer对象"></a>使用StringBuffer对象</h2><ol>
-<li>保障减少很多不必要的创建和释放对象的时间</li>
-</ol>
-<h2 id="避免synchroized关键字"><a href="#避免synchroized关键字" class="headerlink" title="避免synchroized关键字"></a>避免synchroized关键字</h2><ol>
-<li>防止死锁</li>
-<li>保障程序的可移植性</li>
-</ol>
-<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><ol>
-<li>尽量用println来代替在字符串中使用”\n”</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_java编码规范/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -950,7 +503,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：14:08:30" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:54:56" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -984,126 +537,16 @@
         
 
       
-          <a id="more"></a>
-<p><strong>变量</strong></p>
-<h1 id="变量的概念"><a href="#变量的概念" class="headerlink" title="变量的概念"></a>变量的概念</h1><ol>
-<li>不同角度看变量：<ol>
-<li>物理角度：计算机的数据存储单元</li>
-<li>逻辑角度：计算机模型中的抽象数据单位</li>
-<li>语义角度：类的属性、方法的状态</li>
-</ol>
-</li>
-<li>赋值：改变现实对象的状态<ol>
-<li>通过赋值来改变模拟变量状态的<strong>程序设计语言常规的符号名字</strong></li>
-<li>赋值打破了引用透明性</li>
-<li>与所有状态必须显示地操作的传递额外的参数的方式相比，通过引进赋值和将状态隐藏在局部变量的技术。我们能以一种更模块化的方式构造系统</li>
-</ol>
-</li>
-</ol>
-<h1 id="变量的属性"><a href="#变量的属性" class="headerlink" title="变量的属性"></a>变量的属性</h1><ol>
-<li>types:强类型语言<ol>
-<li>基础数据类型<ol>
-<li>物理视角</li>
-<li>使用预定义好的、基础的数据类型</li>
-<li>其中主类型和别的类型是不同的，比如int&amp;&amp;Integer,double&amp;&amp;Double</li>
-</ol>
-</li>
-<li>引用类型<ol>
-<li>来源与语义视角</li>
-<li>对象的遥控器</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>values：<ol>
-<li>值<ol>
-<li>基础数值类型：浮点数类型有精度损失</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>variables</li>
-</ol>
-<h2 id="变量的标识符"><a href="#变量的标识符" class="headerlink" title="变量的标识符"></a>变量的标识符</h2><ol>
-<li>必须由字母、下划线、或者美元符开头</li>
-<li>区分大小写</li>
-<li>不允许包含有空格和制表符</li>
-<li>符合命名规则的好处：<ol>
-<li>有助于在项目间传递知识</li>
-<li>在新的项目中更加快速的学习代码</li>
-<li>减少名字的增生</li>
-<li>弥补编程语言的不足</li>
-</ol>
-</li>
-<li>java命名规则：<ol>
-<li>除了变量名以外，类、类常量，均使用大小写混合的方法</li>
-<li>第一个单词的首字母小写，其后单词的首字母大写</li>
-<li>变量名不应该以下划线或美元符号开头</li>
-</ol>
-</li>
-</ol>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>命名：应该全部大写，单词间用下划线分隔</p>
-<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><ol>
-<li>变量的地址是与这个变量相关联的地址</li>
-<li>多个变量可以具有同一地址当用多个变量名来访问单个存储地址时，这些变量名就成为了别名</li>
-</ol>
-<h3 id="很特殊的字符串"><a href="#很特殊的字符串" class="headerlink" title="很特殊的字符串"></a>很特殊的字符串</h3><ol>
-<li>==比较的是地址，<code>.equals()</code>比较的是内部的值</li>
-<li>new String(str):可以强制分配对象</li>
-<li>相同字符串一般情况下只保存一个<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="keyword">new</span> String();</span><br><span class="line">a = <span class="string">"abc"</span>;</span><br><span class="line">String b = <span class="keyword">new</span> String();</span><br><span class="line">b = <span class="string">"abc"</span>;</span><br><span class="line">System.out.print(a==b);<span class="comment">//true,分配两个对象，指向一个对象</span></span><br><span class="line">String a = <span class="string">"abc"</span>;</span><br><span class="line">String b = <span class="string">"abc"</span>;</span><br><span class="line">System.out.print(a==b);<span class="comment">//true，直接指向同一个</span></span><br><span class="line">String a = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">String b = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">System.out.print(a==b);<span class="comment">//false，强制分配两个</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="生存期"><a href="#生存期" class="headerlink" title="生存期"></a>生存期</h2><ol>
-<li>生存期是该变量绑定于某一特定存储地址的时间</li>
-<li>变量的生存期：<ol>
-<li>静态变量</li>
-<li>栈动态变量</li>
-<li>显性堆动态变量</li>
-<li>隐性堆动态变量</li>
-</ol>
-</li>
-</ol>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><ol>
-<li>速度较快</li>
-<li>要求在编译的时候知道变量占用内存空间的大小和时间——局部变量</li>
-</ol>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ol>
-<li>效率较低</li>
-<li>不需要让编译器知道所占有内存空间的大小和时间</li>
-<li>在离开其作用域后虽然无法访问，但是依旧占据着内存空间</li>
-</ol>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><ol>
-<li>语句的一个范围，在这个范围之内，变量为可见的。如果一个变量在一条语句中可以被引用，这个变量即在这条语句中为可见的</li>
-<li>一般和代码块相关</li>
-<li>成员变量在类中声明，整个类中可见，涉及到访问权限的问题</li>
-<li>如果是使用成员变量，使用this关键字</li>
-</ol>
-<h1 id="变量的行为"><a href="#变量的行为" class="headerlink" title="变量的行为"></a>变量的行为</h1><h2 id="构成声明语句"><a href="#构成声明语句" class="headerlink" title="构成声明语句"></a>构成声明语句</h2><h2 id="和操作符结合成为表达式"><a href="#和操作符结合成为表达式" class="headerlink" title="和操作符结合成为表达式"></a>和操作符结合成为表达式</h2><h2 id="初始化（对象）"><a href="#初始化（对象）" class="headerlink" title="初始化（对象）"></a>初始化（对象）</h2><ol>
-<li>对象的初识化的顺序：<ol>
-<li>静态成员变量</li>
-<li>静态初始化块</li>
-<li>非静态成员变量</li>
-<li>构造器中初始化</li>
-<li>所有的成员变量都会在构造器执行之前被初始化为指定的值或默认值，在构造器中如果有对其赋值的语句将会再次对其进行初始化</li>
-</ol>
-</li>
-</ol>
-<h1 id="常用变量的用法"><a href="#常用变量的用法" class="headerlink" title="常用变量的用法"></a>常用变量的用法</h1><h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><ol>
-<li>局部变量(在方法内部)<ul>
-<li>用于在方法内部临时存放数据</li>
-<li>不管是数据类型还是引用类型，如果在没有显示初始化的情况下使用，都会出现错误</li>
-</ul>
-</li>
-<li>属性字段(在对象内部)<ul>
-<li>用于存放表示类的属性的值</li>
-</ul>
-</li>
-<li>静态变量(全局)<h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2></li>
-<li>直接访问(内部使用者)</li>
-<li>间接访问(外部使用者)</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_变量/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1157,7 +600,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:59:07" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:32" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -1191,169 +634,16 @@
         
 
       
-          <a id="more"></a>
-<p><strong>java学习笔记之线程</strong></p>
-<ol>
-<li>多线程是实现多任务的一种方式</li>
-<li>线程是指进程中的一个执行流程，一个进程中可以运行多个线程。</li>
-<li>进程是子一个内存中运行的应用程序，是独立的线程，它代表独立的执行代码。</li>
-<li>Thread类：<ol>
-<li>来源：java.lang.Thread类</li>
-<li>方法：<ul>
-<li>void join()</li>
-<li>void start()</li>
-<li>static void sleep()</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>线程注意<ol>
-<li>一个线程被刚创建的时候，并没有立即开始运行</li>
-<li>使用start()方法可以使一个线程成为可运行的，但是他不一定立即开始运行</li>
-<li>一个线程可能因为不同的原因停止并进入就绪状态</li>
-<li>当一个线程因为抢先机制而停止运行，它被放在可运行队列的前面</li>
-</ol>
-</li>
-</ol>
-<h1 id="java多线程编程"><a href="#java多线程编程" class="headerlink" title="java多线程编程"></a>java多线程编程</h1><ol>
-<li>多线程保障了更小的资源开销</li>
-<li>为了满足需要，充分利用CPU</li>
-<li>程序在开始之初，只有main()线程，其他的所有线程都需要我们程序员自己创建线程，放到JVM中</li>
-</ol>
-<h2 id="多线程编程的问题以及解决"><a href="#多线程编程的问题以及解决" class="headerlink" title="多线程编程的问题以及解决"></a>多线程编程的问题以及解决</h2><ol>
-<li>并发性问题<ul>
-<li>对同一个对象进行操作时候的问题</li>
-<li>可能会导致更新丢失</li>
-</ul>
-</li>
-<li>解决方案：<ul>
-<li>给线程加一个锁<ol>
-<li>如果静态变量状态的保护呢？如果有静态的方法可以对静态变量的状态作更新，还能同步化吗？<ol>
-<li>可以。静态的方法是运行在类而不是在每个实例上</li>
-<li>在你对静态的方法做同步化方法做同步化时，Java会使用类本身的锁。也就是如果一个类中有两个方法被同步化过的静态方法，线程需要取得类的锁才能进行这些方法。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>使用synchronized关键词<ol>
-<li>按照不同的程序分析，来添加锁的部分</li>
-</ol>
-</li>
-<li>同步化的代价：<ol>
-<li>速度下降，会耗费性能来查询</li>
-<li>有可能导致死锁现象：也就是说会互相持有钥匙</li>
-<li>有可能造成死锁的问题：参考O’Reilly的“Java Thread”<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>&#123;</span><br><span class="line">    doStuff();</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">        a();</span><br><span class="line">        b();<span class="comment">//只对部分进行原子化</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="一个线程的生命周期"><a href="#一个线程的生命周期" class="headerlink" title="一个线程的生命周期"></a>一个线程的生命周期</h1><h2 id="新建状态"><a href="#新建状态" class="headerlink" title="新建状态"></a>新建状态</h2><p>使用new关键字和Thread类或其子类建立一个线程对象后。这个线程对象就处于新建状态，它保持这个状态知道程序start()该线程。</p>
-<ul>
-<li><code>Thread t = new Thread();</code></li>
-<li><code>t.start();</code></li>
-</ul>
-<h2 id="就绪状态"><a href="#就绪状态" class="headerlink" title="就绪状态"></a>就绪状态</h2><p>当线程对象调用了start()方法之后，该线程就进入就绪状态。就绪状态的线程处于就绪队列中，要等待JVM里线程调度器的调度。</p>
-<h2 id="运行状态"><a href="#运行状态" class="headerlink" title="运行状态"></a>运行状态</h2><p>如果就绪状态的线程获取 CPU 资源，就可以执行 run()，此时线程便处于运行状态。处于运行状态的线程最为复杂，它可以变为阻塞状态、就绪状态和死亡状态。</p>
-<h2 id="阻塞状态"><a href="#阻塞状态" class="headerlink" title="阻塞状态"></a>阻塞状态</h2><p>如果一个线程执行了sleep（睡眠）、suspend（挂起）等方法，失去所占用资源之后，该线程就从运行状态进入阻塞状态。在睡眠时间已到或获得设备资源后可以重新进入就绪状态。可以分为三种： </p>
-<ol>
-<li>等待阻塞：运行状态中的线程执行wait()方法，使线程进入到等待阻塞状态</li>
-<li>同步阻塞：线程获取synchronized同步锁失败，被占用</li>
-<li>其他阻塞：调用线程的sleep()或join()发出了I/O请求，线程就进入到阻塞状态。当sleep()状态超时，join()等待线程终止或超时，或I/O处理完毕，线程重新进入就绪状态。</li>
-<li>使用resume()来继续suspend的线程<h2 id="死亡状态"><a href="#死亡状态" class="headerlink" title="死亡状态"></a>死亡状态</h2>一个运行状态的线程完成任务或者其他终止发生时，该线程就切换到终止状态</li>
-</ol>
-<h1 id="线程的优先级"><a href="#线程的优先级" class="headerlink" title="线程的优先级"></a>线程的优先级</h1><ol>
-<li>每个线程都有着优先级，便于操作系统确定线程的调度顺序</li>
-<li>线程优先级的取值范围：1（Thread.MIN_PROIORITY)-10(Thread.MAX_PRIORITY)<ul>
-<li>默认情况下，每一个线程都会分配一个优先级NORM_PRIORITY（5）</li>
-</ul>
-</li>
-<li>优先级高的线程对程序更加重要，并且应该在低优先级的线程之前分配处理器资源，但是线程优先级不能保证线程执行的顺序，并且非常依赖平台。</li>
-</ol>
-<h1 id="创建一个线程"><a href="#创建一个线程" class="headerlink" title="创建一个线程"></a>创建一个线程</h1><p>三种创建线程的方法：</p>
-<ol>
-<li>通过实现Runnable接口<ol>
-<li>通过创建一个类来实现(这个类继承)</li>
-</ol>
-</li>
-<li>通过继承Thread类本身<ol>
-<li>直接新建一个继承自Thread的类</li>
-<li>创建一个实例</li>
-<li>重写run()方法，代表新线程的入口点。</li>
-<li>也需要调用start()方法才能执行。</li>
-</ol>
-</li>
-<li>通过Callable和Future创建线程<ol>
-<li>创建Callable接口的实现类，并实现call()方法，该call()方法作为线程执行体，并且有相应的返回值。</li>
-<li>创建Callable实现类的实例，使用FutureTask类来包装Callable对象，该FutureTask对象封装了该对象的call()方法返回</li>
-<li>使用 FutureTask 对象作为 Thread 对象的 target 创建并启动新线程。</li>
-<li>调用 FutureTask 对象的 get() 方法来获得子线程执行结束后的返回值。</li>
-</ol>
-</li>
-</ol>
-<h1 id="如何启动新的线程"><a href="#如何启动新的线程" class="headerlink" title="如何启动新的线程"></a>如何启动新的线程</h1><ol>
-<li>建立Runnable对象：<ul>
-<li><code>Runnable threadJob = new MyRunnable();</code></li>
-</ul>
-</li>
-<li>建立Thread对象(执行工人)并赋值Runnable(任务):<ul>
-<li><code>Thread myThread = new Thread(threadJob);</code></li>
-</ul>
-</li>
-<li>启动Thread:<ul>
-<li><code>myThread.start()</code></li>
-</ul>
-</li>
-<li>Runnable接口只有一个方法:public void run()</li>
-</ol>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><ol>
-<li>一个线程运行GUI</li>
-<li>另一个线程接受相关的反映</li>
-<li>一个主线程来接收连接，n个子线程来服务n个客户端</li>
-<li>线程的调用时间和顺序是受虚拟机进行控制的</li>
-</ol>
-<h1 id="线程调度器"><a href="#线程调度器" class="headerlink" title="线程调度器"></a>线程调度器</h1><ol>
-<li>线程调度器决定哪个线程从等待状况中被挑出来运行，以及何时哪个线程送回等待被执行的状态</li>
-<li>你是无法控制调度，没有API可以调用调度器</li>
-<li>不可以假设在一个机器上测试多线程程序，就假定每一个机器上都是相同的调用行为</li>
-<li>现在的虚拟机很难让你的线程一路执行到底，原因是sleep，在睡眠的过程中一个线程一定不会被唤醒<ul>
-<li>这个部分你要放在try…catch…块中来完成</li>
-</ul>
-</li>
-<li>不同优先级的线程间是抢先式的，而同级线程间是轮转式的。</li>
-</ol>
-<h1 id="线程Thread类的方法"><a href="#线程Thread类的方法" class="headerlink" title="线程Thread类的方法"></a>线程Thread类的方法</h1><table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>方法作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>setName(String str)</td>
-<td>设置线程的名字</td>
-</tr>
-<tr>
-<td>getName()</td>
-<td>获得线程的名字</td>
-</tr>
-<tr>
-<td>currentThread()</td>
-<td>获得当前的线程</td>
-</tr>
-</tbody></table>
-<h1 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h1><ol>
-<li>保证你的操作是安全的</li>
-<li>可以用来修饰方法使得方法每次只能被单一的线程调用</li>
-<li>可以用来修饰对象，对象的锁只能在有同步化方法上起作用<ul>
-<li>当对象有一个或者多个同步化的方法时，线程只有取得对象的锁的钥匙的时候，才能进入同步化方法</li>
-</ul>
-</li>
-</ol>
-<h1 id="描述java创建线程"><a href="#描述java创建线程" class="headerlink" title="描述java创建线程"></a>描述java创建线程</h1><p>进程是程序的一次动态执行过程，它对应了从代码加载、执行到执行完毕的一个完整过程，这个过程也是进程本身从产生、发展到消亡的过程。作为执行蓝本的同一段程序，可以被多次加载到系统的不同内存区域分别执行，形成不同的进程。每个进程都有独立的代码和数据空间(进程上下文)，进程切换的开销大。</p>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_线程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1407,7 +697,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:59:40" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:39" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -1441,103 +731,16 @@
         
 
       
-          <a id="more"></a>
-<p><strong>java学习笔记之异常</strong></p>
-<ol>
-<li><p>使用<code>try{}catch{}</code>来捕捉异常</p>
-<ol>
-<li>try告诉系统在哪一部分的代码可能有问题</li>
-<li>catch表示如果有异常的话如何处理</li>
-</ol>
-</li>
-<li><p>在程序运行过程中出现的不能正常执行的情况称为异常</p>
-</li>
-<li><p>异常：在程序运行过程中出现的不能正常执行的情况</p>
-<h1 id="异常的产生和接收"><a href="#异常的产生和接收" class="headerlink" title="异常的产生和接收"></a>异常的产生和接收</h1></li>
-<li><p>在一个方法中抛出一个异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takeRisk</span><span class="params">()</span> <span class="keyword">throws</span> BadException</span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> BadExcception();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在一个地方接收这个异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">crossFingers</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">catch</span>(BadException ex)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以抛出多个异常和接收多个异常</p>
-</li>
-<li><p>多用于处理运行运行时错误</p>
-</li>
-<li><p>可以在最后添加<code>finally{}</code>:内部的操作无论如何都会被执行</p>
-</li>
-</ol>
-<h1 id="多重异常"><a href="#多重异常" class="headerlink" title="多重异常"></a>多重异常</h1><ol>
-<li>异常是一种多态，是对于Exception类的继承</li>
-<li>多个异常累加的时候，我们从小到大放置</li>
-<li>程序按照文本顺序来读取</li>
-</ol>
-<h1 id="抛出异常到外部"><a href="#抛出异常到外部" class="headerlink" title="抛出异常到外部"></a>抛出异常到外部</h1><ol>
-<li>如果一个方法内部并不知道如何处理一个异常，将它抛出去,throws</li>
-<li>程序内部抛出方法：throw</li>
-<li>实例：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">throws</span> ClothingException</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="异常的语法"><a href="#异常的语法" class="headerlink" title="异常的语法"></a>异常的语法</h1><ol>
-<li>不能在try和catch之间有语句</li>
-<li>可以没有finally<ul>
-<li>finally子句中含有return语句：待查</li>
-</ul>
-</li>
-<li>java7之后处理异常的新特性<ol>
-<li>一个Catch语句可以捕获多个异常<ul>
-<li><code>catch(Exception a|Exception b)</code></li>
-</ul>
-</li>
-<li>更加精准的异常抛出<ul>
-<li>精准抛出异常的例子：代码1-17:使用捕捉抛出再捕捉的方式</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>java7中的try-with-resources语句<ol>
-<li>实现了自动关闭相关资源的能力，见代码清单1-19和1-20</li>
-<li>一个可以打开多个文件：<code>try(a;b)</code></li>
-</ol>
-</li>
-</ol>
-<h1 id="使用异常机制的建议"><a href="#使用异常机制的建议" class="headerlink" title="使用异常机制的建议"></a>使用异常机制的建议</h1><ol>
-<li>异常声明是API的一部分</li>
-<li>异常处理不能代替简单的测试</li>
-<li>不要过分地细化异常</li>
-<li>利用异常层次结构<ul>
-<li>不要只抛出RuntimeException，应该寻找更合适的子类或者创建自己的异常类</li>
-</ul>
-</li>
-<li>不要压制异常</li>
-<li>在检测错误时，苛刻比放任要好<ul>
-<li>比如在错误的时候抛出EmptyStackException比抛出NullPointerException异常更好</li>
-</ul>
-</li>
-<li>不要羞于传递异常<ul>
-<li>早抛出，晚捕获</li>
-</ul>
-</li>
-</ol>
-<h1 id="创建自己的异常"><a href="#创建自己的异常" class="headerlink" title="创建自己的异常"></a>创建自己的异常</h1><ol>
-<li>精心设计异常的层次结构</li>
-<li>异常类中包含有足够的信息</li>
-<li>异常与错误提示</li>
-</ol>
-<h1 id="异常的消失"><a href="#异常的消失" class="headerlink" title="异常的消失"></a>异常的消失</h1><ol>
-<li>代码清单1-9:两种解决方法</li>
-</ol>
-<h1 id="一些异常实例"><a href="#一些异常实例" class="headerlink" title="一些异常实例"></a>一些异常实例</h1><ol>
-<li>使用异常包装技术</li>
-<li>使用国际化异常消息的异常类的基类</li>
-<li>继承自支持国际化异常消息的异常类的子类</li>
-</ol>
-<h1 id="java虚拟机中的实现"><a href="#java虚拟机中的实现" class="headerlink" title="java虚拟机中的实现"></a>java虚拟机中的实现</h1><ol>
-<li>athrow指令</li>
-<li>红色部分是异常表，对应左侧行数</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_异常/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1591,7 +794,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:59:29" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:37" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -1625,97 +828,16 @@
         
 
       
-          <a id="more"></a>
-<p><strong>序列化以及文件输入输出</strong></p>
-<ol>
-<li>对象有状态和行为，行为存在于类中，而状态存在于个别的对象中，方便被非java程序读取</li>
-</ol>
-<h1 id="存储对象"><a href="#存储对象" class="headerlink" title="存储对象"></a>存储对象</h1><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><ol>
-<li>只有自己写的java程序会用到这些数据</li>
-<li>更加的安全</li>
-<li>如果让类可以序列化，实现Serializable接口</li>
-<li>可以父类不被序列化，但是子类实现序列化</li>
-<li>序列化过程中会辨别两个对象是否相同，这种情况下只有一个对象会被保存，剩下的会被指向这个引用</li>
-</ol>
-<h3 id="序列化对象写入文件"><a href="#序列化对象写入文件" class="headerlink" title="序列化对象写入文件"></a>序列化对象写入文件</h3><ol>
-<li>创建文件输出流<ul>
-<li><code>FileOutputStream fileStream = new FileOutputStream(&quot;MyGame.ser&quot;)</code></li>
-<li>文件不存在会直接创建出来</li>
-</ul>
-</li>
-<li>创建对象输出流<ul>
-<li><code>ObjectOutputStream os = new ObjectOutputStream(fileStream);</code></li>
-</ul>
-</li>
-<li>写入对象:<ul>
-<li><code>os.writeObject(character);</code></li>
-</ul>
-</li>
-<li>关闭流：<ul>
-<li><code>os.close();</code></li>
-</ul>
-</li>
-<li>整个过程就是对象被碾平，然后当做字节写入文件</li>
-</ol>
-<h3 id="会被序列化的东西"><a href="#会被序列化的东西" class="headerlink" title="会被序列化的东西"></a>会被序列化的东西</h3><ol>
-<li>所有的实例变量</li>
-<li>所有被引用的对象</li>
-<li>保证里面的都可以被序列化</li>
-</ol>
-<h3 id="transient关键字"><a href="#transient关键字" class="headerlink" title="transient关键字"></a>transient关键字</h3><ol>
-<li>用于某个实例变量不应该或不能被序列化</li>
-</ol>
-<h2 id="解序列化"><a href="#解序列化" class="headerlink" title="解序列化"></a>解序列化</h2><ol>
-<li>静态变量还原的时候，会维持原来的样子，而不是存储的样子<ul>
-<li>也就是说静态变量是归属于类所有的，不会被序列化，在解序列化的时候维持类声明时的状态<h3 id="解序列化过程"><a href="#解序列化过程" class="headerlink" title="解序列化过程"></a>解序列化过程</h3></li>
-</ul>
-</li>
-<li>创建文件读入流<ul>
-<li><code>FileInputStream filestream = new FileInputStream(&quot;name&quot;);</code></li>
-</ul>
-</li>
-<li>创建对象读入流<ul>
-<li><code>ObjectInputStream os = new ObjectInputStream(fileStream);</code></li>
-</ul>
-</li>
-<li>读入对象<ul>
-<li><code>Object a = os.readObject();</code></li>
-</ul>
-</li>
-<li>转换对象类型<ul>
-<li><code>Game g = (Game) a;</code></li>
-</ul>
-</li>
-<li>关闭对象读入流<ul>
-<li><code>os.close();</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="详解解序列化过程"><a href="#详解解序列化过程" class="headerlink" title="详解解序列化过程"></a>详解解序列化过程</h3><ol>
-<li>从流中读出对象</li>
-<li>java虚拟机通过存储信息判断class类型</li>
-<li>java虚拟机尝试寻找和加载对象的类。如果找不到会抛出异常</li>
-<li>新的对象会被放置到堆上，但是构造函数不会执行</li>
-<li>如果对象在继承书上有一个不可以序列化的祖先类，那么该不可序列化类以及在它之上的类的构造函数会被执行</li>
-<li>对象的实例变量全部恢复，transient的变量会被赋值为null的对象引用或者primitive的主类型默认值</li>
-</ol>
-<h2 id="写纯文本文件"><a href="#写纯文本文件" class="headerlink" title="写纯文本文件"></a>写纯文本文件</h2><ol>
-<li>会被其他程序使用到相应的数据<ul>
-<li>比如写成用Tab字符来分隔的档案，方便数据库识别</li>
-</ul>
-</li>
-<li>使用FileWriter来代替FileOutputStream<ol>
-<li>使用try…catch</li>
-<li>FileWriter writer = new FileWriter(src)</li>
-<li>最后记着关闭.close()</li>
-</ol>
-</li>
-<li>使用BufferedWriter写纯文本<ol>
-<li>强制写入：<code>.flush()</code></li>
-</ol>
-</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_序列化/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1769,7 +891,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:59:18" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:35" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -1803,389 +925,16 @@
         
 
       
-          <a id="more"></a>
-
-<h1 id="内存和虚拟机"><a href="#内存和虚拟机" class="headerlink" title="内存和虚拟机"></a>内存和虚拟机</h1><h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><ol>
-<li>逻辑内存地址空间(Linux操作系统空间)<ol>
-<li>内核空间</li>
-<li>堆：从高向低分配</li>
-<li>栈：局部变量:从低向高分配<blockquote>
-<p>ebp：Main函数的栈针底部<br>esp:栈针顶部  </p>
-</blockquote>
-</li>
-<li>代码段</li>
-</ol>
-</li>
-<li><a href="file:///D:/南京大学/大一第二学期/软件工程与计算1-2019/课件/08%20-%20结构化编程%20III%20-%20方法.pdf" target="_blank" rel="noopener">JVM 51页</a>  <ol>
-<li>方法区</li>
-<li>引用类型变量对java对象访问的实现<ul>
-<li>访问数据<ul>
-<li>实例数据值（对象中各个实例字段的数据）</li>
-<li>对象类型数据</li>
-</ul>
-</li>
-<li>访问方式<ul>
-<li>句柄方式访问：像是key一样</li>
-<li>直接指针访问</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><ol>
-<li>是机器的软件实现，可以像物理机一样执行程序</li>
-<li>JVM的特性：<ol>
-<li>基于栈的虚拟机：<ul>
-<li>JVM基于栈进行运行</li>
-</ul>
-</li>
-<li>标识符引用：<ul>
-<li>所有类型(类和接口)除了基本类型（又称原始类型）都是通过表示符引用的，而不是显示的基于内存地址的引用</li>
-</ul>
-</li>
-<li>垃圾收集：<ul>
-<li>一个类的实例是由用户代码显式创建的并通过垃圾收集自动销毁</li>
-</ul>
-</li>
-<li>通过清除的定义基本数据类型保证平台的独立<ul>
-<li>JVM清除地定义了原始数据类型以维持兼容性和保证跨平台的能力。</li>
-</ul>
-</li>
-<li>网络字节顺序<ul>
-<li>JVM使用网络字节序，它是一种网络传输的顺序，网络字节序是big endian的<h1 id="java的编译和运行"><a href="#java的编译和运行" class="headerlink" title="java的编译和运行"></a>java的编译和运行</h1></li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="编译期"><a href="#编译期" class="headerlink" title="编译期"></a>编译期</h2><ol>
-<li>静态绑定</li>
-<li>多分派</li>
-<li>overloading</li>
-<li>编译：将整个程序源代码翻译成另一种代码，然后等待被执行，发生在运行之前，产物是另一份代码</li>
-</ol>
-<h2 id="运行期"><a href="#运行期" class="headerlink" title="运行期"></a>运行期</h2><ol>
-<li>动态绑定</li>
-<li>单分派</li>
-<li>overriding</li>
-<li>强制类型转换在改阶段进行-&gt;会带来异常</li>
-</ol>
-<h2 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h2><p>将程序源代码一行行的读懂，然后执行，发生在运行时，产物是运行结果。</p>
-<h1 id="JVM和字节码"><a href="#JVM和字节码" class="headerlink" title="JVM和字节码"></a>JVM和字节码</h1><h2 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h2><p>java对象在JVM中的存储：</p>
-<ol>
-<li>对象头：8b</li>
-<li>java原始类型数据：</li>
-<li>引用：4b</li>
-<li>填充符</li>
-</ol>
-<h2 id="字节码"><a href="#字节码" class="headerlink" title="字节码"></a>字节码</h2><ol>
-<li>java代码最后被编译成了字节码,字节码在虚拟机中被执行</li>
-<li>字节码的语言无关性(不同语言被相应编译器编译后运行)</li>
-<li><code>.class</code>文件就是字节码</li>
-<li>查看字节码<ol>
-<li><code>javac test.java</code></li>
-<li><code>javap -verbose test</code>//打开参考区域</li>
-</ol>
-</li>
-<li>constant pool:常量池</li>
-</ol>
-<h2 id="Class文件结构"><a href="#Class文件结构" class="headerlink" title="Class文件结构"></a>Class文件结构</h2><ul>
-<li>一组以8位字节为基础单位的二进制流</li>
-<li>魔数(magic)文件开头</li>
-<li>版本号(副版本号+朱版本号)</li>
-<li>常量池计数器</li>
-<li>常量池数据区：(单独写出来的部分)<ul>
-<li>字面量</li>
-<li>符号引用</li>
-</ul>
-</li>
-<li>访问标志</li>
-<li>类索引:<ol>
-<li>有两个字节组成</li>
-<li>两个字节中存储的值是某个变量池中的变量池常量池项CONSTANT_Class_info的索引</li>
-<li>这个索引会进一步指向常量池项CANSTANT_Utf8_info，这项表示此类的完全先定名字符串</li>
-</ol>
-</li>
-<li>父类索引(依据常量池)</li>
-<li>接口计数器</li>
-<li>接口信息数据区</li>
-<li>字段计数器</li>
-<li>字段信息数据区</li>
-<li>方法计数器</li>
-<li>方法信息数据区</li>
-<li>属性计数器</li>
-<li>属性信息数据区(代码的实现会被作为一个属性值)</li>
-</ul>
-<h3 id="参考图像"><a href="#参考图像" class="headerlink" title="参考图像"></a>参考图像</h3><ol>
-<li>字节码图片(第一章)<ul>
-<li>4：主版本号5：次版本号</li>
-<li>6、7：长度</li>
-</ul>
-</li>
-<li>第二张图片：<ul>
-<li>class 名字叫2，看2，可知包+名称</li>
-<li>0x14 = 20字节表示类的名字</li>
-<li>01代表utf8下一个</li>
-</ul>
-</li>
-</ol>
-<h2 id="整体字节码：-按照顺序"><a href="#整体字节码：-按照顺序" class="headerlink" title="整体字节码：(按照顺序)"></a>整体字节码：(按照顺序)</h2><ol>
-<li><p>首先是访问标志(访问这个类？)</p>
-</li>
-<li><p>然后是类索引(其中的值指向常量池中的值)</p>
-<blockquote>
-<p>如果常量池中保存的值依旧是索引，则继续指向常量池中的其他值</p>
-</blockquote>
-</li>
-<li><p>之后是父类索引：通过查父类索引获得这个类是继承自哪个父类</p>
-</li>
-<li><p>父类索引后就是接口索引集合(接口计数器+接口信息数据区)</p>
-<ol>
-<li><p>接口计数器：用来获得接口有多少个</p>
-</li>
-<li><p>接口索引集合：用于保存在常量池中的索引集合</p>
-</li>
-<li><p>field_info结构体(JVM定义的)</p>
-<ol>
-<li><p>字段表示：作用域+静态or非静态+可变性+并发可见性+是否可序列化+数据类型+字段名称+其他属性</p>
-</li>
-<li><p>结构体实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Field_info&#123;</span><br><span class="line">    u2 access_flags;<span class="comment">//前五项</span></span><br><span class="line">    u2 name_index;<span class="comment">//字段名称</span></span><br><span class="line">    u2 descriptor_index;<span class="comment">//数据类型</span></span><br><span class="line">    u2 attribute_count;<span class="comment">//其他属性</span></span><br><span class="line">    attribute_info attributes;<span class="comment">//其他属性</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>存储格式：访问标志+名称索引+描述索引+属性计数器+many constantValues</p>
-</li>
-<li><p>3中的ConstantValue格式如下：属性名称索引(字符串的值为”ConstantVaule”)+属性长度(对应后面的常量值索引的字节长度，固定为2)+常量值索引(其中的值是赋给field字段的值)</p>
-</li>
-<li><p>图片参见ppt</p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>方法表集合：</p>
-<ol>
-<li><p>方法计数器</p>
-</li>
-<li><p>方法信息数据区</p>
-</li>
-<li><p>方法表示：作用域+静态or非静态+可变性+是否同步+是否本地方法+是否抽象+方法描述+方法名称+方法内机器指令、异常信息、是否声明为deprecated</p>
-</li>
-<li><p>method_info例子：属性表集合</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">method_info&#123;</span><br><span class="line">    u2 access_flags;</span><br><span class="line">    u2 name_index;</span><br><span class="line">    u2 descriptor_index;</span><br><span class="line">    u2 attribute_count;</span><br><span class="line">    attribute_info attributes；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>存储形式：访问标志+名称索引+描述索引+属性计数器+many Attribute_info</p>
-</li>
-<li><p>5中的constantValue的格式：属性名称索引(字符串在常量池项中表示为”ConstantValue”)+属性长度(一般固定为2)+常量值索引(表示要复制给field字段的值)</p>
-<ol>
-<li>属性名称索引：<ol>
-<li>占有两个字节，其中的值指向常量池中的某一项，该项表示的字符串表这个attribute——info是什么属性的属性表。<ul>
-<li>Code:表示这个属性表记录的是机器码<ol>
-<li>格式：机器指令+异常处理跳转信息+java源码行号和机器源码对应关系+局部变量表描述信息</li>
-<li>具体参见ppt<ul>
-<li>Exception：表示这个属性表记录的是异常信息</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>Deprecated：表示这个属性表记录的是被@Deprecated修饰的</li>
-<li>Synthetic：表示此属性表被编译器自动生成</li>
-</ul>
-</li>
-<li>对于不同类型的属性表，他们的<strong>属性长度和组织形式</strong>是不同的<ol>
-<li>属性长度：如果值为n,则之后的n个字节是用来表示属性信息</li>
-<li>属性值：由若干个字节构成，字节的个数由属性长度中的值决定</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>文件实例：参见PPT中</p>
-<ol>
-<li>棕色字段：编译器自动生成的构造函数<code>&lt;init&gt;</code></li>
-<li><code>()V</code>表示无返回值的void</li>
-<li>对于Code类型属性表，其Attribute_info的格式是：属性名称索引+属性长度+栈的最大深度+局部变量表最大值+机器指令数目+机器指令+异常表+属性表集合</li>
-<li>仔细参考40页</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>常量池中的信息大多按照字符串形式保存，按照之前规定的编码进行翻译</p>
-</li>
-</ol>
-<h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3><ol>
-<li><p>组成</p>
-<ol>
-<li>PC计数器：存了下一条指令</li>
-<li>JVM栈：其中元素叫栈帧，存储局部变量表、操作栈、动态链接、方法出口等，栈的生命周期和线程相同</li>
-<li>Heap(堆)：被所有线程共享，在虚拟机启动时创建，功能是存放所有对象实例，同样还是垃圾回收器管理的主要区域。</li>
-<li>Method Area：方法区：被所有线程共享，用于存储已经被虚拟机加载的类信息、常量、静态变量，即使编译器编译出来的代码等数据</li>
-<li>运行时常量池<ol>
-<li>存放编译器生成的：<ol>
-<li>各种字面量</li>
-<li>符号引用</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>Native Methods Stacks(本地方法栈)：线程所私有，功能类似于JVM</li>
-</ol>
-</li>
-<li><p>具体图像参考PPT</p>
-</li>
-<li><p>虚拟机栈是什么？有什么？</p>
-<ol>
-<li>是一个后入先出的栈</li>
-<li>每一个线程创建时，都会同时为这个线程创建一个私有的虚拟机栈</li>
-<li>调用方法时，JVM会相应地创建一个栈帧进入虚拟机(存储数据和储存部分过程中的数据结构)，同时也可以处理动态链接、方法返回值和异常分派</li>
-<li>线程对方法的调用就对应一个栈帧的入栈和出的过程，当前活动栈帧是虚拟机的栈顶元素</li>
-</ol>
-</li>
-<li><p>栈帧是什么？有什么？见PPT</p>
-</li>
-<li><p>方法区是什么？有什么？见PPT</p>
-</li>
-<li><p>String.intern():局部字符串池</p>
-<ol>
-<li>在串池中添加一个字符串</li>
-<li>栈帧中的局部变量表中的槽位是可以重用的<blockquote>
-<p>详见PPT中的代码块垃圾回收，重复使用槽位</p>
-</blockquote>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="字节码指令集"><a href="#字节码指令集" class="headerlink" title="字节码指令集"></a>字节码指令集</h2><h3 id="指令分类"><a href="#指令分类" class="headerlink" title="指令分类"></a>指令分类</h3><ul>
-<li>存储指令</li>
-<li>算术与逻辑运算指令</li>
-<li>类型转换指令</li>
-<li>对象创建和操作指令</li>
-<li>堆栈操作指令</li>
-<li>控制转移指令</li>
-<li>方法调用与返回指令</li>
-</ul>
-<h3 id="前后缀"><a href="#前后缀" class="headerlink" title="前后缀"></a>前后缀</h3><table>
-<thead>
-<tr>
-<th>前后缀</th>
-<th>操作数类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>i</td>
-<td>整数</td>
-</tr>
-<tr>
-<td>l</td>
-<td>长整数</td>
-</tr>
-<tr>
-<td>s</td>
-<td>短整数</td>
-</tr>
-<tr>
-<td>b</td>
-<td>字节</td>
-</tr>
-<tr>
-<td>c</td>
-<td>字符</td>
-</tr>
-<tr>
-<td>f</td>
-<td>单精度浮点数</td>
-</tr>
-<tr>
-<td>d</td>
-<td>双精度浮点数</td>
-</tr>
-<tr>
-<td>z</td>
-<td>布尔值</td>
-</tr>
-<tr>
-<td>a</td>
-<td>引用</td>
-</tr>
-</tbody></table>
-<h3 id="加载和存储指令"><a href="#加载和存储指令" class="headerlink" title="加载和存储指令"></a>加载和存储指令</h3><ol>
-<li>加载和存储指令用于将数据从栈帧的局部变量表和操作数栈之间来回传输<ol>
-<li>将一个局部变量加载到操作数栈的指令</li>
-<li>将一个数值从操作数栈掉存储到局部变量表的指令</li>
-<li>将常量加载到操作数栈的指令</li>
-<li>局部变量表的访问索引指令</li>
-</ol>
-</li>
-<li>一部分以尖括号结尾的指令代表了一组指令</li>
-</ol>
-<h3 id="运算指令"><a href="#运算指令" class="headerlink" title="运算指令"></a>运算指令</h3><ol>
-<li>算术指令用于对两个操作数栈上的值进行操作，并把结果重新存回操作帧顶。</li>
-<li>处理除法是若除数为0，则虚拟机会抛出异常</li>
-<li>在处理浮点数时，使用最接近数舍入模式<ul>
-<li>所有数会被舍入到适当精度</li>
-<li>如果两种可表示的形式与该值一样，会优先选择最低有效位为零的</li>
-</ul>
-</li>
-<li>浮点数想整数进行转换，使用IEEE754标准下的像零舍入，截断数字</li>
-</ol>
-<h3 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h3><ol>
-<li>类型转换指令将两种java虚拟机是数值类型相互转换，常用于用户操作时的显式类型转换操作。</li>
-<li>JVM直接仅支持宽化类型转换(小范围到大范围类型转换)<ol>
-<li>int =&gt; long,double,float</li>
-<li>long =&gt; float,double</li>
-<li>float =&gt; double</li>
-</ol>
-</li>
-<li>java虚拟机处理窄化类型：<ol>
-<li>显式使用转换指令来完成</li>
-<li>将int和long窄化成T时，舍弃T以外的全部字节</li>
-<li>将浮点值转化成int或者long时:<ol>
-<li>NaN =&gt; 0</li>
-<li>使用IEEE754向零舍入，获得整数</li>
-<li>否则，根据正负转化成为相应的最大值</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="对象创建于访问命令"><a href="#对象创建于访问命令" class="headerlink" title="对象创建于访问命令"></a>对象创建于访问命令</h3><ol>
-<li>对于类实例和数组的创建和操作的指令并不相同</li>
-<li></li>
-</ol>
-<h3 id="操作数栈管理指令"><a href="#操作数栈管理指令" class="headerlink" title="操作数栈管理指令"></a>操作数栈管理指令</h3><h3 id="控制转移指令"><a href="#控制转移指令" class="headerlink" title="控制转移指令"></a>控制转移指令</h3><h3 id="方法调用和返回指令"><a href="#方法调用和返回指令" class="headerlink" title="方法调用和返回指令"></a>方法调用和返回指令</h3><h3 id="异常处理指令"><a href="#异常处理指令" class="headerlink" title="异常处理指令"></a>异常处理指令</h3><h3 id="同步指令"><a href="#同步指令" class="headerlink" title="同步指令"></a>同步指令</h3><h2 id="字节码在虚拟机中的执行"><a href="#字节码在虚拟机中的执行" class="headerlink" title="字节码在虚拟机中的执行"></a>字节码在虚拟机中的执行</h2><h3 id="类的声明周期"><a href="#类的声明周期" class="headerlink" title="类的声明周期"></a>类的声明周期</h3><ol>
-<li>加载</li>
-<li>连接<ol>
-<li>验证</li>
-<li>准备</li>
-<li>解析</li>
-</ol>
-</li>
-<li>初始化</li>
-<li>使用</li>
-<li>卸载</li>
-<li>详情见PPT</li>
-</ol>
-<h2 id="java指令和字节码"><a href="#java指令和字节码" class="headerlink" title="java指令和字节码"></a>java指令和字节码</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
-<li>局部变量:<br><code>int i = 69;</code>=&gt;<br><code>0:bipush 69 =&gt; 2:istore_0(将这个值存储到0号槽中)</code></li>
-<li>成员变量:向成员变量中赋值，需要知道对象、类型、名称等<br><code>public int i = 100;</code>=&gt;  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1:aload_0</span><br><span class="line">2:bipush 100(添加100)</span><br><span class="line">4:putfield #2(存储到2中去)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><ol>
-<li>if-else:注释：<br><code>if_icmple 7</code>:如果20&lt;=10，调向第七条指令</li>
-<li>Switch</li>
-<li>String Switch</li>
-</ol>
-<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><ol>
-<li>while</li>
-<li>do while</li>
-</ol>
-<h3 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h3><ol>
-<li>字节码中#后面的是标签</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_虚拟机和字节码/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2239,7 +988,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：13:58:52" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:29" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -2273,137 +1022,16 @@
         
 
       
-          <a id="more"></a>
-<h1 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h1><h2 id="web部分"><a href="#web部分" class="headerlink" title="web部分"></a>web部分</h2><ol>
-<li>Internet上供外界访问的Web资源分为：<ol>
-<li>静态Web资源:指Web页面中供人们浏览的数据始终是不变的</li>
-<li>动态Web资源:指Web页面中供人们浏览的数据是由人们浏览的数据是由程序产生</li>
-<li>开发静态web资源开发技术：html</li>
-<li>动态web资源开发技术：JSP/Servlet、ASP、PHP</li>
-</ol>
-</li>
-<li>Web应用程序<ol>
-<li>WEB应用程序指供浏览器访问的程序，通常也简称为web应用</li>
-<li>1个web应用由多个静态web资源和动态web资源组成</li>
-<li>web应用开发好后，若想供外界访问，需要把web应用所在目录交给web服务器管理，这个过程为虚拟目录的映射。</li>
-</ol>
-</li>
-<li>网络部分学习综述：<ol>
-<li>fe、http(接口，链接前端和后端)、be</li>
-<li>前端框架：Vue、React、Angular</li>
-<li>后端框架：spring(boot)、nodejs、sql</li>
-<li>后端部分：<ol>
-<li>request:<ul>
-<li>headers、method、content</li>
-</ul>
-</li>
-<li>response:<ul>
-<li>hearders、body等<h1 id="WEB发展的两个阶段：静态、动态"><a href="#WEB发展的两个阶段：静态、动态" class="headerlink" title="WEB发展的两个阶段：静态、动态"></a>WEB发展的两个阶段：静态、动态</h1></li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="静态web："><a href="#静态web：" class="headerlink" title="静态web："></a>静态web：</h2><ol>
-<li>客户端通过Web浏览器经过网络链接到服务器上，使用HTTP协议发起一个请求，告诉服务器现在需要哪一个页面，所有请求交给WEB服务器，然后服务器按照客户的需求，从文件系统取出内容。之后通过WEB服务器返回给客户端，客户端接收到内容之后经过浏览器渲染解析，得到显示的效果。<ul>
-<li>缺点一：Web页面中的内容无法动态更新，所有的用户每时每刻看见的内容和最终的效果都是一样的</li>
-<li>缺点二：静态WEB无法连接数据库，无法实现和用户的交互</li>
-</ul>
-</li>
-</ol>
-<h2 id="动态WEB："><a href="#动态WEB：" class="headerlink" title="动态WEB："></a>动态WEB：</h2><ol>
-<li>特点：WEB的界面展示效果因时因人而变</li>
-<li>动态WEB中，程序依旧使用客户端和服务端，客户端依然使用浏览器，通过网络连接到服务器，通过HTTP协议发起请求，但是所有的请求都先经过WEB Server Plugin来处理，次产检主要是用来区分静态资源还是动态资源</li>
-<li>动态WEB应用的实现手段：<ol>
-<li>Microsoft ASP、ASP.NET</li>
-<li>PHP</li>
-<li>JAVA Servlet/JSP</li>
-</ol>
-</li>
-</ol>
-<h2 id="WEB服务器"><a href="#WEB服务器" class="headerlink" title="WEB服务器"></a>WEB服务器</h2><ol>
-<li>是指驻留在因特网上某种类型计算机的程序，是可以向发出请求的浏览器提供文档的程序。当Web浏览器连到服务器上并请求文件时，服务器将处理该请求并将文件反馈到该浏览器上，附带的信息会告诉浏览器如何查看该文件。</li>
-<li>服务器是一种被动程序，只有当Internet上运行在其他计算机中的浏览器发出请求时，服务器才会相应</li>
-<li>Tomcat服务器</li>
-</ol>
-<h1 id="Java-Web的具体应用"><a href="#Java-Web的具体应用" class="headerlink" title="Java Web的具体应用"></a>Java Web的具体应用</h1><ol>
-<li>所有网络运行的低层细节都已经由java.net函数库处理掉</li>
-<li>java web的工作方式：<ol>
-<li>客户端连接到服务器</li>
-<li>服务器建立连接并把客户端加到来客清单中</li>
-<li>另一个用户连接上来</li>
-<li>用户A送出信息到聊天服务器上</li>
-<li>聊天服务器将信息送给所有的来宾</li>
-</ol>
-</li>
-</ol>
-<h1 id="客户端和服务器端的简单应用"><a href="#客户端和服务器端的简单应用" class="headerlink" title="客户端和服务器端的简单应用"></a>客户端和服务器端的简单应用</h1><h2 id="客户端正常工作的三件事情："><a href="#客户端正常工作的三件事情：" class="headerlink" title="客户端正常工作的三件事情："></a>客户端正常工作的三件事情：</h2><ol>
-<li>如何建立客户端与服务器连接：<ul>
-<li>使用socket连接：<code>Socket chatsocket = new Socket(&quot;196.164.1.103&quot;,5000);</code></li>
-<li>这种连接需要两个信息：JP的地址和TCP的端口值</li>
-<li>Socket连接的建立代表两台机器之间存有对方的信息，包括网络地址和TCP的端口号。<ol>
-<li>TCP端口知识一个16位宽、用来识别服务器上特定程序的数字</li>
-<li>0-65535是所有端口的范围，其中0-1023的TCP端口是保留给已知的特定服务使用，这些端口不应该被使用。</li>
-<li>如果是在互联网上执行自己的服务，则需要先和网管讨论有哪些端口已经被占用，有时候网管会把特定的端口号用防火墙或者其他特定的安全监控机制封锁起来</li>
-<li>如果绑定端口时，端口已经被占用，那么会抛出一个BindException</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>如何传送信息到服务器：</li>
-<li>如何接受来自服务器的信息:<ol>
-<li>使用BufferedReader从socket上读取数据：<ol>
-<li>建立Socket链接:<code>Socket chatsocket = new Socket(&quot;127.0.0.1&quot;,5000);</code></li>
-<li>建立连接到Socket上底层输入串流的InputStreamReader:<code>InputStreamReader stream = new InputStreamReader(charSocket.getInputStream());</code></li>
-<li>建立BufferedReader进行读取:<ul>
-<li><code>BufferReader reader = new BufferReader(stream);</code></li>
-<li><code>Stirng message = reader.readLine();</code></li>
-</ul>
-</li>
-</ol>
-</li>
-<li>使用PrintWriter写数据到Socket上：<ol>
-<li>对服务器建立Socket连接:<code>Socket chatsocket = new Socket(&quot;127.0.0.1&quot;,5000);</code></li>
-<li>建立链接到Socket的PrintWriter:<code>PrintWriter writer = new PrintWriter(chatSocket.getOutputStream());</code></li>
-<li>写入数据：<ul>
-<li><code>writer.println(&quot;message to send&quot;);</code></li>
-<li><code>writer.print(&quot;another message&quot;);</code></li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>成功被调用后，一个流被建立了，在这部分调用中有可能会出状况所以请放入try{}catch{}块中进行操作</li>
-</ol>
-<h2 id="简单的服务器程序"><a href="#简单的服务器程序" class="headerlink" title="简单的服务器程序"></a>简单的服务器程序</h2><ol>
-<li>需要的东西：一对socket<ol>
-<li>一个会等待用户请求的ServerSocket</li>
-<li>和一个与用户通信用的Socket</li>
-</ol>
-</li>
-</ol>
-<h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><ol>
-<li>服务器程序对特定端口创建出ServeSocket<ul>
-<li><code>ServeSocket serveSock = new ServeSocket(4242);</code></li>
-<li>服务器应用程序开始监听</li>
-</ul>
-</li>
-<li>客户端对服务器应用程序建立Socket连接<ul>
-<li><code>Socket sock = new Socket(&quot;190.165.1.103&quot;,4242)</code></li>
-<li>客户端需要知道IP地址和端口号</li>
-</ul>
-</li>
-<li>服务器创建出和客户端通信的新Socket<ul>
-<li><code>Socket sock = serveSock.accept()</code></li>
-<li>accept()方法会在等待用户的Socket连接时闲置着。</li>
-<li>使用while(true)来反复循环，直到连接</li>
-</ul>
-</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_网络/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2457,7 +1085,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：14:00:59" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:26" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
             </span>
           
             
@@ -2491,115 +1119,16 @@
         
 
       
-          <a id="more"></a>
-<h1 id="关键字书写顺序"><a href="#关键字书写顺序" class="headerlink" title="关键字书写顺序"></a>关键字书写顺序</h1><ol>
-<li>访问权限、修饰符、数据类型、变量名</li>
-<li><code>public final static int a;</code></li>
-</ol>
-<h1 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h1><p>摘自<a href="https://www.cnblogs.com/dolphin0520/p/3799052.html" target="_blank" rel="noopener">博客园</a>  </p>
-<blockquote>
-<p>static的方法就是没有this的方法，在static内部不能调用非静态的方法，反过来是可以的。而且可以在没有创建任何对象的前提下，仅仅通过类本身来调用static方法。——《java编程思想》</p>
-</blockquote>
-<ol>
-<li>static方法<ol>
-<li>静态方法不依附于任何的对象，所以在静态方法中也就不能访问任何的<strong>非静态</strong>成员方法和<strong>非静态</strong>成员变量，但是反过来就行。</li>
-<li>静态方法只能使用静态变量</li>
-</ol>
-</li>
-<li>static变量<ol>
-<li>静态变量在内存中只有一个副本。只在第一次中加载中被初始化。不依赖于具体的对象。</li>
-<li>静态变量只会在类初次加载时被初始化，而非静态的方法是在对象被创建的时候被初次初始化。</li>
-<li>static成员变量的初始化顺序是按照定义进行初始化的。</li>
-<li>常用的例子是累计使用的计数器。</li>
-</ol>
-</li>
-<li>static代码块<ol>
-<li>常用于形成静态代码块来优化程序性能。</li>
-<li>通常将只需要初始化一次的变量放置到静态代码块中,常常是初始化静态代码块</li>
-</ol>
-</li>
-<li><code>staitc int[] a;</code>可以直接访问第一个元素，为0，但是非static不行，会编译错误</li>
-</ol>
-<h1 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h1><blockquote>
-<p>这个关键字所修饰的变量一旦被初始化就不可以再被修改</p>
-</blockquote>
-<ol>
-<li>final修饰成员<ul>
-<li>变量：相当于常量，不可以被修改</li>
-<li>对象</li>
-</ul>
-</li>
-<li>final方法<ul>
-<li>使用final方法的原因：<ol>
-<li>将方法锁定，以预防任何继承类修改它的意义，保证行为稳定不变，并且不会被重载。</li>
-<li>效率</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>final代码块<ul>
-<li>如果你的类是一个final类型的类，其中的所有的成员变量都是final的</li>
-</ul>
-</li>
-<li>为什么使用final：<ol>
-<li>方法锁定</li>
-<li>效率</li>
-</ol>
-</li>
-<li>final的类:不能被继承</li>
-</ol>
-<h1 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h1><ol>
-<li>保证你的操作是安全的</li>
-</ol>
-<h1 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h1><ol>
-<li>如果你在子类中重写了父类的方法，但是想要使用父类中未被重写的方法，那么使用super关键字来完成引用  </li>
-<li>几个实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">father</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">son</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">      <span class="keyword">int</span> i;</span><br><span class="line">      A(<span class="keyword">int</span> i)&#123;</span><br><span class="line">            <span class="keyword">this</span>.i=i*<span class="number">2</span>;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">            B b=<span class="keyword">new</span> B(<span class="number">2</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      B(<span class="keyword">int</span> i)&#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">      &#125;</span><br><span class="line">&#125; <span class="comment">//编译失败，需要A中的无参数构造方法</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的题：  </p>
-<ol>
-<li>如果父类中没有构造方法，默认调用无参数的构造方法</li>
-<li>如果父类中有有参数的构造方法，那么必须在子类中调用哪个构造方法，使用super</li>
-<li>如果子类中的构造方法没有使用super()的话，编译器会自动帮你添加super()，也就是为什么会需要无参数构造方法</li>
-</ol>
-<h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><ol>
-<li>调用本类的其他的成员或者构造方法</li>
-<li>访问不到静态变量，可以访问到非静态的<ul>
-<li>类名.进行引用是可以进行访问的</li>
-</ul>
-</li>
-</ol>
-<h1 id="default"><a href="#default" class="headerlink" title="default"></a>default</h1><ol>
-<li>default关键字只能在接口中使用(使用在switch中的default不能用在抽象类中)</li>
-<li>这个用于解决为借口添加新方法而又不会破坏已有方法的实现，为升级旧接口且保持向后兼容提供了途径</li>
-<li>默认方法的继承问题：可以重写，参见PPT</li>
-<li>接口继承行为发生冲突时的解决规则：<ol>
-<li>使用super来调用父类中的方法</li>
-<li>当接口继承行为发生冲突时的另一个规则是，类的方法声明优先于接口默认方法，无论该方法是具体的还是抽象的。</li>
-</ol>
-</li>
-<li>接口方法不能重写:Object类中的<code>equals、hashCode、toString</code></li>
-<li>接口中的静态方法必须是public的，这个修饰符可以省略，但是static修饰符不可以被省略</li>
-</ol>
-<h1 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h1><ol>
-<li>表示之后可能是非java的成分</li>
-</ol>
-<h1 id="exit-关键字"><a href="#exit-关键字" class="headerlink" title="exit()关键字"></a>exit()关键字</h1><ol>
-<li>System.exit(number);<ul>
-<li>number被赋值</li>
-</ul>
-</li>
-<li>跳出程序</li>
-</ol>
-<h1 id="abstract方法"><a href="#abstract方法" class="headerlink" title="abstract方法"></a>abstract方法</h1><ol>
-<li>非抽象类中不可以有抽象方法</li>
-<li>抽象类中可以有非抽象方法</li>
-<li>非抽象方法必须带body</li>
-</ol>
-
+          <p>点击查看详情</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/07/java_特殊关键字/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
