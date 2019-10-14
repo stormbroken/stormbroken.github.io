@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/128.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stormbrokenの博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="点击查看详情">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记 之 继承和多态">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/java/java_继承和多态/index.html">
+<meta property="og:site_name" content="Stormbrokenの博客">
+<meta property="og:description" content="点击查看详情">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-07T07:55:12.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java学习笔记 之 继承和多态">
+<meta name="twitter:description" content="点击查看详情">
+  <link rel="canonical" href="http://yoursite.com/2019/10/07/java/java_继承和多态/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java学习笔记 之 继承和多态 | Stormbrokenの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stormbrokenの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java/java_继承和多态/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stormbroken">
+      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stormbrokenの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java学习笔记 之 继承和多态
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:12" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+        
+
+      
+        <p>点击查看详情</p>
+<a id="more"></a>
+<h1 id="java学习笔记之继承和多态"><a href="#java学习笔记之继承和多态" class="headerlink" title="java学习笔记之继承和多态"></a>java学习笔记之继承和多态</h1><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ol>
+<li>继承是指利用已有类的形式，并添加新的成员变量和方法来构建新的类。</li>
+<li>父类不可以强制类型转换成子类</li>
+<li>java单一继承，而不是多继承<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub2</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">            Base b = <span class="keyword">new</span> Base();</span><br><span class="line">            Sub s = (Sub) b;</span><br><span class="line">      &#125;</span><br><span class="line">&#125; <span class="comment">//编译通过，但运行是出错</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="继承源起"><a href="#继承源起" class="headerlink" title="继承源起"></a>继承源起</h3><ol>
+<li>避免重复代码</li>
+<li>分类、抽象的概念</li>
+<li>根父类：Object<ol>
+<li>toString()方法</li>
+<li>equals()方法</li>
+<li>wait()方法</li>
+</ol>
+</li>
+</ol>
+<h3 id="继承特点"><a href="#继承特点" class="headerlink" title="继承特点"></a>继承特点</h3><ol>
+<li>子类继承了父类所有成员变量和方法</li>
+<li>继承可以增加成员变量和成员方法</li>
+<li>继承可以覆盖父类的成员方法</li>
+<li>继承不可以覆盖父类的成员变量<ul>
+<li>父类中的方法如果是private，不能调用子类重写的方法</li>
+</ul>
+</li>
+<li>重名方法会调用继承树最下方部分的方法</li>
+<li>父类设置了一种契约，所有的子类都会承受这个契约</li>
+<li><strong>任何一个子类对象都可以当做父类来看待</strong></li>
+<li>子类写的和父类同名的方法算一个方法，是对父类的重写</li>
+<li>子类变量可以被赋值给父类引用</li>
+<li><strong>父类不可以强制类型转换成子类</strong></li>
+</ol>
+<h3 id="问题：子类继承了父类所欲的成员变量和方法，是否包含父类的私有变量？"><a href="#问题：子类继承了父类所欲的成员变量和方法，是否包含父类的私有变量？" class="headerlink" title="问题：子类继承了父类所欲的成员变量和方法，是否包含父类的私有变量？"></a>问题：子类继承了父类所欲的成员变量和方法，是否包含父类的私有变量？</h3><ol>
+<li>能够继承父类的私有变量</li>
+<li>但是不能直接访问父类的私有变量</li>
+</ol>
+<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><ol>
+<li>如果你在子类中重写了父类的方法，但是想要使用父类中未被重写的方法，那么使用super关键字来完成引用  </li>
+<li>几个实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">father</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.a = a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">son</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="IS-A-amp-amp-HAS-A-amp-amp-USES-A-amp-amp-OWNS-A"><a href="#IS-A-amp-amp-HAS-A-amp-amp-USES-A-amp-amp-OWNS-A" class="headerlink" title="IS-A&amp;&amp;HAS-A&amp;&amp;USES-A&amp;&amp;OWNS-A"></a>IS-A&amp;&amp;HAS-A&amp;&amp;USES-A&amp;&amp;OWNS-A</h3><ol>
+<li>IS-A是继承机制</li>
+<li>HAS-A是是否被继承机制</li>
+<li>USES-A是依赖关系</li>
+<li>HAS-A是关联关系</li>
+<li>OWNS-A是聚合关系</li>
+<li>IS-A-PART-OF是组合关系</li>
+</ol>
+<h3 id="父类对于子类的影响"><a href="#父类对于子类的影响" class="headerlink" title="父类对于子类的影响"></a>父类对于子类的影响</h3><ol>
+<li>父类的接口的更改会影响所有的子类的接口。</li>
+<li>子类继承父类的私有变量、接口等。</li>
+<li>从构造方法开始，向上调用父类方法</li>
+<li>编译器会自动帮你调用super()(也就是无参数的构造函数)，而如果写的话必须在开头</li>
+<li>从接口来看：<ol>
+<li>子类必须保持和父类同样的接口</li>
+<li>子类必须继承了父类的实现</li>
+<li>一旦父类脆弱发生变化，就会对子类造成很大的麻烦</li>
+</ol>
+</li>
+</ol>
+<h2 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h2><ol>
+<li>一个类里面有一个属性，将一个fruit组合进入Apple中</li>
+<li>允许你在新的类中设置子对象，组合是显式的这样做，而继承是隐式的这样做。</li>
+<li>使用组合关系时，前端接口和后端接口没有直接关系，只要修改实现就好</li>
+<li>组合主要用于想要在新类中使用现有类的功能而并不是它的接口的情形</li>
+</ol>
+<h2 id="对于继承和组合的选择"><a href="#对于继承和组合的选择" class="headerlink" title="对于继承和组合的选择"></a>对于继承和组合的选择</h2><ol>
+<li>确保有继承关系</li>
+<li>不要使用继承去完成代码的重载</li>
+<li>确认父类方法的接口稳定性</li>
+</ol>
+<h2 id="可修改性"><a href="#可修改性" class="headerlink" title="可修改性"></a>可修改性</h2><ol>
+<li>特点：<ol>
+<li>对已有实现的修改</li>
+<li>对新的实现的扩展</li>
+<li>对实现的动态配置</li>
+</ol>
+</li>
+</ol>
+<h3 id="用户端代码"><a href="#用户端代码" class="headerlink" title="用户端代码"></a>用户端代码</h3><ol>
+<li>特点：<ol>
+<li>大量的</li>
+<li>分散的</li>
+<li>如何发生修改重新编译的话，是需要大量时间的<blockquote>
+<p>不想要更改</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>构造方法没有多态</li>
+</ol>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><ol>
+<li>多态是指多个成员变量或成员方法采用相同的标识符，并且在使用该标识符时确认应该使用哪个成员变量或成员方法。</li>
+<li>所有类的父类:Object<ol>
+<li><code>equals(Object o)</code>指示某个其他对象是否与此对象“相等”。 </li>
+<li><code>getClass()</code>返回一个对象的运行时类。</li>
+<li><code>hashCode()</code>返回该对象的哈希码值。</li>
+<li><code>toString()</code>返回该对象的字符表示。</li>
+</ol>
+</li>
+<li>多态的代价：Object不能添加Dog类型的变量。</li>
+<li>编译时，编译器决定你是否能调用某个方法<ul>
+<li>依据引用变量的类型，而不是引用变量指向的对象的类型</li>
+</ul>
+</li>
+<li>执行时，JVM虚拟机决定实际那个方法被调用<ul>
+<li>依据实际引用变量指向的对象的类型</li>
+</ul>
+</li>
+<li>多态的思想:分离”做什么”和”怎么做”，从另一角度将接口和实现分离开来。</li>
+<li>Overriding规则:<ol>
+<li>参数必须一致，返回值必须兼容</li>
+<li>方法的可达性不可降低(private、public)</li>
+<li>不可以覆盖私有方法，因为父类私有方法自动添加final</li>
+</ol>
+</li>
+<li>Overloading<ol>
+<li>静态分派：<ol>
+<li>优先级:char&gt;int&gt;long&gt;Character&gt;Serializable&gt;Object&gt;char…</li>
+<li>如果不存在char的，优先匹配int，以此类推</li>
+<li>编译的时候就已经决定了这个调用的优先顺序</li>
+</ol>
+</li>
+<li>动态分派：<ol>
+<li>在编译器中，重写的方法被视作了一个方法</li>
+<li>按照类型进行分派</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="方法的字节码调用"><a href="#方法的字节码调用" class="headerlink" title="方法的字节码调用"></a>方法的字节码调用</h2><ol>
+<li>参PPT</li>
+</ol>
+<h1 id="初始化过程"><a href="#初始化过程" class="headerlink" title="初始化过程"></a>初始化过程</h1><ol>
+<li>步骤如下：  <ol>
+<li>首先加载一条链上的各个类</li>
+<li>先进行静态初始化，优先初始化父类，之后初始化子类</li>
+<li>将所有的成员变量先设置为0系的初值</li>
+<li>开始调用父类的构造方法，一条链向上</li>
+<li>将所有的成员变量按照字面顺序初始化</li>
+<li>剩余的所有的部分的初始化</li>
+</ol>
+</li>
+<li>考察构造顺序</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+      
+    </div>
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"># java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/java/java_GUI/" rel="next" title="java学习笔记 之 GUI">
+                  <i class="fa fa-chevron-left"></i> java学习笔记 之 GUI
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/07/java/java_方法/" rel="prev" title="java学习笔记 之 方法">
+                  java学习笔记 之 方法 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java学习笔记之继承和多态"><span class="nav-number">1.</span> <span class="nav-text">java学习笔记之继承和多态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.1.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承源起"><span class="nav-number">1.1.1.</span> <span class="nav-text">继承源起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">继承特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题：子类继承了父类所欲的成员变量和方法，是否包含父类的私有变量？"><span class="nav-number">1.1.3.</span> <span class="nav-text">问题：子类继承了父类所欲的成员变量和方法，是否包含父类的私有变量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super关键字"><span class="nav-number">1.1.4.</span> <span class="nav-text">super关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IS-A-amp-amp-HAS-A-amp-amp-USES-A-amp-amp-OWNS-A"><span class="nav-number">1.1.5.</span> <span class="nav-text">IS-A&amp;&amp;HAS-A&amp;&amp;USES-A&amp;&amp;OWNS-A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父类对于子类的影响"><span class="nav-number">1.1.6.</span> <span class="nav-text">父类对于子类的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合"><span class="nav-number">1.2.</span> <span class="nav-text">组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于继承和组合的选择"><span class="nav-number">1.3.</span> <span class="nav-text">对于继承和组合的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可修改性"><span class="nav-number">1.4.</span> <span class="nav-text">可修改性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户端代码"><span class="nav-number">1.4.1.</span> <span class="nav-text">用户端代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">1.5.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的字节码调用"><span class="nav-number">1.6.</span> <span class="nav-text">方法的字节码调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化过程"><span class="nav-number">2.</span> <span class="nav-text">初始化过程</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stormbroken</p>
+  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Stormbroken"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stormbroken</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<a href="https://github.com/stormbroken" class="" target="_blank" title="我的Github" aria-label="我的Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<!-- ??????? -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

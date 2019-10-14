@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/128.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stormbrokenの博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="点击查看详情">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java学习笔记 之 编码规范">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/java/java_java编码规范/index.html">
+<meta property="og:site_name" content="Stormbrokenの博客">
+<meta property="og:description" content="点击查看详情">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-07T09:26:11.379Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java学习笔记 之 编码规范">
+<meta name="twitter:description" content="点击查看详情">
+  <link rel="canonical" href="http://yoursite.com/2019/10/07/java/java_java编码规范/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java学习笔记 之 编码规范 | Stormbrokenの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stormbrokenの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java/java_java编码规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stormbroken">
+      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stormbrokenの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java学习笔记 之 编码规范
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：17:26:11" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+        
+
+      
+        <p>点击查看详情</p>
+<a id="more"></a>
+
+<p><strong>Java学习笔记之java编码规范</strong></p>
+<ol>
+<li>这是关乎开发效率和后期维护的考虑</li>
+<li>2019/06/17 by stormbroken</li>
+</ol>
+<h1 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h1><ol>
+<li>增加可读性，减少项目组中因为换人而带来的损失</li>
+<li>具体的规范<ol>
+<li>Package:由一个小写单词组成</li>
+<li>Class:有大写字母开头，其他字母都小写的单词</li>
+<li>Class的变量、参数：由一个小写字母开头，后面的单词由大写字母开头</li>
+<li>static &amp; final 的变量:都应该大写，并且指出完整含义</li>
+<li>方法的参数：尽量保证和要赋值的字段名字相同</li>
+</ol>
+</li>
+</ol>
+<h1 id="Java文件样式"><a href="#Java文件样式" class="headerlink" title="Java文件样式"></a>Java文件样式</h1><ol>
+<li>所有的java文件都应该遵守如下的样式规则</li>
+</ol>
+<h2 id="版权信息：版权信息必须在java文件的开头"><a href="#版权信息：版权信息必须在java文件的开头" class="headerlink" title="版权信息：版权信息必须在java文件的开头"></a>版权信息：版权信息必须在java文件的开头</h2><ul>
+<li>比如:其他不需要出现在javadoc中的信息也可以包含在这里，参见例一</li>
+</ul>
+<h2 id="Package和Imports："><a href="#Package和Imports：" class="headerlink" title="Package和Imports："></a>Package和Imports：</h2><p>package在import前，import中的标准包名要在本地包名前，并且按照字母顺序排列，其中*保证导入所有的信息</p>
+<h2 id="Class"><a href="#Class" class="headerlink" title="Class:"></a>Class:</h2><ol>
+<li>类的注释，一般是用来解释类的，(参见例二)</li>
+<li>类定义</li>
+<li>类的成员变量:public的成员变量必须生成文档(JavaDoc)，protected、private、package定义的成员变量如果名字含义明确，可以没有注释</li>
+</ol>
+<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><ol>
+<li>存取方法：类变量的存取方法，可以简单地把只用于存取的方法写在一行上</li>
+<li>克隆方法：如果一个类是可以被克隆的，下一步就是clone方法，（例三）</li>
+<li>类方法：<ol>
+<li>toString方法：每一个类都应该有的方法</li>
+<li>其他方法</li>
+</ol>
+</li>
+<li>main方法：应当被写在类的底部</li>
+</ol>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数:"></a>构造函数:</h2><p>构造函数应该按照递增的方式写，参数多的写在后面，(并且访问类型应该在一行中，方法和参数写下一行)</p>
+<h2 id="例子们"><a href="#例子们" class="headerlink" title="例子们"></a>例子们</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**(例一) </span></span><br><span class="line"><span class="comment">* Copyright ? 2000 Shanghai XXX Co. Ltd. </span></span><br><span class="line"><span class="comment">* All right reserved. </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">* A class representing a set of packet and byte counters </span></span><br><span class="line"><span class="comment">* It is observable to allow it to be watched, but only </span></span><br><span class="line"><span class="comment">* reports changes when the current set is complete </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> </span><br><span class="line"><span class="function">Object <span class="title">clone</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123; </span><br><span class="line">        CounterSet obj = (CounterSet)<span class="keyword">super</span>.clone(); </span><br><span class="line">        obj.packets = (<span class="keyword">int</span>[])packets.clone(); </span><br><span class="line">        obj.size = size; </span><br><span class="line">        <span class="keyword">return</span> obj; </span><br><span class="line">    &#125;<span class="keyword">catch</span>(CloneNotSupportedException e) &#123; </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InternalError(<span class="string">"Unexpected CloneNotSUpportedException: "</span> + e.getMessage()); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="代码编写格式"><a href="#代码编写格式" class="headerlink" title="代码编写格式"></a>代码编写格式</h1><h2 id="代码样式"><a href="#代码样式" class="headerlink" title="代码样式"></a>代码样式</h2><ul>
+<li>代码应该使用unix的格式，而不是windows格式<ul>
+<li>回车变为回车+换行</li>
+</ul>
+</li>
+</ul>
+<h2 id="文档化"><a href="#文档化" class="headerlink" title="文档化"></a>文档化</h2><ul>
+<li>必须用javadoc来生成文档<ol>
+<li>是文档的标准，被各种java编译器都认可的方法</li>
+<li>@author标记不被推荐</li>
+</ol>
+</li>
+</ul>
+<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><ul>
+<li>缩进每行两个空格，而不是一个Tab，因为Tab在不同设置不同编译器中是不同的</li>
+</ul>
+<h2 id="页宽"><a href="#页宽" class="headerlink" title="页宽"></a>页宽</h2><ul>
+<li>页宽设置为80字符</li>
+<li>特别长的剧应该一个逗号或者操作符后折行，并且折行后比原来的语句在缩进2个字符</li>
+</ul>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><ul>
+<li>左括号和后一个字符之间不应该出现空格</li>
+<li>右括号和前一个字符之间不应该出现空格</li>
+<li>避免在语句中使用无意义的括号，括号只应该为达到某种目的而出现在源代码中</li>
+</ul>
+<h1 id="程序编写规范"><a href="#程序编写规范" class="headerlink" title="程序编写规范"></a>程序编写规范</h1><h2 id="exit-函数"><a href="#exit-函数" class="headerlink" title="exit()函数"></a>exit()函数</h2><ol>
+<li>exit除了在main中可以被调用外，其他地方不应该调用，因为这样子不给任何代码机会来截获退出</li>
+<li>一个类似后台五福的程序不应该因为某一个库模块决定要退出就退出</li>
+</ol>
+<h2 id="异常声明"><a href="#异常声明" class="headerlink" title="异常声明"></a>异常声明</h2><ol>
+<li>申明的错误应该抛出一个RuntimeException或者派生的异常</li>
+<li>顶层main函数应截获所有的异常，并且打印在屏幕上\记录在日志中</li>
+</ol>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><ol>
+<li>java使用成熟的后台垃圾收集技术来代替引用技术</li>
+<li>这样子做的话，必须要在使用完对象的实例后进行清场工作</li>
+</ol>
+<h2 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h2><ol>
+<li>不要因为性能的原因将一个类定义为final的，除非框架需要<ol>
+<li>如果一个类还没被准备好进行继承，最好在类文档中注明，而不要定义为final的</li>
+<li>有可能在以后会用到相应的继承</li>
+</ol>
+</li>
+</ol>
+<h2 id="访问类的成员变量"><a href="#访问类的成员变量" class="headerlink" title="访问类的成员变量"></a>访问类的成员变量</h2><ol>
+<li>大部分类的成员变量应该定义为protected的来放置继承类使用他们</li>
+</ol>
+<h1 id="编程技巧"><a href="#编程技巧" class="headerlink" title="编程技巧"></a>编程技巧</h1><h2 id="byte数组转换成characters"><a href="#byte数组转换成characters" class="headerlink" title="byte数组转换成characters"></a>byte数组转换成characters</h2><p>使用<code>.getBytes()</code>即可</p>
+<h2 id="Utility类-仅仅提供方法的类"><a href="#Utility类-仅仅提供方法的类" class="headerlink" title="Utility类(仅仅提供方法的类)"></a>Utility类(仅仅提供方法的类)</h2><p>这个类应该被申明为防止被继承或被初始化</p>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><ol>
+<li>定义的部分可以在之间使用==进行比较</li>
+<li>但是和其他的等价部分只能使用equal进行比较</li>
+</ol>
+<h2 id="Swing"><a href="#Swing" class="headerlink" title="Swing"></a>Swing</h2><ol>
+<li>避免使用AWT组件</li>
+<li>尽量避免混合使用AWT和Swing组件</li>
+<li>AWT组件不要用JscrollPane类来实现滚动使用AWT ScrollPane</li>
+<li>避免在InternalFrame组件中使用AWT组件</li>
+</ol>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><ol>
+<li>一个重要的部分</li>
+<li>在软件生命周期的各个部分，吊事能够用配置开、关是最基本的。</li>
+</ol>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><ol>
+<li>时刻记住我们应该注意代码的效率</li>
+<li>当我们没有时间实现一个高效的算法时，我们需要在文档中记录下来，以后有空的时候在实现她。</li>
+</ol>
+<h2 id="使用StringBuffer对象"><a href="#使用StringBuffer对象" class="headerlink" title="使用StringBuffer对象"></a>使用StringBuffer对象</h2><ol>
+<li>保障减少很多不必要的创建和释放对象的时间</li>
+</ol>
+<h2 id="避免synchroized关键字"><a href="#避免synchroized关键字" class="headerlink" title="避免synchroized关键字"></a>避免synchroized关键字</h2><ol>
+<li>防止死锁</li>
+<li>保障程序的可移植性</li>
+</ol>
+<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><ol>
+<li>尽量用println来代替在字符串中使用”\n”</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+      
+    </div>
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"># java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/java/java_BigDecimal/" rel="next" title="java学习笔记 之 BigDecimal">
+                  <i class="fa fa-chevron-left"></i> java学习笔记 之 BigDecimal
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/07/java/java_变量/" rel="prev" title="java学习笔记 之 变量">
+                  java学习笔记 之 变量 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命名规范"><span class="nav-number">1.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java文件样式"><span class="nav-number">2.</span> <span class="nav-text">Java文件样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版权信息：版权信息必须在java文件的开头"><span class="nav-number">2.1.</span> <span class="nav-text">版权信息：版权信息必须在java文件的开头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Package和Imports："><span class="nav-number">2.2.</span> <span class="nav-text">Package和Imports：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class"><span class="nav-number">2.3.</span> <span class="nav-text">Class:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法："><span class="nav-number">2.4.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">2.5.</span> <span class="nav-text">构造函数:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子们"><span class="nav-number">2.6.</span> <span class="nav-text">例子们</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码编写格式"><span class="nav-number">3.</span> <span class="nav-text">代码编写格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码样式"><span class="nav-number">3.1.</span> <span class="nav-text">代码样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档化"><span class="nav-number">3.2.</span> <span class="nav-text">文档化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩进"><span class="nav-number">3.3.</span> <span class="nav-text">缩进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页宽"><span class="nav-number">3.4.</span> <span class="nav-text">页宽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#括号"><span class="nav-number">3.5.</span> <span class="nav-text">括号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序编写规范"><span class="nav-number">4.</span> <span class="nav-text">程序编写规范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#exit-函数"><span class="nav-number">4.1.</span> <span class="nav-text">exit()函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常声明"><span class="nav-number">4.2.</span> <span class="nav-text">异常声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集"><span class="nav-number">4.3.</span> <span class="nav-text">垃圾收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final类"><span class="nav-number">4.4.</span> <span class="nav-text">final类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问类的成员变量"><span class="nav-number">4.5.</span> <span class="nav-text">访问类的成员变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程技巧"><span class="nav-number">5.</span> <span class="nav-text">编程技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#byte数组转换成characters"><span class="nav-number">5.1.</span> <span class="nav-text">byte数组转换成characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Utility类-仅仅提供方法的类"><span class="nav-number">5.2.</span> <span class="nav-text">Utility类(仅仅提供方法的类)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举类型"><span class="nav-number">5.3.</span> <span class="nav-text">枚举类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swing"><span class="nav-number">5.4.</span> <span class="nav-text">Swing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试"><span class="nav-number">5.5.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">5.6.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用StringBuffer对象"><span class="nav-number">5.7.</span> <span class="nav-text">使用StringBuffer对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免synchroized关键字"><span class="nav-number">5.8.</span> <span class="nav-text">避免synchroized关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">5.9.</span> <span class="nav-text">换行</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stormbroken</p>
+  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Stormbroken"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stormbroken</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<a href="https://github.com/stormbroken" class="" target="_blank" title="我的Github" aria-label="我的Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<!-- ??????? -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
