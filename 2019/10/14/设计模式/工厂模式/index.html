@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/128.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Stormbrokenの博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="点击查看工厂模式的相关信息">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工厂模式">
+<meta property="og:url" content="http://yoursite.com/2019/10/14/设计模式/工厂模式/index.html">
+<meta property="og:site_name" content="Stormbrokenの博客">
+<meta property="og:description" content="点击查看工厂模式的相关信息">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/设计模式/工厂模式/img%5Cfty-1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/设计模式/工厂模式/img%5Cfty-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/设计模式/工厂模式/img%5Cfty-3.png">
+<meta property="og:updated_time" content="2019-10-14T01:34:19.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工厂模式">
+<meta name="twitter:description" content="点击查看工厂模式的相关信息">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/14/设计模式/工厂模式/img%5Cfty-1.png">
+  <link rel="canonical" href="http://yoursite.com/2019/10/14/设计模式/工厂模式/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>工厂模式 | Stormbrokenの博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stormbrokenの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">4</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">24</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/设计模式/工厂模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stormbroken">
+      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stormbrokenの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">工厂模式
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-14 09:31:07 / 修改时间：09:34:19" itemprop="dateCreated datePublished" datetime="2019-10-14T09:31:07+08:00">2019-10-14</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+        
+
+      
+        <p>点击查看工厂模式的相关信息</p>
+<a id="more"></a>
+
+<h1 id="引入部分"><a href="#引入部分" class="headerlink" title="引入部分"></a>引入部分</h1><h2 id="关于new关键词的思考"><a href="#关于new关键词的思考" class="headerlink" title="关于new关键词的思考"></a>关于new关键词的思考</h2><ol>
+<li>更多的对象具体类的创建应当在运行时确定而不是在编译的时候确定。</li>
+<li>简单的if语句进行条件判断实例化对象，会降低系统的可维护性。</li>
+<li>我们应当针对接口编程，保证尽量对修改关闭，想用具体类型来扩展代码必须重新打开它。</li>
+</ol>
+<h2 id="封装创建对象的代码"><a href="#封装创建对象的代码" class="headerlink" title="封装创建对象的代码"></a>封装创建对象的代码</h2><ol>
+<li>也就是将创建类型的代码隔离到外部。</li>
+<li>我们将这个新的对象叫做“工厂”。</li>
+</ol>
+<ol>
+<li><p>工厂是处理对象的细节。</p>
+</li>
+<li><p>保证了各部分之间的耦合程度，增强了原系统的复用性，保证了整个系统的可修改性。</p>
+</li>
+<li><p>有一种思路是使用静态方法来定义一个简单的工厂，但是这就不能通过继承来改变创建方法的行为。</p>
+</li>
+<li><p>保证主体对象持有一个factory，并且需要在构造方法中传入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span></span>&#123;</span><br><span class="line">    Factory factory;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PizzaStore</span><span class="params">(Factory factory)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.factory = factory;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//构造一个持有一个factory的store</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以上是简单工厂。</p>
+</li>
+</ol>
+<h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><ol>
+<li>工厂方法用来处理对象的创建，将这样的行为封装在子类中。如此，客户程序中关于超类的代码和子类对象创建代码解耦成功。</li>
+<li>实例:<code>abstract Product factoryMethod(String type)</code></li>
+</ol>
+<h2 id="允许子类做决定"><a href="#允许子类做决定" class="headerlink" title="允许子类做决定"></a>允许子类做决定</h2><ol>
+<li>在超类PizzaStore中实现orderPizza()而设立createPizza()的接口，将制作过程下放到相应的子类</li>
+<li>解耦:一个方法知道要做什么，但是不知道具体到底做了什么。具体做什么由具体调用的子类来决定</li>
+</ol>
+<h2 id="工厂模式实例解析"><a href="#工厂模式实例解析" class="headerlink" title="工厂模式实例解析"></a>工厂模式实例解析</h2><ol>
+<li>首先分析创建了相应的PizzaStore的超类，之后实现这个类，调用其中的工厂方法来完成产品生产</li>
+<li>同样要实例化相应的产品类</li>
+</ol>
+<h1 id="认识工厂方法模式"><a href="#认识工厂方法模式" class="headerlink" title="认识工厂方法模式"></a>认识工厂方法模式</h1><ol>
+<li>所有工厂模式都用来封装对象的创建。</li>
+<li>工厂模式通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。</li>
+<li>组成元素是平行的类层级。</li>
+<li>将各部分</li>
+</ol>
+<h2 id="组成元素一-创建者类"><a href="#组成元素一-创建者类" class="headerlink" title="组成元素一:创建者类"></a>组成元素一:创建者类</h2><ol>
+<li>创建一个抽象类，通过实例化其中的一些方法来完成相应对象的实例化。</li>
+<li>其抽象产品由子类制造。</li>
+</ol>
+<h2 id="组成元素二-产品类"><a href="#组成元素二-产品类" class="headerlink" title="组成元素二:产品类"></a>组成元素二:产品类</h2><ol>
+<li>创建了抽象的产品对象</li>
+<li>然后通过装配来完成具体产品对象的创建。</li>
+</ol>
+<h1 id="定义工厂方法模式"><a href="#定义工厂方法模式" class="headerlink" title="定义工厂方法模式"></a>定义工厂方法模式</h1><ol>
+<li><strong>工厂方法模式</strong>定义为一个创建对象的接口，但由子类决定实例化的类是哪一个，工厂方法让类把实例化推迟到子类。<ul>
+<li>由子类决定</li>
+<li>将实现和使用相分离，即“解耦”</li>
+</ul>
+</li>
+<li>注:<ol>
+<li>工厂方法和创建者可以不总是抽象的。</li>
+<li>可以通过java的enum避免部分运行时编译错误。</li>
+</ol>
+</li>
+<li>如果你想要把客户代码从需要实例化的具体类中解耦。</li>
+</ol>
+<h1 id="设计原则-依赖倒置原则"><a href="#设计原则-依赖倒置原则" class="headerlink" title="设计原则:依赖倒置原则"></a>设计原则:依赖倒置原则</h1><ol>
+<li>依赖倒置原则通则:要依赖抽象，不要依赖具体类。</li>
+<li>进一步解释:不能让高层组件依赖于低层组件，而且不管高层或低层组件，“两者”都应该依赖于抽象。</li>
+<li>工厂模式并不是依赖倒置原则的唯一技巧，但是是最有威力的技巧之一。</li>
+</ol>
+<h2 id="依赖倒置原则带来的思维变化"><a href="#依赖倒置原则带来的思维变化" class="headerlink" title="依赖倒置原则带来的思维变化"></a>依赖倒置原则带来的思维变化</h2><ol>
+<li>以pizza为例，正常的思维是思考具体有什么Pizza，而现在的思维应该是我们想象有Pizza，在回头思考如何设计Pizza店(工厂)。</li>
+</ol>
+<h2 id="几个关于依赖倒置原则的指导方针"><a href="#几个关于依赖倒置原则的指导方针" class="headerlink" title="几个关于依赖倒置原则的指导方针"></a>几个关于依赖倒置原则的指导方针</h2><ol>
+<li>变量不可以持有具体类的引用。</li>
+<li>不要让派生自具体类。</li>
+<li>不要覆盖基类中已实现的方法。</li>
+<li>其他注意要点:<ol>
+<li>应当尽量达到这个原则，而不是随时都要遵守这个原则。</li>
+</ol>
+</li>
+</ol>
+<h1 id="关于实现接口的注释"><a href="#关于实现接口的注释" class="headerlink" title="关于实现接口的注释"></a>关于实现接口的注释</h1><h2 id="在设计模式中，所谓的”实现一个接口”并“不一定”表示写一个类，利用implements关键词来实现一个接口。“实现一个接口”泛指“实现某个超类型”"><a href="#在设计模式中，所谓的”实现一个接口”并“不一定”表示写一个类，利用implements关键词来实现一个接口。“实现一个接口”泛指“实现某个超类型”" class="headerlink" title="在设计模式中，所谓的”实现一个接口”并“不一定”表示写一个类，利用implements关键词来实现一个接口。“实现一个接口”泛指“实现某个超类型”"></a>在设计模式中，所谓的”实现一个接口”并“不一定”表示写一个类，利用implements关键词来实现一个接口。“实现一个接口”泛指“实现某个超类型”</h2><h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="引入-原料工厂"><a href="#引入-原料工厂" class="headerlink" title="引入:原料工厂"></a>引入:原料工厂</h2><ol>
+<li>有一些原料需要保证一致性，可以封装到原料工厂中去。</li>
+<li>原料工厂不关心具体产品工厂的操作，而更多的关注相应原料的具体实现。</li>
+<li>也就是制造出一个抽象原料工厂，定义相应的结构，在相应具体工厂中实现。<ul>
+<li>首先，使用prepare()方法，准备好相应的原料。</li>
+</ul>
+</li>
+</ol>
+<h2 id="抽象工厂模式-另一个工厂模式"><a href="#抽象工厂模式-另一个工厂模式" class="headerlink" title="抽象工厂模式(另一个工厂模式)"></a>抽象工厂模式(另一个工厂模式)</h2><ol>
+<li>正式定义:提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。</li>
+<li>抽象工厂定义了一个接口，所有的具体工厂都必须实现此接口，这个接口包含一组方法用来生产产品。</li>
+</ol>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="img%5Cfty-1.png" alt></p>
+<h2 id="类图细节"><a href="#类图细节" class="headerlink" title="类图细节"></a>类图细节</h2><p><img src="img%5Cfty-2.png" alt></p>
+<ol start="3">
+<li>工厂方法经常是抽象工厂的方法。</li>
+<li>当需要创建产品家族和想让制造的相关产品集合起来时，可以选择抽象工厂模式。</li>
+</ol>
+<h2 id="工厂方法和抽象工厂比较"><a href="#工厂方法和抽象工厂比较" class="headerlink" title="工厂方法和抽象工厂比较"></a>工厂方法和抽象工厂比较</h2><p><img src="img%5Cfty-3.png" alt></p>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+      
+    </div>
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/07/java/java_面向对象编程/" rel="next" title="java学习笔记 之 OO">
+                  <i class="fa fa-chevron-left"></i> java学习笔记 之 OO
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引入部分"><span class="nav-number">1.</span> <span class="nav-text">引入部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于new关键词的思考"><span class="nav-number">1.1.</span> <span class="nav-text">关于new关键词的思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装创建对象的代码"><span class="nav-number">1.2.</span> <span class="nav-text">封装创建对象的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.3.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#允许子类做决定"><span class="nav-number">1.4.</span> <span class="nav-text">允许子类做决定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式实例解析"><span class="nav-number">1.5.</span> <span class="nav-text">工厂模式实例解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#认识工厂方法模式"><span class="nav-number">2.</span> <span class="nav-text">认识工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组成元素一-创建者类"><span class="nav-number">2.1.</span> <span class="nav-text">组成元素一:创建者类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组成元素二-产品类"><span class="nav-number">2.2.</span> <span class="nav-text">组成元素二:产品类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义工厂方法模式"><span class="nav-number">3.</span> <span class="nav-text">定义工厂方法模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则-依赖倒置原则"><span class="nav-number">4.</span> <span class="nav-text">设计原则:依赖倒置原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖倒置原则带来的思维变化"><span class="nav-number">4.1.</span> <span class="nav-text">依赖倒置原则带来的思维变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个关于依赖倒置原则的指导方针"><span class="nav-number">4.2.</span> <span class="nav-text">几个关于依赖倒置原则的指导方针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于实现接口的注释"><span class="nav-number">5.</span> <span class="nav-text">关于实现接口的注释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在设计模式中，所谓的”实现一个接口”并“不一定”表示写一个类，利用implements关键词来实现一个接口。“实现一个接口”泛指“实现某个超类型”"><span class="nav-number">5.1.</span> <span class="nav-text">在设计模式中，所谓的”实现一个接口”并“不一定”表示写一个类，利用implements关键词来实现一个接口。“实现一个接口”泛指“实现某个超类型”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">6.</span> <span class="nav-text">抽象工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入-原料工厂"><span class="nav-number">6.1.</span> <span class="nav-text">引入:原料工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式-另一个工厂模式"><span class="nav-number">6.2.</span> <span class="nav-text">抽象工厂模式(另一个工厂模式)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类图"><span class="nav-number">6.3.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类图细节"><span class="nav-number">6.4.</span> <span class="nav-text">类图细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法和抽象工厂比较"><span class="nav-number">6.5.</span> <span class="nav-text">工厂方法和抽象工厂比较</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stormbroken</p>
+  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Stormbroken"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stormbroken</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<a href="https://github.com/stormbroken" class="" target="_blank" title="我的Github" aria-label="我的Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<!-- ??????? -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
