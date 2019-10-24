@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="点击查看详情">
-<meta name="keywords" content="java">
+  <meta name="description" content="GB2312编码">
+<meta name="keywords" content="字符图片编码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java学习笔记 之 部分实体类">
-<meta property="og:url" content="http://yoursite.com/2019/10/07/java/java_实体类/index.html">
+<meta property="og:title" content="GB2312">
+<meta property="og:url" content="http://yoursite.com/2019/10/24/GB2312/index.html">
 <meta property="og:site_name" content="Stormbrokenの博客">
-<meta property="og:description" content="点击查看详情">
+<meta property="og:description" content="GB2312编码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T07:55:24.032Z">
+<meta property="og:updated_time" content="2019-10-24T04:10:15.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java学习笔记 之 部分实体类">
-<meta name="twitter:description" content="点击查看详情">
-  <link rel="canonical" href="http://yoursite.com/2019/10/07/java/java_实体类/">
+<meta name="twitter:title" content="GB2312">
+<meta name="twitter:description" content="GB2312编码">
+  <link rel="canonical" href="http://yoursite.com/2019/10/24/GB2312/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>java学习笔记 之 部分实体类 | Stormbrokenの博客</title>
+  <title>GB2312 | Stormbrokenの博客</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java/java_实体类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/24/GB2312/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stormbroken">
@@ -294,7 +294,7 @@
       <meta itemprop="name" content="Stormbrokenの博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">java学习笔记 之 部分实体类
+        <h1 class="post-title" itemprop="name headline">GB2312
 
           
         </h1>
@@ -310,7 +310,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:24" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-24 12:07:30 / 修改时间：12:10:15" itemprop="dateCreated datePublished" datetime="2019-10-24T12:07:30+08:00">2019-10-24</time>
             </span>
           
             
@@ -323,7 +323,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/字符图片编码/" itemprop="url" rel="index"><span itemprop="name">字符图片编码</span></a></span>
 
                 
                 
@@ -352,242 +352,49 @@
         
 
       
-        <p>点击查看详情</p>
+        <p>GB2312编码</p>
 <a id="more"></a>
-<h1 id="字符串相关类"><a href="#字符串相关类" class="headerlink" title="字符串相关类"></a>字符串相关类</h1><ol>
-<li>字符串是不可变类，本质上是按照字符数组存储的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"hello"</span>;</span><br><span class="line">String b = <span class="string">"hello"</span>;</span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">"hi"</span>);</span><br><span class="line">String d = <span class="keyword">new</span> String(<span class="string">"hi"</span>);</span><br><span class="line"><span class="keyword">char</span>[] e = &#123;<span class="string">'h'</span>,<span class="string">'i'</span>&#125;;</span><br><span class="line">a==b;<span class="comment">//true</span></span><br><span class="line">c==d;<span class="comment">//false</span></span><br><span class="line">a==e;<span class="comment">//编译错误</span></span><br><span class="line">a.equals(e);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
-</li>
+<h1 id="1-什么是GB2312"><a href="#1-什么是GB2312" class="headerlink" title="1. 什么是GB2312"></a>1. 什么是GB2312</h1><ol>
+<li>它是一种中文字符标准</li>
 </ol>
-<h2 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h2><ol>
-<li>String类对象保存不可修改的Unicode字符序列</li>
-<li>String类的下述方法能创建并返回一个新的String对象</li>
-<li>功能性方法：endsWith、startsWith、indexOf、lastIndexOf、equals、equalsIgnoreCase、compareTo</li>
-<li>其他方法:charAt、length、replace()</li>
+<h1 id="2-GB2312和UTF-8、GBK之间的关系"><a href="#2-GB2312和UTF-8、GBK之间的关系" class="headerlink" title="2. GB2312和UTF-8、GBK之间的关系"></a>2. GB2312和UTF-8、GBK之间的关系</h1><ol>
+<li>GBK是在国家标准GB2312基础上扩容兼容GB2312的标准。</li>
+<li>三者之间的转换必须都通过Unicode编码才能相互转换</li>
 </ol>
-<h3 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h3><ol>
-<li>StringBuffer类：<ol>
-<li>构造方法：<ol>
-<li><code>StringBuffer()</code>:创建一个字符序列为空的StringBuffer对象</li>
-<li><code>StringBuffer(String str)</code>:创建一个把与String对象str相同的字符序列</li>
-</ol>
-</li>
-<li>其他方法：<ol>
-<li>append()方法：想StringBuffer对象添加字符序列</li>
-<li>delete(int start,int end):删除从start开始到end-1为止的一端字符序列，返回对象引用</li>
-<li>deleteCharAt(int index):删除位于序列指定位置上的char</li>
-<li>insert(int offset,String str):可以在指定位置上插入字符序列等</li>
-<li>insert(int offest,double d):插入一个浮点数，提供自动转化</li>
-<li>setCharAt(int index，char ch):在指定位置上插入指定字符</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>区分String和StringBuffer和StringBuilder：<ol>
-<li>String：不可变字符序列</li>
-<li>StringBuffer：可变字符序列，并且线程安全，但是效率低</li>
-<li>StringBuilder：可变字符序列，线程不安全，但是效率高</li>
-</ol>
-</li>
-</ol>
-<h1 id="时间相关的处理类"><a href="#时间相关的处理类" class="headerlink" title="时间相关的处理类"></a>时间相关的处理类</h1><h2 id="Date时间类"><a href="#Date时间类" class="headerlink" title="Date时间类"></a>Date时间类</h2><ol>
-<li>来源：java.util.Date</li>
-<li>表示一个特定的瞬间，精确到毫秒</li>
-</ol>
-<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ol>
-<li><code>Date()</code>:分配一个Date对象，并初始化此对象为当前的日期和时间精确到毫秒</li>
-<li><code>Date(Long date)</code>:分配Date对象并初始化此对象，以表示从标准基准时间，即1970年1月1日00:00:00 GMT以指定毫秒数</li>
-</ol>
-<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><table>
-<thead>
-<tr>
-<th>返回值</th>
-<th>函数名</th>
-<th>函数意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Boolean</td>
-<td>after(Date when)</td>
-<td>测试该日期是否在指定日期以后</td>
-</tr>
-<tr>
-<td>Boolean</td>
-<td>before(Date when)</td>
-<td>测试该日期是否在指定日期之前</td>
-</tr>
-<tr>
-<td>Boolean</td>
-<td>equals(Date when)</td>
-<td>比较两个日期的相等性，重写的方法</td>
-</tr>
-<tr>
-<td>Long</td>
-<td>getTime()</td>
-<td>返回自1970年1月1日00:00:00 GMT以来的</td>
-</tr>
-<tr>
-<td>String</td>
-<td>toString()</td>
-<td>把此Date对象转换为各种形式的String</td>
-</tr>
-</tbody></table>
-<h2 id="DateFormat类和SimpleDateFormat类"><a href="#DateFormat类和SimpleDateFormat类" class="headerlink" title="DateFormat类和SimpleDateFormat类"></a>DateFormat类和SimpleDateFormat类</h2><ol>
-<li><p>构造:<code>SimpleDateFormat a = new SimpleDateFormat(&quot;YYYY-MM-dd&quot;)</code></p>
-</li>
-<li><p>按照构造中的格式转化生成相应Date对象：<code>Date date = a.parse(&quot;2019-6-21&quot;)</code></p>
-</li>
-<li><p>具体的格式化字符介绍</p>
-<table>
-<thead>
-<tr>
-<th>标识符</th>
-<th>内涵</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>G</td>
-<td>年代标志符</td>
-</tr>
-<tr>
-<td>y</td>
-<td>年</td>
-</tr>
-<tr>
-<td>M</td>
-<td>月</td>
-</tr>
-<tr>
-<td>d</td>
-<td>日</td>
-</tr>
-<tr>
-<td>h</td>
-<td>时，12进制，1-12</td>
-</tr>
-<tr>
-<td>H</td>
-<td>时，24进制，0-23</td>
-</tr>
-<tr>
-<td>m</td>
-<td>分</td>
-</tr>
-<tr>
-<td>s</td>
-<td>秒</td>
-</tr>
-<tr>
-<td>S</td>
-<td>毫秒</td>
-</tr>
-<tr>
-<td>E</td>
-<td>星期</td>
-</tr>
-<tr>
-<td>D</td>
-<td>一年中的第几天</td>
-</tr>
-<tr>
-<td>F</td>
-<td>一月中第几个星期几</td>
-</tr>
-<tr>
-<td>w</td>
-<td>一年中第几个星期</td>
-</tr>
-<tr>
-<td>W</td>
-<td>一月中的第几个星期</td>
-</tr>
-<tr>
-<td>a</td>
-<td>上午/下午 标记符</td>
-</tr>
-<tr>
-<td>k</td>
-<td>时，一天中(1-24)</td>
-</tr>
-<tr>
-<td>K</td>
-<td>时，在上午或下午(0-11)</td>
-</tr>
-<tr>
-<td>z</td>
-<td>时区</td>
-</tr>
-<tr>
-<td>2. 使用的语句：<code>SimpleDateFormat a = new SimpleDateFormat(&quot;yyyy&quot;)</code></td>
-<td></td>
-</tr>
-<tr>
-<td>3. 转化成为字符串：<code>a.format(now)</code></td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<h2 id="Calendar日历类"><a href="#Calendar日历类" class="headerlink" title="Calendar日历类"></a>Calendar日历类</h2><ol>
-<li>他是一个抽象类，定义了一些特定的日历字段之间的转换用的方法</li>
-<li>注意月份的表示中：一月是0</li>
-</ol>
-<h1 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h1><ol>
-<li>来源:java.lang.Math</li>
-<li>相应的方法：<ul>
-<li>abs:绝对值</li>
-<li>acos,asin,atan,cos,sin,tan：各种三角函数</li>
-<li>sqrt：平方根</li>
-<li>pow(double a,double b)：a的b次幂</li>
-<li>log自然对数</li>
-<li>exp e为底指数</li>
-<li>max(double a,double b)</li>
-<li>min(double a,double b)</li>
-<li>random()：返回0.0到1.0的随机数</li>
-<li>long round(double a)：double类型的数据a转化为long类型</li>
-<li>toDegrees(double angrad)：弧度-&gt;角度</li>
-<li>toRadians(double angdeg)：角度-&gt;弧度</li>
+<h1 id="3-GB2312的汉字表示方法"><a href="#3-GB2312的汉字表示方法" class="headerlink" title="3. GB2312的汉字表示方法"></a>3. GB2312的汉字表示方法</h1><h2 id="3-1-分区表示"><a href="#3-1-分区表示" class="headerlink" title="3.1. 分区表示"></a>3.1. 分区表示</h2><ol>
+<li>每个区含有94个汉字/符号。这种表示方式也称为区位码。<ul>
+<li>01-09区为特殊符号</li>
+<li>16-55区为一级汉字，按拼音排序</li>
+<li>56-87区为二级汉字，按拼音/笔画排序</li>
+<li>10-15以及88-94区则未有编码</li>
 </ul>
 </li>
 </ol>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><ol>
-<li>来源：java.io.File类</li>
-<li>常见的构造方法：<code>public File(String pathname)</code><ul>
-<li>构造方法参数可以为String、File、URL</li>
+<h2 id="3-2-字节结构"><a href="#3-2-字节结构" class="headerlink" title="3.2. 字节结构"></a>3.2. 字节结构</h2><ol>
+<li>采用EUC存储方法，以便兼容与ASCII。</li>
+<li>每个汉字以及符号用两个字节来表示。第一个字节称为“高位字节”(区字节)，第二个字节称为“低位字节”(位字节)<ul>
+<li>高位字节用了0xA1-0xF7</li>
+<li>低位字节使用了0xA1-0xFE</li>
+<li>占用的码位72*94=6768，其中空位为D7FA-D7FE</li>
 </ul>
 </li>
-<li>方法：<ul>
-<li>public boolean canRead()</li>
-<li>public boolean canWrite()</li>
-<li>public boolean exists()     </li>
-<li>public boolean isDirectory()</li>
-<li>public boolean isFile()     </li>
-<li>public boolean isHidden()</li>
-<li>public long lastModified() </li>
-<li>public long length()</li>
-<li>public String getName()   </li>
-<li>public String getPath()</li>
-<li>public String getAbsolutePath()</li>
-<li>public boolean delete()</li>
-<li>public boolean mkdir():创建新的文件夹</li>
+<li>区位码 = 区字节 + 位字节</li>
+</ol>
+<h1 id="4-EUC存储方式"><a href="#4-EUC存储方式" class="headerlink" title="4. EUC存储方式"></a>4. EUC存储方式</h1><ol>
+<li>EUC全称Extended Unix Code，是一个使用8位编码来表示字符的方法。EUC最初是针对Unix系统，在1991年被标准化。</li>
+<li>EUC定义了4个单独的码集。<ul>
+<li>码集0 —— 7位的ASCII，编码为单字节</li>
+<li>码集1,2,3 —— G1空间的值</li>
+<li>码集1 —— 未修饰的字符，编码为1-3字节</li>
+<li>码集2 —— 以0x8E(SS2)为第一字节，编码为至少2字节。</li>
+<li>码集3 —— 以0x8F(SS3)为第一字节，编码为至少2字节。</li>
 </ul>
 </li>
-<li>equals()方法在这个类中被重写，只有两个对象的内容和类型一致时返回</li>
 </ol>
-<h1 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h1><ol>
-<li>只能够取特定值中的一个</li>
-<li>使用enum关键字</li>
-<li>所有的枚举类型都隐形地继承自java.lang.Enum。而每个被枚举的变量都被默认为public static final的</li>
-<li>建议使用一组常量的时候，使用枚举类型</li>
-<li>尽量避免使用枚举的高级特性</li>
-</ol>
-<h1 id="Applet类"><a href="#Applet类" class="headerlink" title="Applet类"></a>Applet类</h1><ol>
-<li>是一个采用java编程语言编写的小应用程序</li>
-<li>可以读取客户端部分系统变量</li>
-<li>不可以读取客户端文件</li>
-<li>不可以在客户端主机上创建新文件</li>
-<li>不可以在客户端装载程序库</li>
-<li><code>&lt;applet code=TestApplet.class width=100 height=100&gt;&lt;/applet&gt;</code></li>
+<h2 id="4-1-GB2312-EUC-CN"><a href="#4-1-GB2312-EUC-CN" class="headerlink" title="4.1. GB2312(EUC-CN)"></a>4.1. GB2312(EUC-CN)</h2><ol>
+<li>EUC-CN是GB2312最常用的表示方法。</li>
+<li>使用了码集0和码集1</li>
 </ol>
 
     </div>
@@ -615,7 +422,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/字符图片编码/" rel="tag"># 字符图片编码</a>
             
           </div>
         
@@ -625,8 +432,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/07/java/java_面向对象编程/" rel="next" title="java学习笔记 之 OO">
-                  <i class="fa fa-chevron-left"></i> java学习笔记 之 OO
+                <a href="/2019/10/24/图片编码/" rel="next" title="图片编码">
+                  <i class="fa fa-chevron-left"></i> 图片编码
                 </a>
               
             </div>
@@ -634,10 +441,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/14/modern/工厂模式/" rel="prev" title="工厂模式">
-                  工厂模式 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -683,7 +486,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串相关类"><span class="nav-number">1.</span> <span class="nav-text">字符串相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String类的常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">String类的常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuffer和StringBuilder"><span class="nav-number">1.1.1.</span> <span class="nav-text">StringBuffer和StringBuilder</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间相关的处理类"><span class="nav-number">2.</span> <span class="nav-text">时间相关的处理类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Date时间类"><span class="nav-number">2.1.</span> <span class="nav-text">Date时间类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DateFormat类和SimpleDateFormat类"><span class="nav-number">2.2.</span> <span class="nav-text">DateFormat类和SimpleDateFormat类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calendar日历类"><span class="nav-number">2.3.</span> <span class="nav-text">Calendar日历类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Math类"><span class="nav-number">3.</span> <span class="nav-text">Math类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File类"><span class="nav-number">4.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举类"><span class="nav-number">5.</span> <span class="nav-text">枚举类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Applet类"><span class="nav-number">6.</span> <span class="nav-text">Applet类</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是GB2312"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是GB2312</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-GB2312和UTF-8、GBK之间的关系"><span class="nav-number">2.</span> <span class="nav-text">2. GB2312和UTF-8、GBK之间的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-GB2312的汉字表示方法"><span class="nav-number">3.</span> <span class="nav-text">3. GB2312的汉字表示方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-分区表示"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 分区表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-字节结构"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 字节结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-EUC存储方式"><span class="nav-number">4.</span> <span class="nav-text">4. EUC存储方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-GB2312-EUC-CN"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. GB2312(EUC-CN)</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

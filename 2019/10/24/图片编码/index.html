@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="点击查看详情">
-<meta name="keywords" content="java">
+  <meta name="description" content="图片编码">
+<meta name="keywords" content="字符图片编码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java学习笔记 之 部分实体类">
-<meta property="og:url" content="http://yoursite.com/2019/10/07/java/java_实体类/index.html">
+<meta property="og:title" content="图片编码">
+<meta property="og:url" content="http://yoursite.com/2019/10/24/图片编码/index.html">
 <meta property="og:site_name" content="Stormbrokenの博客">
-<meta property="og:description" content="点击查看详情">
+<meta property="og:description" content="图片编码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T07:55:24.032Z">
+<meta property="og:updated_time" content="2019-10-24T04:11:16.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java学习笔记 之 部分实体类">
-<meta name="twitter:description" content="点击查看详情">
-  <link rel="canonical" href="http://yoursite.com/2019/10/07/java/java_实体类/">
+<meta name="twitter:title" content="图片编码">
+<meta name="twitter:description" content="图片编码">
+  <link rel="canonical" href="http://yoursite.com/2019/10/24/图片编码/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>java学习笔记 之 部分实体类 | Stormbrokenの博客</title>
+  <title>图片编码 | Stormbrokenの博客</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/java/java_实体类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/24/图片编码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stormbroken">
@@ -294,7 +294,7 @@
       <meta itemprop="name" content="Stormbrokenの博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">java学习笔记 之 部分实体类
+        <h1 class="post-title" itemprop="name headline">图片编码
 
           
         </h1>
@@ -310,7 +310,7 @@
                 
               
 
-              <time title="创建时间：2019-10-07 13:52:05 / 修改时间：15:55:24" itemprop="dateCreated datePublished" datetime="2019-10-07T13:52:05+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-24 12:04:26 / 修改时间：12:11:16" itemprop="dateCreated datePublished" datetime="2019-10-24T12:04:26+08:00">2019-10-24</time>
             </span>
           
             
@@ -323,7 +323,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/字符图片编码/" itemprop="url" rel="index"><span itemprop="name">字符图片编码</span></a></span>
 
                 
                 
@@ -352,242 +352,97 @@
         
 
       
-        <p>点击查看详情</p>
+        <p>图片编码</p>
 <a id="more"></a>
-<h1 id="字符串相关类"><a href="#字符串相关类" class="headerlink" title="字符串相关类"></a>字符串相关类</h1><ol>
-<li>字符串是不可变类，本质上是按照字符数组存储的<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"hello"</span>;</span><br><span class="line">String b = <span class="string">"hello"</span>;</span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">"hi"</span>);</span><br><span class="line">String d = <span class="keyword">new</span> String(<span class="string">"hi"</span>);</span><br><span class="line"><span class="keyword">char</span>[] e = &#123;<span class="string">'h'</span>,<span class="string">'i'</span>&#125;;</span><br><span class="line">a==b;<span class="comment">//true</span></span><br><span class="line">c==d;<span class="comment">//false</span></span><br><span class="line">a==e;<span class="comment">//编译错误</span></span><br><span class="line">a.equals(e);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h2><ol>
-<li>String类对象保存不可修改的Unicode字符序列</li>
-<li>String类的下述方法能创建并返回一个新的String对象</li>
-<li>功能性方法：endsWith、startsWith、indexOf、lastIndexOf、equals、equalsIgnoreCase、compareTo</li>
-<li>其他方法:charAt、length、replace()</li>
-</ol>
-<h3 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h3><ol>
-<li>StringBuffer类：<ol>
-<li>构造方法：<ol>
-<li><code>StringBuffer()</code>:创建一个字符序列为空的StringBuffer对象</li>
-<li><code>StringBuffer(String str)</code>:创建一个把与String对象str相同的字符序列</li>
-</ol>
-</li>
-<li>其他方法：<ol>
-<li>append()方法：想StringBuffer对象添加字符序列</li>
-<li>delete(int start,int end):删除从start开始到end-1为止的一端字符序列，返回对象引用</li>
-<li>deleteCharAt(int index):删除位于序列指定位置上的char</li>
-<li>insert(int offset,String str):可以在指定位置上插入字符序列等</li>
-<li>insert(int offest,double d):插入一个浮点数，提供自动转化</li>
-<li>setCharAt(int index，char ch):在指定位置上插入指定字符</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>区分String和StringBuffer和StringBuilder：<ol>
-<li>String：不可变字符序列</li>
-<li>StringBuffer：可变字符序列，并且线程安全，但是效率低</li>
-<li>StringBuilder：可变字符序列，线程不安全，但是效率高</li>
-</ol>
-</li>
-</ol>
-<h1 id="时间相关的处理类"><a href="#时间相关的处理类" class="headerlink" title="时间相关的处理类"></a>时间相关的处理类</h1><h2 id="Date时间类"><a href="#Date时间类" class="headerlink" title="Date时间类"></a>Date时间类</h2><ol>
-<li>来源：java.util.Date</li>
-<li>表示一个特定的瞬间，精确到毫秒</li>
-</ol>
-<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ol>
-<li><code>Date()</code>:分配一个Date对象，并初始化此对象为当前的日期和时间精确到毫秒</li>
-<li><code>Date(Long date)</code>:分配Date对象并初始化此对象，以表示从标准基准时间，即1970年1月1日00:00:00 GMT以指定毫秒数</li>
-</ol>
-<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><table>
-<thead>
-<tr>
-<th>返回值</th>
-<th>函数名</th>
-<th>函数意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Boolean</td>
-<td>after(Date when)</td>
-<td>测试该日期是否在指定日期以后</td>
-</tr>
-<tr>
-<td>Boolean</td>
-<td>before(Date when)</td>
-<td>测试该日期是否在指定日期之前</td>
-</tr>
-<tr>
-<td>Boolean</td>
-<td>equals(Date when)</td>
-<td>比较两个日期的相等性，重写的方法</td>
-</tr>
-<tr>
-<td>Long</td>
-<td>getTime()</td>
-<td>返回自1970年1月1日00:00:00 GMT以来的</td>
-</tr>
-<tr>
-<td>String</td>
-<td>toString()</td>
-<td>把此Date对象转换为各种形式的String</td>
-</tr>
-</tbody></table>
-<h2 id="DateFormat类和SimpleDateFormat类"><a href="#DateFormat类和SimpleDateFormat类" class="headerlink" title="DateFormat类和SimpleDateFormat类"></a>DateFormat类和SimpleDateFormat类</h2><ol>
-<li><p>构造:<code>SimpleDateFormat a = new SimpleDateFormat(&quot;YYYY-MM-dd&quot;)</code></p>
-</li>
-<li><p>按照构造中的格式转化生成相应Date对象：<code>Date date = a.parse(&quot;2019-6-21&quot;)</code></p>
-</li>
-<li><p>具体的格式化字符介绍</p>
-<table>
-<thead>
-<tr>
-<th>标识符</th>
-<th>内涵</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>G</td>
-<td>年代标志符</td>
-</tr>
-<tr>
-<td>y</td>
-<td>年</td>
-</tr>
-<tr>
-<td>M</td>
-<td>月</td>
-</tr>
-<tr>
-<td>d</td>
-<td>日</td>
-</tr>
-<tr>
-<td>h</td>
-<td>时，12进制，1-12</td>
-</tr>
-<tr>
-<td>H</td>
-<td>时，24进制，0-23</td>
-</tr>
-<tr>
-<td>m</td>
-<td>分</td>
-</tr>
-<tr>
-<td>s</td>
-<td>秒</td>
-</tr>
-<tr>
-<td>S</td>
-<td>毫秒</td>
-</tr>
-<tr>
-<td>E</td>
-<td>星期</td>
-</tr>
-<tr>
-<td>D</td>
-<td>一年中的第几天</td>
-</tr>
-<tr>
-<td>F</td>
-<td>一月中第几个星期几</td>
-</tr>
-<tr>
-<td>w</td>
-<td>一年中第几个星期</td>
-</tr>
-<tr>
-<td>W</td>
-<td>一月中的第几个星期</td>
-</tr>
-<tr>
-<td>a</td>
-<td>上午/下午 标记符</td>
-</tr>
-<tr>
-<td>k</td>
-<td>时，一天中(1-24)</td>
-</tr>
-<tr>
-<td>K</td>
-<td>时，在上午或下午(0-11)</td>
-</tr>
-<tr>
-<td>z</td>
-<td>时区</td>
-</tr>
-<tr>
-<td>2. 使用的语句：<code>SimpleDateFormat a = new SimpleDateFormat(&quot;yyyy&quot;)</code></td>
-<td></td>
-</tr>
-<tr>
-<td>3. 转化成为字符串：<code>a.format(now)</code></td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<h2 id="Calendar日历类"><a href="#Calendar日历类" class="headerlink" title="Calendar日历类"></a>Calendar日历类</h2><ol>
-<li>他是一个抽象类，定义了一些特定的日历字段之间的转换用的方法</li>
-<li>注意月份的表示中：一月是0</li>
-</ol>
-<h1 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h1><ol>
-<li>来源:java.lang.Math</li>
-<li>相应的方法：<ul>
-<li>abs:绝对值</li>
-<li>acos,asin,atan,cos,sin,tan：各种三角函数</li>
-<li>sqrt：平方根</li>
-<li>pow(double a,double b)：a的b次幂</li>
-<li>log自然对数</li>
-<li>exp e为底指数</li>
-<li>max(double a,double b)</li>
-<li>min(double a,double b)</li>
-<li>random()：返回0.0到1.0的随机数</li>
-<li>long round(double a)：double类型的数据a转化为long类型</li>
-<li>toDegrees(double angrad)：弧度-&gt;角度</li>
-<li>toRadians(double angdeg)：角度-&gt;弧度</li>
+<h1 id="1-图像的基本结构"><a href="#1-图像的基本结构" class="headerlink" title="1. 图像的基本结构"></a>1. 图像的基本结构</h1><ol>
+<li>在计算计算机中，图像是由一个个像素点(也称颜色点)组成。</li>
+<li>颜色最简单的显示方式:RGB或RGBA表示<ul>
+<li>其中R通道是指蓝颜色通道</li>
+<li>其中G通道是指绿颜色通道</li>
+<li>其中B通道是指蓝颜色通道</li>
+<li>其中A通道是指这个图像可以有透明效果</li>
+<li>三个分量一般是用一个字节(8位)来表示</li>
 </ul>
 </li>
 </ol>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><ol>
-<li>来源：java.io.File类</li>
-<li>常见的构造方法：<code>public File(String pathname)</code><ul>
-<li>构造方法参数可以为String、File、URL</li>
+<h1 id="2-像素的32位对齐"><a href="#2-像素的32位对齐" class="headerlink" title="2. 像素的32位对齐"></a>2. 像素的32位对齐</h1><ol>
+<li>如果是RGB24位图，会存在一个32位对齐的问题<ul>
+<li>在x86体系下，cpu一次性处理32倍数的数据会更快。</li>
 </ul>
 </li>
-<li>方法：<ul>
-<li>public boolean canRead()</li>
-<li>public boolean canWrite()</li>
-<li>public boolean exists()     </li>
-<li>public boolean isDirectory()</li>
-<li>public boolean isFile()     </li>
-<li>public boolean isHidden()</li>
-<li>public long lastModified() </li>
-<li>public long length()</li>
-<li>public String getName()   </li>
-<li>public String getPath()</li>
-<li>public String getAbsolutePath()</li>
-<li>public boolean delete()</li>
-<li>public boolean mkdir():创建新的文件夹</li>
+<li>24位图，宽度不是4的倍数，其行字结束将不是32整数倍。这时候我们可以采取在行尾添加冗余数据的方式，使其字节数为32的倍数。</li>
+<li>Eg.图像像素宽为5像素，不做32位对齐时，行尾数为120，相对于最近向上取整的32的倍数是128，也就是我们只要添加一字节的冗余数据即可。</li>
+</ol>
+<h1 id="3-不同图像格式存储的不同的特点"><a href="#3-不同图像格式存储的不同的特点" class="headerlink" title="3. 不同图像格式存储的不同的特点"></a>3. 不同图像格式存储的不同的特点</h1><ol>
+<li>为什么要用一定的格式进行压缩？<ul>
+<li>因为如果按照图像原始格式直接存储到文件中将会非常大。</li>
 </ul>
 </li>
-<li>equals()方法在这个类中被重写，只有两个对象的内容和类型一致时返回</li>
 </ol>
-<h1 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h1><ol>
-<li>只能够取特定值中的一个</li>
-<li>使用enum关键字</li>
-<li>所有的枚举类型都隐形地继承自java.lang.Enum。而每个被枚举的变量都被默认为public static final的</li>
-<li>建议使用一组常量的时候，使用枚举类型</li>
-<li>尽量避免使用枚举的高级特性</li>
+<h2 id="3-1-各种文件存储格式"><a href="#3-1-各种文件存储格式" class="headerlink" title="3.1. 各种文件存储格式"></a>3.1. 各种文件存储格式</h2><h3 id="3-1-1-zip-amp-rar通用算法"><a href="#3-1-1-zip-amp-rar通用算法" class="headerlink" title="3.1.1. zip &amp; rar通用算法"></a>3.1.1. zip &amp; rar通用算法</h3><ol>
+<li>我们如果选用zip或者rar之类的通用算法来压缩像素数据，得到的压缩比例通常不会太高,大概也是因为它是一个通用算法的缘故。</li>
 </ol>
-<h1 id="Applet类"><a href="#Applet类" class="headerlink" title="Applet类"></a>Applet类</h1><ol>
-<li>是一个采用java编程语言编写的小应用程序</li>
-<li>可以读取客户端部分系统变量</li>
-<li>不可以读取客户端文件</li>
-<li>不可以在客户端主机上创建新文件</li>
-<li>不可以在客户端装载程序库</li>
-<li><code>&lt;applet code=TestApplet.class width=100 height=100&gt;&lt;/applet&gt;</code></li>
+<h3 id="3-1-2-jpg-amp-png格式"><a href="#3-1-2-jpg-amp-png格式" class="headerlink" title="3.1.2. jpg &amp; png格式"></a>3.1.2. jpg &amp; png格式</h3><ol>
+<li>jpg和png都是针对图形的不同图像压缩算法</li>
+</ol>
+<h3 id="3-1-3-jpeg格式"><a href="#3-1-3-jpeg格式" class="headerlink" title="3.1.3. jpeg格式"></a>3.1.3. jpeg格式</h3><ol>
+<li>jpeg格式是有损压缩格式，将像素信息用jpeg保存成文件再读取出来，其中某些像素值会有所变化<ul>
+<li>保存质量参数:决定图片保真的情况。</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-BMP格式"><a href="#4-BMP格式" class="headerlink" title="4. BMP格式"></a>4. BMP格式</h3><ol>
+<li>BMP格式没有压缩过像素格式，存储在文件中时先有文件头，再图像头，后面是像素数据，上下颠倒储存。</li>
+<li>bmp格式也可以进行压缩</li>
+</ol>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
+<li>bmp有多种格式可以选择：<ol>
+<li>单色:一个像素只占一位，存储黑白信息。</li>
+<li>16色位图:一个像素4位</li>
+<li>256色位图:一个像素8位。</li>
+</ol>
+</li>
+</ol>
+<h1 id="5-png格式"><a href="#5-png格式" class="headerlink" title="5. png格式"></a>5. png格式</h1><ol>
+<li>是一种无损压缩的位图片形格式，PNG使用从LZ777派生的无损数据压缩算法，一般应用于JAVA程序，压缩比高，生成文件体积小。</li>
+</ol>
+<h2 id="5-1-压缩算法"><a href="#5-1-压缩算法" class="headerlink" title="5.1. 压缩算法"></a>5.1. 压缩算法</h2><ol>
+<li>大概是行程编码算法</li>
+<li>png可以有透明效果</li>
+<li>png比较适合矢量图、几何图</li>
+</ol>
+<h2 id="5-2-数据块结构"><a href="#5-2-数据块结构" class="headerlink" title="5.2. 数据块结构"></a>5.2. 数据块结构</h2><ol>
+<li>PNG图像格式文件(或者成为数据流)由一个8字节的PNG文件署名域(PNG file signature)和按照特定结构组织的三个以上的数据块(chunk)组成。</li>
+</ol>
+<h3 id="5-2-1-不同的数据块类型"><a href="#5-2-1-不同的数据块类型" class="headerlink" title="5.2.1. 不同的数据块类型"></a>5.2.1. 不同的数据块类型</h3><ol>
+<li>关键数据块(ctritical chunk),这是必需的数据块。<ul>
+<li>定义了4个标准数据块，每个PNG文件都必须包含它们，PNG读写软件也必须支持这些数据块。</li>
+</ul>
+</li>
+<li>辅助数据块(ancillary chunks),这是可选的数据块。</li>
+</ol>
+<h3 id="5-2-2-标准数据块的格式"><a href="#5-2-2-标准数据块的格式" class="headerlink" title="5.2.2. 标准数据块的格式"></a>5.2.2. 标准数据块的格式</h3><ol>
+<li>每个数据块都由四个域组成</li>
+<li>长度:<ul>
+<li>一个4字节的无符号整数，给出数据块的数据字段的长度(以字节计)。长度只计算数据域。为了兼容一些不支持无符号的语言，所以长度被限制在(2<sup>31</sup>-1)字节且不能<strong>达到</strong></li>
+</ul>
+</li>
+<li>数据块类型码:<ul>
+<li>一个4字节的块类型代码。为了便于描述和检查PNG文件，类型代码仅限于大写和小写的ASCII字母。然而编码器和解码器必须把代码作为固定的二进制值而非字符串来处理。</li>
+</ul>
+</li>
+<li>数据域:<ul>
+<li>数据块的数据域，存储按照数据块类型码指定的数据。该字段可以是长度为0</li>
+</ul>
+</li>
+<li>循环冗余检测<ul>
+<li>一个4字节的CRC(循环冗余校验)计算，在所述块的前面的字节，包括该块类型的代码和数据块的数据字段，但是不包括长度字段，CRC始终存在。</li>
+</ul>
+</li>
+</ol>
+<h2 id="python处理图片"><a href="#python处理图片" class="headerlink" title="python处理图片"></a>python处理图片</h2><h1 id="6-参考"><a href="#6-参考" class="headerlink" title="6. 参考"></a>6. 参考</h1><ol>
+<li><a href="https://blog.csdn.net/woniuye/article/details/89218461" target="_blank" rel="noopener">各种图片编码格式详解（bmp,jpg,png）</a></li>
+<li>百度百科</li>
 </ol>
 
     </div>
@@ -615,7 +470,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/字符图片编码/" rel="tag"># 字符图片编码</a>
             
           </div>
         
@@ -625,8 +480,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/07/java/java_面向对象编程/" rel="next" title="java学习笔记 之 OO">
-                  <i class="fa fa-chevron-left"></i> java学习笔记 之 OO
+                <a href="/2019/10/14/modern/工厂模式/" rel="next" title="工厂模式">
+                  <i class="fa fa-chevron-left"></i> 工厂模式
                 </a>
               
             </div>
@@ -635,8 +490,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/14/modern/工厂模式/" rel="prev" title="工厂模式">
-                  工厂模式 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/10/24/GB2312/" rel="prev" title="GB2312">
+                  GB2312 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -683,7 +538,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串相关类"><span class="nav-number">1.</span> <span class="nav-text">字符串相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String类的常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">String类的常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuffer和StringBuilder"><span class="nav-number">1.1.1.</span> <span class="nav-text">StringBuffer和StringBuilder</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间相关的处理类"><span class="nav-number">2.</span> <span class="nav-text">时间相关的处理类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Date时间类"><span class="nav-number">2.1.</span> <span class="nav-text">Date时间类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DateFormat类和SimpleDateFormat类"><span class="nav-number">2.2.</span> <span class="nav-text">DateFormat类和SimpleDateFormat类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calendar日历类"><span class="nav-number">2.3.</span> <span class="nav-text">Calendar日历类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Math类"><span class="nav-number">3.</span> <span class="nav-text">Math类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File类"><span class="nav-number">4.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举类"><span class="nav-number">5.</span> <span class="nav-text">枚举类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Applet类"><span class="nav-number">6.</span> <span class="nav-text">Applet类</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-图像的基本结构"><span class="nav-number">1.</span> <span class="nav-text">1. 图像的基本结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-像素的32位对齐"><span class="nav-number">2.</span> <span class="nav-text">2. 像素的32位对齐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-不同图像格式存储的不同的特点"><span class="nav-number">3.</span> <span class="nav-text">3. 不同图像格式存储的不同的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-各种文件存储格式"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 各种文件存储格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-zip-amp-rar通用算法"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. zip &amp; rar通用算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-jpg-amp-png格式"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. jpg &amp; png格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-jpeg格式"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. jpeg格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-BMP格式"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. BMP格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">3.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-png格式"><span class="nav-number">4.</span> <span class="nav-text">5. png格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-压缩算法"><span class="nav-number">4.1.</span> <span class="nav-text">5.1. 压缩算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-数据块结构"><span class="nav-number">4.2.</span> <span class="nav-text">5.2. 数据块结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-不同的数据块类型"><span class="nav-number">4.2.1.</span> <span class="nav-text">5.2.1. 不同的数据块类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-标准数据块的格式"><span class="nav-number">4.2.2.</span> <span class="nav-text">5.2.2. 标准数据块的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python处理图片"><span class="nav-number">4.3.</span> <span class="nav-text">python处理图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-参考"><span class="nav-number">5.</span> <span class="nav-text">6. 参考</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
