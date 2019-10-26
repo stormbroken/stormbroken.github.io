@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Stormbrokenの博客">
 <meta property="og:description" content="图片编码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-24T04:11:16.015Z">
+<meta property="og:updated_time" content="2019-10-26T15:41:48.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图片编码">
 <meta name="twitter:description" content="图片编码">
@@ -310,11 +310,19 @@
                 
               
 
-              <time title="创建时间：2019-10-24 12:04:26 / 修改时间：12:11:16" itemprop="dateCreated datePublished" datetime="2019-10-24T12:04:26+08:00">2019-10-24</time>
+              <time title="创建时间：2019-10-24 12:04:26" itemprop="dateCreated datePublished" datetime="2019-10-24T12:04:26+08:00">2019-10-24</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-26 23:41:48" itemprop="dateModified" datetime="2019-10-26T23:41:48+08:00">2019-10-26</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -365,6 +373,8 @@
 </ul>
 </li>
 </ol>
+<h2 id="1-1-图片通道编码的分离和合并"><a href="#1-1-图片通道编码的分离和合并" class="headerlink" title="1.1. 图片通道编码的分离和合并"></a>1.1. 图片通道编码的分离和合并</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image <span class="comment"># 导入</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRandom</span><span class="params">(situation,ob1,ob2,ob3)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(situation == <span class="string">"0"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob1</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"1"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob2</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"2"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob3</span><br><span class="line">    print(<span class="string">"Wrong!"</span>)</span><br><span class="line">    <span class="keyword">return</span> ob1</span><br><span class="line"><span class="comment"># 导入的数据图都是RGBA，暂未做适配</span></span><br><span class="line">im1 = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">im2 = Image.open(<span class="string">'test1.png'</span>)</span><br><span class="line">im3 = Image.open(<span class="string">'test2.png'</span>)</span><br><span class="line">im1 = im1.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im2 = im2.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im3 = im3.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">r0, g0, b0, c0 = im1.split()</span><br><span class="line">r1, g1, b1, c1 = im2.split()</span><br><span class="line">r2, g2, b2, c2 = im3.split()</span><br><span class="line">temp_1 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_2 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_3 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_4 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">print(temp_1 + <span class="string">" | "</span>+ temp_2 + <span class="string">" | "</span>+ temp_3 +<span class="string">" | "</span>+ temp_4)</span><br><span class="line">result = Image.merge(<span class="string">"RGBA"</span>, [getRandom(temp_1,r0,r1,r2),</span><br><span class="line">                              getRandom(temp_2,g0,g1,g2),</span><br><span class="line">                              getRandom(temp_3,b0,b1,b2),</span><br><span class="line">                             getRandom(temp_4, c0, c1, c2)])</span><br><span class="line">result.save(<span class="string">"result.png"</span>)</span><br></pre></td></tr></table></figure>
+
 <h1 id="2-像素的32位对齐"><a href="#2-像素的32位对齐" class="headerlink" title="2. 像素的32位对齐"></a>2. 像素的32位对齐</h1><ol>
 <li>如果是RGB24位图，会存在一个32位对齐的问题<ul>
 <li>在x86体系下，cpu一次性处理32倍数的数据会更快。</li>
@@ -391,7 +401,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="4-BMP格式"><a href="#4-BMP格式" class="headerlink" title="4. BMP格式"></a>4. BMP格式</h3><ol>
+<h3 id="3-1-4-BMP格式"><a href="#3-1-4-BMP格式" class="headerlink" title="3.1.4. BMP格式"></a>3.1.4. BMP格式</h3><ol>
 <li>BMP格式没有压缩过像素格式，存储在文件中时先有文件头，再图像头，后面是像素数据，上下颠倒储存。</li>
 <li>bmp格式也可以进行压缩</li>
 </ol>
@@ -403,25 +413,25 @@
 </ol>
 </li>
 </ol>
-<h1 id="5-png格式"><a href="#5-png格式" class="headerlink" title="5. png格式"></a>5. png格式</h1><ol>
+<h1 id="4-png格式"><a href="#4-png格式" class="headerlink" title="4. png格式"></a>4. png格式</h1><ol>
 <li>是一种无损压缩的位图片形格式，PNG使用从LZ777派生的无损数据压缩算法，一般应用于JAVA程序，压缩比高，生成文件体积小。</li>
 </ol>
-<h2 id="5-1-压缩算法"><a href="#5-1-压缩算法" class="headerlink" title="5.1. 压缩算法"></a>5.1. 压缩算法</h2><ol>
+<h2 id="4-1-压缩算法"><a href="#4-1-压缩算法" class="headerlink" title="4.1. 压缩算法"></a>4.1. 压缩算法</h2><ol>
 <li>大概是行程编码算法</li>
 <li>png可以有透明效果</li>
 <li>png比较适合矢量图、几何图</li>
 </ol>
-<h2 id="5-2-数据块结构"><a href="#5-2-数据块结构" class="headerlink" title="5.2. 数据块结构"></a>5.2. 数据块结构</h2><ol>
+<h2 id="4-2-数据块结构"><a href="#4-2-数据块结构" class="headerlink" title="4.2. 数据块结构"></a>4.2. 数据块结构</h2><ol>
 <li>PNG图像格式文件(或者成为数据流)由一个8字节的PNG文件署名域(PNG file signature)和按照特定结构组织的三个以上的数据块(chunk)组成。</li>
 </ol>
-<h3 id="5-2-1-不同的数据块类型"><a href="#5-2-1-不同的数据块类型" class="headerlink" title="5.2.1. 不同的数据块类型"></a>5.2.1. 不同的数据块类型</h3><ol>
+<h3 id="4-2-1-不同的数据块类型"><a href="#4-2-1-不同的数据块类型" class="headerlink" title="4.2.1. 不同的数据块类型"></a>4.2.1. 不同的数据块类型</h3><ol>
 <li>关键数据块(ctritical chunk),这是必需的数据块。<ul>
 <li>定义了4个标准数据块，每个PNG文件都必须包含它们，PNG读写软件也必须支持这些数据块。</li>
 </ul>
 </li>
 <li>辅助数据块(ancillary chunks),这是可选的数据块。</li>
 </ol>
-<h3 id="5-2-2-标准数据块的格式"><a href="#5-2-2-标准数据块的格式" class="headerlink" title="5.2.2. 标准数据块的格式"></a>5.2.2. 标准数据块的格式</h3><ol>
+<h3 id="4-2-2-标准数据块的格式"><a href="#4-2-2-标准数据块的格式" class="headerlink" title="4.2.2. 标准数据块的格式"></a>4.2.2. 标准数据块的格式</h3><ol>
 <li>每个数据块都由四个域组成</li>
 <li>长度:<ul>
 <li>一个4字节的无符号整数，给出数据块的数据字段的长度(以字节计)。长度只计算数据域。为了兼容一些不支持无符号的语言，所以长度被限制在(2<sup>31</sup>-1)字节且不能<strong>达到</strong></li>
@@ -440,7 +450,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="python处理图片"><a href="#python处理图片" class="headerlink" title="python处理图片"></a>python处理图片</h2><h1 id="6-参考"><a href="#6-参考" class="headerlink" title="6. 参考"></a>6. 参考</h1><ol>
+<h2 id="4-3-python处理图片"><a href="#4-3-python处理图片" class="headerlink" title="4.3. python处理图片"></a>4.3. python处理图片</h2><h1 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考"></a>5. 参考</h1><ol>
 <li><a href="https://blog.csdn.net/woniuye/article/details/89218461" target="_blank" rel="noopener">各种图片编码格式详解（bmp,jpg,png）</a></li>
 <li>百度百科</li>
 </ol>
@@ -538,7 +548,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-图像的基本结构"><span class="nav-number">1.</span> <span class="nav-text">1. 图像的基本结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-像素的32位对齐"><span class="nav-number">2.</span> <span class="nav-text">2. 像素的32位对齐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-不同图像格式存储的不同的特点"><span class="nav-number">3.</span> <span class="nav-text">3. 不同图像格式存储的不同的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-各种文件存储格式"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 各种文件存储格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-zip-amp-rar通用算法"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. zip &amp; rar通用算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-jpg-amp-png格式"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. jpg &amp; png格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-jpeg格式"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. jpeg格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-BMP格式"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. BMP格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">3.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-png格式"><span class="nav-number">4.</span> <span class="nav-text">5. png格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-压缩算法"><span class="nav-number">4.1.</span> <span class="nav-text">5.1. 压缩算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-数据块结构"><span class="nav-number">4.2.</span> <span class="nav-text">5.2. 数据块结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-不同的数据块类型"><span class="nav-number">4.2.1.</span> <span class="nav-text">5.2.1. 不同的数据块类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-标准数据块的格式"><span class="nav-number">4.2.2.</span> <span class="nav-text">5.2.2. 标准数据块的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python处理图片"><span class="nav-number">4.3.</span> <span class="nav-text">python处理图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-参考"><span class="nav-number">5.</span> <span class="nav-text">6. 参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-图像的基本结构"><span class="nav-number">1.</span> <span class="nav-text">1. 图像的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-图片通道编码的分离和合并"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 图片通道编码的分离和合并</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-像素的32位对齐"><span class="nav-number">2.</span> <span class="nav-text">2. 像素的32位对齐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-不同图像格式存储的不同的特点"><span class="nav-number">3.</span> <span class="nav-text">3. 不同图像格式存储的不同的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-各种文件存储格式"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 各种文件存储格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-zip-amp-rar通用算法"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. zip &amp; rar通用算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-jpg-amp-png格式"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. jpg &amp; png格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-jpeg格式"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. jpeg格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-BMP格式"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4. BMP格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">3.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-png格式"><span class="nav-number">4.</span> <span class="nav-text">4. png格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-压缩算法"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 压缩算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-数据块结构"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 数据块结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-不同的数据块类型"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1. 不同的数据块类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-标准数据块的格式"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2. 标准数据块的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-python处理图片"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. python处理图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-参考"><span class="nav-number">5.</span> <span class="nav-text">5. 参考</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
