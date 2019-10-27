@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Stormbrokenの博客">
 <meta property="og:description" content="简要介绍了图像在计算机中的储存和操作，以及png图片存储形式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T11:07:19.022Z">
+<meta property="og:updated_time" content="2019-10-27T11:12:25.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像以及PNG">
 <meta name="twitter:description" content="简要介绍了图像在计算机中的储存和操作，以及png图片存储形式。">
@@ -133,7 +133,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">留下生活学习的点点滴滴</p>
+        <p class="site-subtitle">掐指一算，代码完蛋</p>
       
   </div>
 
@@ -286,7 +286,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stormbroken">
-      <meta itemprop="description" content="没有什么能够阻挡一直学习的心。">
+      <meta itemprop="description" content="没有什么能阻挡学习！">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -321,7 +321,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-27 19:07:19" itemprop="dateModified" datetime="2019-10-27T19:07:19+08:00">2019-10-27</time>
+                <time title="修改时间：2019-10-27 19:12:25" itemprop="dateModified" datetime="2019-10-27T19:12:25+08:00">2019-10-27</time>
               </span>
             
           
@@ -373,7 +373,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-1-查看图片的相关信息"><a href="#1-1-1-查看图片的相关信息" class="headerlink" title="1.1.1. 查看图片的相关信息"></a>1.1.1. 查看图片的相关信息</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">image = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">print(image.size)<span class="comment"># 图片的长*宽</span></span><br><span class="line">print(image.format)<span class="comment"># image的图片类型，此例中未png</span></span><br><span class="line">print(image.mode)<span class="comment"># image的颜色显示类型</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-1-1-查看图片的相关信息"><a href="#1-1-1-查看图片的相关信息" class="headerlink" title="1.1.1. 查看图片的相关信息"></a>1.1.1. 查看图片的相关信息</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">image = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">print(image.size)<span class="comment"># 图片的长*宽</span></span><br><span class="line">print(image.format)<span class="comment"># image的图片类型，此例中为png</span></span><br><span class="line">print(image.mode)<span class="comment"># image的颜色显示类型</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="1-1-2-图片通道编码的分离和合并"><a href="#1-1-2-图片通道编码的分离和合并" class="headerlink" title="1.1.2. 图片通道编码的分离和合并"></a>1.1.2. 图片通道编码的分离和合并</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image <span class="comment"># 导入</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRandom</span><span class="params">(situation,ob1,ob2,ob3)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(situation == <span class="string">"0"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob1</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"1"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob2</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"2"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob3</span><br><span class="line">    print(<span class="string">"Wrong!"</span>)</span><br><span class="line">    <span class="keyword">return</span> ob1</span><br><span class="line"><span class="comment"># 导入的数据图都是RGBA，暂未做适配</span></span><br><span class="line">im1 = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">im2 = Image.open(<span class="string">'test1.png'</span>)</span><br><span class="line">im3 = Image.open(<span class="string">'test2.png'</span>)</span><br><span class="line"><span class="comment"># 调整图片大小</span></span><br><span class="line">im1 = im1.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im2 = im2.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im3 = im3.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line"><span class="comment"># 在通道合并前需要保证图片大小相同</span></span><br><span class="line">r0, g0, b0, c0 = im1.split()</span><br><span class="line">r1, g1, b1, c1 = im2.split()</span><br><span class="line">r2, g2, b2, c2 = im3.split()</span><br><span class="line">temp_1 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_2 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_3 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_4 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">result = Image.merge(<span class="string">"RGBA"</span>, [getRandom(temp_1,r0,r1,r2),</span><br><span class="line">                              getRandom(temp_2,g0,g1,g2),</span><br><span class="line">                              getRandom(temp_3,b0,b1,b2),</span><br><span class="line">                              getRandom(temp_4,c0,c1,c2)])</span><br><span class="line">result.save(<span class="string">"result.png"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -608,7 +608,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Stormbroken</p>
-  <div class="site-description" itemprop="description">没有什么能够阻挡一直学习的心。</div>
+  <div class="site-description" itemprop="description">没有什么能阻挡学习！</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
