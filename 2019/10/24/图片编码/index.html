@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Stormbrokenの博客">
 <meta property="og:description" content="简要介绍了图像在计算机中的储存和操作，以及png图片存储形式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T11:12:25.434Z">
+<meta property="og:updated_time" content="2019-10-28T00:07:56.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像以及PNG">
 <meta name="twitter:description" content="简要介绍了图像在计算机中的储存和操作，以及png图片存储形式。">
@@ -321,7 +321,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-27 19:12:25" itemprop="dateModified" datetime="2019-10-27T19:12:25+08:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 08:07:56" itemprop="dateModified" datetime="2019-10-28T08:07:56+08:00">2019-10-28</time>
               </span>
             
           
@@ -363,7 +363,7 @@
         <p>简要介绍了图像在计算机中的储存和操作，以及png图片存储形式。</p>
 <a id="more"></a>
 <h1 id="1-图像简介"><a href="#1-图像简介" class="headerlink" title="1. 图像简介"></a>1. 图像简介</h1><h2 id="1-1-图像的基本结构"><a href="#1-1-图像的基本结构" class="headerlink" title="1.1. 图像的基本结构"></a>1.1. 图像的基本结构</h2><ol>
-<li>在计算计算机中，图像是由一个个像素点(也称颜色点)组成。</li>
+<li>在计算机中，图像是由一个个像素点(也称颜色点)组成。</li>
 <li>颜色最简单的显示方式:RGB或RGBA表示<ul>
 <li>其中R通道是指蓝颜色通道</li>
 <li>其中G通道是指绿颜色通道</li>
@@ -373,16 +373,16 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-1-查看图片的相关信息"><a href="#1-1-1-查看图片的相关信息" class="headerlink" title="1.1.1. 查看图片的相关信息"></a>1.1.1. 查看图片的相关信息</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">image = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">print(image.size)<span class="comment"># 图片的长*宽</span></span><br><span class="line">print(image.format)<span class="comment"># image的图片类型，此例中为png</span></span><br><span class="line">print(image.mode)<span class="comment"># image的颜色显示类型</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-1-1-查看图片的相关信息"><a href="#1-1-1-查看图片的相关信息" class="headerlink" title="1.1.1. 查看图片的相关信息"></a>1.1.1. 查看图片的相关信息</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">image = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">print(image.size)<span class="comment"># 图片的长度*宽度</span></span><br><span class="line">print(image.format)<span class="comment"># image的图片类型，此例中为png</span></span><br><span class="line">print(image.mode)<span class="comment"># image的颜色显示类型</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="1-1-2-图片通道编码的分离和合并"><a href="#1-1-2-图片通道编码的分离和合并" class="headerlink" title="1.1.2. 图片通道编码的分离和合并"></a>1.1.2. 图片通道编码的分离和合并</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image <span class="comment"># 导入</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRandom</span><span class="params">(situation,ob1,ob2,ob3)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(situation == <span class="string">"0"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob1</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"1"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob2</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"2"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob3</span><br><span class="line">    print(<span class="string">"Wrong!"</span>)</span><br><span class="line">    <span class="keyword">return</span> ob1</span><br><span class="line"><span class="comment"># 导入的数据图都是RGBA，暂未做适配</span></span><br><span class="line">im1 = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">im2 = Image.open(<span class="string">'test1.png'</span>)</span><br><span class="line">im3 = Image.open(<span class="string">'test2.png'</span>)</span><br><span class="line"><span class="comment"># 调整图片大小</span></span><br><span class="line">im1 = im1.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im2 = im2.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im3 = im3.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line"><span class="comment"># 在通道合并前需要保证图片大小相同</span></span><br><span class="line">r0, g0, b0, c0 = im1.split()</span><br><span class="line">r1, g1, b1, c1 = im2.split()</span><br><span class="line">r2, g2, b2, c2 = im3.split()</span><br><span class="line">temp_1 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_2 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_3 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_4 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">result = Image.merge(<span class="string">"RGBA"</span>, [getRandom(temp_1,r0,r1,r2),</span><br><span class="line">                              getRandom(temp_2,g0,g1,g2),</span><br><span class="line">                              getRandom(temp_3,b0,b1,b2),</span><br><span class="line">                              getRandom(temp_4,c0,c1,c2)])</span><br><span class="line">result.save(<span class="string">"result.png"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="1-1-2-图片通道编码的分离和合并"><a href="#1-1-2-图片通道编码的分离和合并" class="headerlink" title="1.1.2. 图片通道编码的分离和合并"></a>1.1.2. 图片通道编码的分离和合并</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image <span class="comment"># 导入</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getRandom</span><span class="params">(situation,ob1,ob2,ob3)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(situation == <span class="string">"0"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob1</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"1"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob2</span><br><span class="line">    <span class="keyword">elif</span>(situation == <span class="string">"2"</span>):</span><br><span class="line">        <span class="keyword">return</span> ob3</span><br><span class="line">    print(<span class="string">"Wrong!"</span>)</span><br><span class="line">    <span class="keyword">return</span> ob1</span><br><span class="line"><span class="comment"># 导入的数据图都是RGBA，暂未做适配</span></span><br><span class="line">im1 = Image.open(<span class="string">'test.png'</span>)</span><br><span class="line">im2 = Image.open(<span class="string">'test1.png'</span>)</span><br><span class="line">im3 = Image.open(<span class="string">'test2.png'</span>)</span><br><span class="line"><span class="comment"># 调整图片大小</span></span><br><span class="line">im1 = im1.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im2 = im2.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line">im3 = im3.resize((<span class="number">1500</span>,<span class="number">1000</span>))</span><br><span class="line"><span class="comment"># 在通道合并前需要保证图片大小相同</span></span><br><span class="line">r0, g0, b0, c0 = im1.split()</span><br><span class="line">r1, g1, b1, c1 = im2.split()</span><br><span class="line">r2, g2, b2, c2 = im3.split()</span><br><span class="line">temp_1 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_2 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_3 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">temp_4 = str(random.randint(<span class="number">0</span>, <span class="number">2</span>))</span><br><span class="line">result = Image.merge(<span class="string">"RGBA"</span>, [getRandom(temp_1,r0,r1,r2),</span><br><span class="line">                              getRandom(temp_2,g0,g1,g2),</span><br><span class="line">                              getRandom(temp_3,b0,b1,b2),</span><br><span class="line">                              getRandom(temp_4,c0,c1,c2)])</span><br><span class="line">result.save(<span class="string">"result.png"</span>)<span class="comment">#将处理结果保存成为result.png</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="1-2-像素的32位对齐"><a href="#1-2-像素的32位对齐" class="headerlink" title="1.2. 像素的32位对齐"></a>1.2. 像素的32位对齐</h2><ol>
-<li>如果是RGB24位图，会存在一个32位对齐的问题<ul>
+<li>如果是RGB的24位图，会存在一个32位对齐的问题<ul>
 <li>在x86体系下，cpu一次性处理32倍数的数据会更快。</li>
 </ul>
 </li>
-<li>24位图，宽度不是4的倍数，其行字结束将不是32整数倍。这时候我们可以采取在行尾添加冗余数据的方式，使其字节数为32的倍数。<ul>
+<li>24位图，其宽度不是4的倍数，其行字结束将不是32整数倍。这时候我们可以采取在行尾添加冗余数据的方式，使其字节数为32的倍数。<ul>
 <li><code>byteNum = ((width * 24 + 31) &amp; ~31)&gt;&gt;3;</code>这个公式可以计算出来32位对齐后每行应该占的字节数。</li>
 </ul>
 </li>
@@ -414,14 +414,14 @@
 <li>压缩过的文件可以还原出原图。</li>
 </ul>
 </li>
-<li>PNG使用从LZ777派生的无损数据压缩算法，一般应用于JAVA程序，压缩比高，生成文件体积小。</li>
+<li>PNG使用从LZ77派生的无损数据压缩算法，一般应用于JAVA程序，压缩比高，生成文件体积小。</li>
 <li>标准的PNG文件结构:PNG文件标志 + PNG数据块 + … + PNG数据块<ul>
-<li>确保系统不会误识别为文本文件。</li>
+<li>确保系统不会将图片文件误识别为文本文件。</li>
 </ul>
 </li>
 </ol>
 <h2 id="2-1-文件头"><a href="#2-1-文件头" class="headerlink" title="2.1. 文件头"></a>2.1. 文件头</h2><ol>
-<li>文件头是有位固定的字节来进行描述的</li>
+<li>文件头是有位固定的字节来进行描述的。</li>
 </ol>
 <h2 id="2-2-数据块结构"><a href="#2-2-数据块结构" class="headerlink" title="2.2. 数据块结构"></a>2.2. 数据块结构</h2><ol>
 <li>PNG图像格式文件(或者成为数据流)由一个8字节的PNG文件署名域(PNG file signature)和按照特定结构组织的三个以上的数据块(chunk)组成。</li>
@@ -436,7 +436,7 @@
 <h3 id="2-2-2-标准数据块的格式"><a href="#2-2-2-标准数据块的格式" class="headerlink" title="2.2.2. 标准数据块的格式"></a>2.2.2. 标准数据块的格式</h3><p>每个数据块都由四个域组成</p>
 <ol>
 <li>长度(Length):<ul>
-<li>一个4字节的无符号整数，给出数据块的数据字段的长度(以字节计)。长度只计算数据域。为了兼容一些不支持无符号的语言，所以长度被限制在(2<sup>31</sup>-1)字节且不能<strong>达到</strong></li>
+<li>一个4字节的无符号整数，给出数据块的数据字段的长度(以字节计)。长度只计算数据域。为了兼容一些不支持无符号的语言，所以长度被限制在(2<sup>31</sup>-1)字节且<strong>不能达到</strong>。</li>
 </ul>
 </li>
 <li>数据块类型码(Chunk Type Code):<ul>
@@ -454,7 +454,7 @@
 </ol>
 <h3 id="2-2-3-像素格式"><a href="#2-2-3-像素格式" class="headerlink" title="2.2.3. 像素格式"></a>2.2.3. 像素格式</h3><p>PNG也支持很多种类型的像素格式</p>
 <ol>
-<li>Indexed(索引色) = 1个频道，可以为1,2,4,8 bpc</li>
+<li>Indexed(索引色) = 1个频道，可以为1，2，4，8 bpc</li>
 <li>Grayscale(灰度) = 1个频道，可以为1，2，4，8，16 bpc</li>
 <li>Gray+Alpha(带透明通道的灰度) = 2个频道，可以为8或16 bpc</li>
 <li>Truecolor(RGB 真彩色) = 3个频道，可以为8或16 bpc</li>
@@ -467,17 +467,34 @@
 </ol>
 <h3 id="2-3-1-过滤"><a href="#2-3-1-过滤" class="headerlink" title="2.3.1. 过滤"></a>2.3.1. 过滤</h3><ol>
 <li>差分编码(Dleta encoding)是数字压缩法之一。</li>
+<li>对于图片像素点的过滤是为之后Deflate压缩提供便利。</li>
 </ol>
 <h2 id="一维条件下的差分编码"><a href="#一维条件下的差分编码" class="headerlink" title="一维条件下的差分编码"></a>一维条件下的差分编码</h2><ol>
 <li>原理:根据前一个数据的值将后面一个数据替换成其他值</li>
-<li>Eg.[2,3,4,5,6,7,8]-&gt;<a href="线性相关">2,1,1,1,1,1,1</a></li>
+<li>Eg.<code>[2,3,4,5,6,7,8]-&gt;[2,1,1,1,1,1,1]</code>(线性相关)</li>
 </ol>
 <h2 id="二维条件下的差分编码"><a href="#二维条件下的差分编码" class="headerlink" title="二维条件下的差分编码"></a>二维条件下的差分编码</h2><ol>
 <li>原理:对于每一行的像素，一个像素都跟它的左边像素、上边的像素和左上角的像素有关系。</li>
-<li>Eg. X - (A+B)/2</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>C</th>
+<th>A</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B</td>
+<td>X</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>Eg. 如上图，我们使用推断算法 X - (A+B)/2</li>
 </ol>
 <h2 id="PNG允许的5种不同的推断算法"><a href="#PNG允许的5种不同的推断算法" class="headerlink" title="PNG允许的5种不同的推断算法"></a>PNG允许的5种不同的推断算法</h2><ol>
-<li>过滤</li>
+<li>不过滤</li>
 <li>X-A</li>
 <li>X-B</li>
 <li>X-(A+B)/2</li>
@@ -489,7 +506,7 @@
 <li>对于其他图片，就选择那种最大限度地减少绝对差异总和的过滤器。</li>
 </ol>
 <h3 id="2-3-2-压缩"><a href="#2-3-2-压缩" class="headerlink" title="2.3.2. 压缩"></a>2.3.2. 压缩</h3><ol>
-<li>在一行像素被过滤后，就会执行DEFLATE压缩(LZ77延伸出来的算法)，这种算法结合了LZ77编码和和夫曼编码。</li>
+<li>在一行像素被过滤后，就会执行DEFLATE压缩(LZ77延伸出来的算法)，这种算法结合了LZ77编码和哈夫曼编码。</li>
 </ol>
 <h2 id="Deflate算法"><a href="#Deflate算法" class="headerlink" title="Deflate算法"></a>Deflate算法</h2><ol>
 <li>Deflate只能匹配3到258个之间符号，所以最大的压缩比只能到1035:1</li>
